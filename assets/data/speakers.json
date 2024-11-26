@@ -1,0 +1,67 @@
+[
+  {
+    "fullName": "A N M Bazlur Rahman",
+    "name": "bazlur_rahman",
+    "bio": "<p><br /><strong>A N M Bazlur Rahman</strong> works at&nbsp;<a href=\"https://www.contrastsecurity.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Contrast Security</a> as a Sr. Software Engineer. He has more than ten years of professional experience in the software industry, predominantly in Java and Java-related technologies. Recently, he was honoured by being given the title of <a href=\"https://twitter.com/Java_Champions/status/1523728715368509440\" target=\"_blank\" rel=\"noopener ugc\">&nbsp;Java Champion</a>.</p>\n<p>Outside of his regular work hours, he loves to mentor, write, speak at conferences, and contribute to open-source projects. He is the founder and current moderator of the<a href=\"https://jugbd.org/\" target=\"_blank\" rel=\"nofollow noopener ugc\">&nbsp;Java User Group in Bangladesh</a>. He has organized meetups and conferences to share Java-related knowledge with the community since 2013. He was named Most Valuable Blogger (MVP) at&nbsp;<a href=\"https://dzone.com/users/1298119/bazlur_rahman.html\" target=\"_blank\" rel=\"nofollow noopener ugc\">DZone</a>, one of the most recognized technology publishers in the world. Besides DZone, he is an editor for the Java Queue at&nbsp;<a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a>, another leading technology content publisher and conference organizer, and an editor at&nbsp;<a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Foojay.io</a>, a place for friends of OpenJDK. In addition, he has published&nbsp;<a href=\"https://www.rokomari.com/book/129165/java-programming\" target=\"_blank\" rel=\"nofollow noopener ugc\">four books</a>&nbsp;about the Java programming language in Bengali; they were bestsellers in Bangladesh.</p>\n<p>He earned his bachelor&rsquo;s degree from the Institute of Information Technology, University of Dhaka, Bangladesh, in Information Technology, majoring in Software Engineering. He currently lives in Toronto, Canada.</p>",
+    "talkTitle": "Your Java Code in the Fastlane: Project Loom\n",
+    "abstract": "Project Loom introduces virtual threads, lightweight threads that aim to dramatically reduce the effort of writing, maintaining, and monitoring high-throughput concurrent applications with the Java platform.\n\nWe need threads to achieve high throughput. However, threads are not cheap and are limited in number. To get around this problem, various alternatives such as the reactive programming style have emerged. These techniques bypass creating a lot of threads at the expense of more difficult debugging. This makes developers grumpy. However, with virtual threads, we get the best of both worlds, cheap, lightweight threads and easy debugging, which would make developers happy again.\n\nThis talk will explore what virtual threads are, how they are implemented, how they solve our modern problems and what, if any, shortcomings there are.\n\n",
+    "twitter": "bazlur_rahman",
+    "linkedIn": "https://www.linkedin.com/in/bazlur/",
+    "website": "https://bazlur.ca/",
+    "title": "Java Champion | Software Engineer",
+    "company": "Contrast Security",
+    "image": "speaker1.png"
+  },
+  {
+    "fullName": "Mozammel Haque",
+    "name": "mozammel_haque",
+    "bio": "<strong> Mozammel Haque </strong>has been involved in creating software solutions for more than 20 years now. Starting from creating the first 3D racing game back in 2002, namely 'Dhaka Racing', Mozammel has worked on developing softwares that target hyper growth oriented Silicon Valley based startups, as well as creating solutions for larger enterprises which require high scalability and reliability. At bKash, Mozammel is leading Software Research and Engineering team which is taking care of bKash's in-house software development needs. Apart from work, he is a cycling and health enthusiast and mostly bikes around everywhere in Dhaka.",
+    "talkTitle": "TBD\n",
+    "abstract": "TBD",
+    "twitter": "mozammel",
+    "linkedIn": "https://www.linkedin.com/in/mozammel/",
+    "website": "https://mozammelhaque.com/",
+    "title": "EVP, Head of Department, Software Research and Engineering, Product & Technology\n",
+    "company": "bKash Limited",
+    "image": "speaker9.jpg"
+  },
+  {
+    "fullName": "Oronno Abdullah Al Mamun",
+    "name": "oronno_mamun",
+    "bio": "<strong>Abdullah Al Mamun Oronno</strong> is a Java Expert with 10+ years of professional working experience in the Java platform & Distributed System. He has vast experience developing large-scale application in both enterprise and consumer-facing business. When it comes to preferred tech stack, he likes to work with Spring, Spring Boot, JPA/Hibernate, Apache kafka, Redis, Docker & Kubernetes etc. Oronno's passions include clean code, scalable design and open source.\n",
+    "talkTitle": "TBD\n",
+    "abstract": "TBD",
+    "twitter": "oneous",
+    "linkedIn": "https://www.linkedin.com/in/oronno/",
+    "website": "https://github.com/oronno",
+    "title": "Senior Software Engineer",
+    "company": "Index Exchange",
+    "image": "oronno.png"
+  },
+  {
+    "fullName": "Reza Rahman",
+    "name": "reza_rahman",
+    "bio": "<p>Reza Rahman is Principal Program Manager for Java on Azure at Microsoft. He works to make sure Java developers are first class citizens at Microsoft and Microsoft is a first class citizen of the Java ecosystem\n<p> Reza has been an official Java technologist at Oracle. He is the author of the popular book EJB 3 in Action from Manning Publishing. Reza has long been a frequent speaker at Java User Groups and conferences worldwide including JavaOne and Devoxx. He has been the lead for the Java EE track at JavaOne as well as a JavaOne Rock Star Speaker award recipient. He was the program chair for the inaugural JakartaOne conference. Reza is an avid contributor to industry journals like DZone. He has been a member of the Java EE, EJB and JMS expert groups over the years. Reza implemented the EJB container for the Resin open source Java EE application server. He helps lead the Philadelphia Java User Group. Reza is proud to be a founding member of the Jakarta EE Ambassadors.</p>\n<p>Reza has over a decade of experience with technology leadership, enterprise architecture and consulting. He has been working with Java EE technology since its inception, developing on almost every major application platform ranging from Tomcat to JBoss, GlassFish, WebSphere and WebLogic. Reza has developed enterprise systems for well-known companies like eBay, Motorola, Comcast, Nokia, Prudential, Guardian Life, USAA, Independence Blue Cross, Anthem, CapitalOne and AAA using Java EE and Spring. He is particularly interested in distributed systems, messaging, middleware, persistence and machine learning.</p>\n<p>Reza is an inductee to Phi Beta Kappa, the oldest and most respected national honor society for undergraduates in liberal arts and sciences. He earned his bachelors degree from&nbsp;Gettysburg College. He graduated Summa Cum Laude with a double major in Computer Science and Economics as well as a minor in Mathematics.</p>",
+    "talkTitle": "TBD\n",
+    "abstract": "TBD",
+    "twitter": "reza_rahman",
+    "linkedIn": "https://www.linkedin.com/in/javareza/",
+    "website": "https://bazlur.ca/",
+    "title": "Principal Program Manager | Author, Speaker, Leader",
+    "company": "Microsoft",
+    "image": "RezaRahman.png"
+  },
+  {
+    "fullName": "Mojahedul Hoque Abul Hasanat",
+    "name": "mojahedul_hasanat",
+    "bio": "<p><br /><strong>Mojahedul Hoque Abul Hasanat</strong> works at&nbsp;<a href=\"https://www.dsinnovators.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Dynamic Solution Innovators</a> as the Chief Technology Officer. He is an Application Architect and Developer. He has 20 years of experience in the design and development of large scale applications in Java, systems applications in Perl, C and assembly, and expert knowledge on Spring Framework, Hibernate, and WebLogic.",
+    "talkTitle": "TBD\n",
+    "abstract": "TBD",
+    "twitter": "just_unix",
+    "linkedIn": "https://www.linkedin.com/in/mojahedul/",
+    "website": "https://github.com/unixdev",
+    "title": "Chief Technology Officer",
+    "company": "Dynamic Solution Innovators",
+    "image": "speaker10.jpg"
+  }
+]
