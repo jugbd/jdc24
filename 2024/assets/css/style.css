@@ -13,7 +13,7 @@
   --header-height: 4rem;
 }
 
-/* CSS RESET */
+/* RESET */
 *,
 *::before,
 *::after {
@@ -133,17 +133,17 @@ header {
       a {
         padding: 1rem;
         transition: all 0.2s ease-in-out;
-      }
-
-      a,
-      a:visited {
         text-decoration: none;
-        color: var(--primary);
-      }
 
-      a:hover,
-      a:active {
-        color: var(--accent);
+        &,
+        &:visited {
+          color: var(--primary);
+        }
+
+        &:hover,
+        &:active {
+          color: var(--accent);
+        }
       }
     }
 
@@ -186,33 +186,35 @@ header {
           left: 0;
           text-align: center;
           display: block;
+
+          &:hover,
+          &:active {
+            background-color: var(--bg-primary);
+          }
         }
 
-        a:hover,
-        a:active {
-          background-color: var(--bg-primary);
+        &[active] {
+          max-height: 400px;
         }
-      }
-
-      ul[active] {
-        max-height: 400px;
       }
 
       .burger {
         display: block;
-      }
 
-      .burger[active] {
-        div:nth-child(2) {
-          opacity: 0;
-        }
+        &[active] {
+          div {
+            &:nth-child(2) {
+              opacity: 0;
+            }
 
-        div:first-child {
-          transform: translate(0, 8px) rotate(45deg);
-        }
+            &:first-child {
+              transform: translate(0, 8px) rotate(45deg);
+            }
 
-        div:last-child {
-          transform: translate(0, -8px) rotate(-45deg);
+            &:last-child {
+              transform: translate(0, -8px) rotate(-45deg);
+            }
+          }
         }
       }
     }
