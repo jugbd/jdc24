@@ -91,6 +91,11 @@ p {
   width: clamp(20rem, 90vw, 40rem);
 }
 
+a,
+a:visited {
+  color: var(--primary);
+}
+
 h1,
 h2,
 h3,
@@ -247,15 +252,24 @@ main {
   h1 {
     font-size: clamp(2rem, 2.5vw, 4rem);
     padding: 0 0 1rem;
-
-    span {
-      font-size: clamp(2.5rem, 4vw, 5rem);
-    }
   }
 
-  p {
-    text-wrap: balance;
-    font-size: 1.125rem;
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--accent);
+    margin: 2rem auto 0;
+    padding: 0.5rem 1rem;
+    background: var(--bg-primary);
+    border-radius: 2rem;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: var(--bg-secondary);
+    }
   }
 }
 

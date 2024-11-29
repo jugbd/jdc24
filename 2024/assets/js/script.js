@@ -1,6 +1,6 @@
 // loader with some hacks
 document.addEventListener('DOMContentLoaded', async () => {
-    const body = document.querySelector("body")
+    const body = document.querySelector("body");
     body.setAttribute("loading", "")
     const loader = document.createElement("div");
     loader.classList.add("loader");
@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const content = await response.json();
-        console.log(content);
+
+        // data population
+        populateHero(content.hero);
 
         // todo: populate page with content
     } catch (e) {
@@ -24,6 +26,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         body.removeAttribute("loading");
     }
 });
+
+const populateHero = (heroContent) => {
+    const hero = document.getElementById("hero");
+    const title = document.createElement("h1");
+    title.innerText = heroContent.title;
+
+    const edition = document.createElement("h3");
+    edition.innerText = heroContent.edition;
+
+    const cta = document.createElement("a");
+    cta.innerText = heroContent.cta.text;
+    cta.setAttribute("href", heroContent.cta.link);
+
+    hero.appendChild(title);
+    hero.appendChild(edition);
+    hero.appendChild(cta);
+}
 
 
 // am i hungry?
