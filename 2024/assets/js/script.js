@@ -63,15 +63,62 @@ const populateGallery = (galleryImages) => {
     const gallery = document.querySelector('.gallery');
     if (!gallery) return;
 
-    gallery.innerHTML = ''; // Clear existing content
+    gallery.innerHTML = '';
+
+    const carousel = document.createElement('div');
+    carousel.classList.add('carousel');
 
     galleryImages.forEach(imagePath => {
         const img = document.createElement('img');
         img.src = imagePath;
         img.alt = 'Gallery Image';
-        gallery.appendChild(img);
+        img.classList.add('carousel-image');
+        carousel.appendChild(img);
     });
+
+    gallery.appendChild(carousel);
+
+    const indicators = document.createElement('div');
+    indicators.classList.add('carousel-indicators');
+    galleryImages.forEach((_, index) => {
+        const indicator = document.createElement('div');
+        indicator.classList.add('indicator');
+        if (index === 0) indicator.classList.add('active');
+        indicator.dataset.index = index;
+        indicators.appendChild(indicator);
+    });
+    gallery.appendChild(indicators);
+
+    // Initialize carousel
+    let currentIndex = 0;
+    const images = carousel.querySelectorAll('.carousel-image');
+    const allIndicators = indicators.querySelectorAll('.indicator');
+
+    const updateCarousel = () => {
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        allIndicators.forEach(ind => ind.classList.remove('active'));
+        allIndicators[currentIndex].classList.add('active');
+    };
+
+    const autoSlide = () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+    };
+
+    let slideInterval = setInterval(autoSlide, 3000);
+
+    allIndicators.forEach(indicator => {
+        indicator.addEventListener('click', (e) => {
+            clearInterval(slideInterval);
+            currentIndex = parseInt(e.target.dataset.index, 10);
+            updateCarousel();
+            slideInterval = setInterval(autoSlide, 3000);
+        });
+    });
+
+    updateCarousel();
 };
+
 
 const populateSpeakers = (speakers) => {
     const speakersSection = document.querySelector('.speakers');
@@ -86,9 +133,11 @@ const populateSpeakers = (speakers) => {
         speakerCard.classList.add('speaker-card');
 
         speakerCard.innerHTML = `
-            <img src="${speaker.image}" alt="${speaker.name}">
-            <h3>${speaker.name}</h3>
-            <p>${speaker.emp}</p>
+            <img src="${speaker.image}" alt="${speaker.name}" loading="lazy">
+            <div class="speaker-info">
+                <h3>${speaker.name}</h3>
+                <p>${speaker.emp}</p>
+            </div>
         `;
 
         speakerGrid.appendChild(speakerCard);
