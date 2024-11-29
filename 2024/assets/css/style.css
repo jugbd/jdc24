@@ -274,64 +274,6 @@ main {
   }
 }
 
-
-.hero .year {
-  position: absolute;
-  font-size: clamp(15rem, 25vw, 30rem);
-  font-weight: 900;
-  color: rgba(229, 231, 210, 0.1);
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-  white-space: nowrap;
-  width: auto;
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
-}
-
-.hero-date {
-  font-size: 1.125rem;
-  color: var(--tertiary);
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-  position: relative;
-  z-index: 1;
-}
-
-.btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
-}
-
-.btn-primary {
-  background-color: var(--accent);
-  color: var(--primary);
-  border-radius: 30px;
-  font-weight: bold;
-  transform: scale(1);
-  transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-  background-color: var(--bg-tertiary);
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-
 .intro {
   display: flex;
   flex-direction: column;
