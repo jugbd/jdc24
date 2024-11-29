@@ -1,4 +1,3 @@
-// loader with some hacks
 document.addEventListener('DOMContentLoaded', async () => {
     const body = document.querySelector("body");
     body.setAttribute("loading", "")
@@ -20,7 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateAbout(content.about);
         populateGallery(content.gallery);
         populateSpeakers(content.speakers);
-        populateTimeline(content.timeline);
+        populateCountdown(content.countdown, content.hero);
+        populateTeam(content.ourTeam)
         populateLocation(content.location);
         populateFooter(content.footer);
 
@@ -36,34 +36,51 @@ document.addEventListener('DOMContentLoaded', async () => {
 const populateHero = (heroContent) => {
     const hero = document.getElementById("hero");
     const title = document.createElement("h1");
-    title.innerText = heroContent.title;
+    title.innerHTML = heroContent.title;
 
     const edition = document.createElement("h3");
-    edition.innerText = heroContent.edition;
+    edition.innerHTML = heroContent.edition;
 
     const cta = document.createElement("a");
-    cta.innerText = heroContent.cta.text;
+    cta.innerHTML = heroContent.cta.text;
     cta.setAttribute("href", heroContent.cta.link);
+    cta.setAttribute("target", "_blank");
 
     hero.appendChild(title);
     hero.appendChild(edition);
     hero.appendChild(cta);
 }
-const populateAbout = (aboutContent) => {
-    const about = document.querySelector('.intro');
-    if (!about) return;
 
-    const description = about.querySelector('p');
-    if (description) {
-        description.textContent = aboutContent.description;
-    }
+const populateAbout = (aboutContent) => {
+    const about = document.getElementById("intro");
+
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("wrapper");
+
+    const image = document.createElement("img");
+    image.src = aboutContent.image;
+    image.alt = "blah blah blah";
+
+
+    const subtitle = document.createElement("h3");
+    subtitle.innerHTML = "<span>▲</span> About the Event"
+
+    const title = document.createElement("h2");
+    title.innerHTML = aboutContent.title;
+
+    const description = document.createElement("p");
+    description.innerHTML = aboutContent.description;
+
+    wrapper.appendChild(subtitle);
+    wrapper.appendChild(title);
+    wrapper.appendChild(description);
+
+    about.appendChild(wrapper);
+    about.appendChild(image);
 };
 
 const populateGallery = (galleryImages) => {
-    const gallery = document.querySelector('.gallery');
-    if (!gallery) return;
-
-    gallery.innerHTML = '';
+    const gallery = document.getElementById('gallery');
 
     const carousel = document.createElement('div');
     carousel.classList.add('carousel');
@@ -121,10 +138,10 @@ const populateGallery = (galleryImages) => {
 
 
 const populateSpeakers = (speakers) => {
-    const speakersSection = document.querySelector('.speakers');
-    if (!speakersSection) return;
+    const speakersSection = document.getElementById('speakers');
 
-    speakersSection.innerHTML = '<h2>Speakers</h2>';
+    const title = document.createElement('h2');
+    title.innerHTML = "Speakers";
     const speakerGrid = document.createElement('div');
     speakerGrid.classList.add('speaker-grid');
 
@@ -133,36 +150,65 @@ const populateSpeakers = (speakers) => {
         speakerCard.classList.add('speaker-card');
 
         speakerCard.innerHTML = `
-            <img src="${speaker.image}" alt="${speaker.name}" loading="lazy">
+        <div class="speaker-img" style="background-image: url(${speaker.image})"></div>
             <div class="speaker-info">
-                <h3>${speaker.name}</h3>
-                <p>${speaker.emp}</p>
+                <h3>${speaker.fullName}</h3>
+                <p>${speaker.company}</p>
             </div>
         `;
 
         speakerGrid.appendChild(speakerCard);
     });
 
+    speakersSection.appendChild(title);
     speakersSection.appendChild(speakerGrid);
 };
 
-const populateTimeline = (timeline) => {
-    const whySection = document.querySelector('.why-jdc');
-    if (!whySection) return;
+const populateTeam = (teamMembers) => {
+    const teamSection = document.getElementById('our-team');
 
-    whySection.innerHTML = `
-        <h2>Timeline</h2>
-        <p>${timeline.title.replace('\n', '<br>')}</p>
+    const title = document.createElement('h2');
+    title.innerHTML = "Our Team";
+    const teamGrid = document.createElement('div');
+    teamGrid.classList.add('team-grid');
+
+    teamMembers.forEach(member => {
+        const teamCard = document.createElement('div');
+        teamCard.classList.add('team-card');
+
+        teamCard.innerHTML = `
+            <div class="team-info">
+                <h3><a href="${member.linkedin}" target="_blank">${member.fullName}</a></h3>
+                <p><a href="${member.companyWebsite}" target="_blank">${member.company}</a></p>
+            </div>
+        `;
+
+        teamGrid.appendChild(teamCard);
+    });
+
+    teamSection.appendChild(title);
+    teamSection.appendChild(teamGrid);
+};
+
+
+const populateCountdown = (cdC, hero) => {
+    const countdown = document.getElementById('countdown');
+
+    const linkStart = cdC.subsection.body.indexOf("{{link}}");
+    countdown.innerHTML = `
+        <h3>${cdC.title.replace('\n', '<br>')}</h3>
         <div class="subsection">
-            <h3>${timeline.subsection.title}</h3>
-            <p>${timeline.subsection.body.replace('[JUGBD]', `<a href="https://www.facebook.com/groups/jugbd">JUGBD</a>`)}</p>
+            <h3>${cdC.subsection.title}</h3>
+            <p>${cdC.subsection.body.substring(0, linkStart)}  <a href="${cdC.subsection.link.url}" target="_blank" rel="noopener">${cdC.subsection.link.text}</a> ${cdC.subsection.body.substring(linkStart + 8)}</p>
         </div>
+
+        <a href="${hero.cta.link}" target="_blank" rel="noopener">${hero.cta.text}</a>
     `;
 };
 
 const populateLocation = (location) => {
-    const venue = document.querySelector('.venue');
-    if (!venue) return;
+    const venue = document.getElementById('venue');
+
 
     venue.innerHTML = `
         <h2>${location.title}</h2>
@@ -176,7 +222,6 @@ const populateLocation = (location) => {
 
 const populateFooter = (footerContent) => {
     const footer = document.querySelector('footer');
-    if (!footer) return;
 
     const socialLinks = document.createElement('div');
     socialLinks.classList.add('social-links');
@@ -190,12 +235,11 @@ const populateFooter = (footerContent) => {
         socialLinks.appendChild(link);
     });
 
-    footer.innerHTML = '';
-    footer.appendChild(socialLinks);
-
     const copyright = document.createElement('p');
     copyright.innerHTML = footerContent.copyright.replace('{{YYYY}}', new Date().getFullYear());
+    footer.appendChild(socialLinks);
     footer.appendChild(copyright);
+    console.log("vong chong")
 };
 
 // am i hungry?
@@ -206,6 +250,3 @@ burger.addEventListener("click", () => {
     navContainer.toggleAttribute("active");
     burger.toggleAttribute("active");
 })
-
-
-// todo: do more stuff here
