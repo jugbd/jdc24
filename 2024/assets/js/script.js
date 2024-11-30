@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateHero(content.hero);
         populateAbout(content.about);
         populateGallery(content.gallery);
+        populateWhyJDC(content.whyJdc);
         populateSpeakers(content.speakers);
         populateCountdown(content.countdown, content.hero);
         populateTeam(content.ourTeam)
@@ -63,7 +64,7 @@ const populateAbout = (aboutContent) => {
 
 
     const subtitle = document.createElement("h3");
-    subtitle.innerHTML = "<span>▲</span> About the Event"
+    subtitle.innerHTML = "<span>▲</span>About the Event"
 
     const title = document.createElement("h2");
     title.innerHTML = aboutContent.title;
@@ -143,6 +144,53 @@ const populateGallery = (galleryImages) => {
 
     updateCarousel();
 };
+
+function populateWhyJDC(whyJDC) {
+    const whySection = document.getElementById("why-jdc");
+
+    const title = document.createElement('h2');
+    title.innerHTML = whyJDC.why.title;
+    title.classList.add('section-title');
+    whySection.appendChild(title);
+
+    const itemsList = document.createElement('ul');
+    itemsList.classList.add('why-items');
+    whyJDC.why.items.forEach((item) => {
+        const listItem = document.createElement('li');
+        const textSpan = document.createElement('span');
+        textSpan.textContent = item;
+        listItem.appendChild(textSpan);
+        itemsList.appendChild(listItem);
+    });
+    whySection.appendChild(itemsList);
+
+    const sectionsContainer = document.createElement('div');
+    sectionsContainer.classList.add('sections-container');
+
+    whyJDC.sections.forEach((section) => {
+        const sectionDiv = document.createElement('div');
+        sectionDiv.classList.add('section');
+
+        const icon = document.createElement('img');
+        icon.src = section.icon;
+        icon.alt = `${section.title} icon`;
+        icon.classList.add('section-icon');
+
+        const sectionTitle = document.createElement('h3');
+        sectionTitle.textContent = section.title;
+        sectionTitle.classList.add('section-subtitle');
+
+        const description = document.createElement('p');
+        description.textContent = section.description;
+        description.classList.add('section-description');
+
+        sectionDiv.append(icon, sectionTitle, description);
+        sectionsContainer.appendChild(sectionDiv);
+    });
+
+    whySection.appendChild(sectionsContainer);
+}
+
 
 
 const populateSpeakers = (speakers) => {
@@ -280,17 +328,20 @@ const populateFooter = (footerContent) => {
     const socialLinks = document.createElement('div');
     socialLinks.classList.add('social-links');
 
-    footerContent.social.forEach(social => {
+    footerContent.social.forEach((social) => {
         const link = document.createElement('a');
         link.href = social.link;
         link.textContent = social.name;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
+
         socialLinks.appendChild(link);
     });
 
+
     const copyright = document.createElement('p');
     copyright.innerHTML = footerContent.copyright.replace('{{YYYY}}', new Date().getFullYear());
+
     footer.appendChild(socialLinks);
     footer.appendChild(copyright);
 };

@@ -52,7 +52,7 @@
       "website": "https://mozammelhaque.com/",
       "title": "EVP, Head of Department, Software Research and Engineering, Product & Technology\n",
       "company": "@bKash Limited",
-      "companyWebsite": "http://www.dnastack.com",
+      "companyWebsite": "https://www.bkash.com/",
       "image": "assets/images/speakers/moz.jpg"
     },
     {
@@ -66,7 +66,7 @@
       "website": "https://bazlur.ca/",
       "title": "Principal Program Manager | Author, Speaker, Leader",
       "company": "@Microsoft",
-      "companyWebsite": "http://www.dnastack.com",
+      "companyWebsite": "https://news.microsoft.com/",
       "image": "assets/images/speakers/RezaRahman.png"
     },
     {
@@ -80,7 +80,7 @@
       "website": "https://github.com/oronno",
       "title": "Senior Software Engineer",
       "company": "@Index Exchange",
-      "companyWebsite": "http://www.dnastack.com",
+      "companyWebsite": "https://www.indexexchange.com/li",
       "image": "assets/images/speakers/oronno.png"
     },
     {
@@ -94,12 +94,13 @@
       "website": "https://github.com/unixdev",
       "title": "Chief Technology Officer",
       "company": "@Dynamic Solution Innovators",
+      "companyWebsite": "https://www.dsinnovators.com",
       "image": "assets/images/speakers/hasanat.jpg"
     }
   ],
   "whyJdc": {
     "why": {
-      "title": "Taking part in this event&mdash;",
+      "title": "Taking part in this event &mdash;",
       "items": [
         "Meet some great Java guys right here",
         "While sipping coffee and snacking, converse with your fellow devs about your favourite Java technology",
@@ -120,7 +121,7 @@
       },
       {
         "icon": "iconPath",
-        "title": "Connect and Network",
+        "title": "Connect & Network",
         "description": "Meet like-minded people and expand your career, business and industry network. Yes, it's also a perfect opportunity to do team-building or just meet old and make new friends."
       }
     ]
@@ -164,14 +165,14 @@
       "linkedin": "https://www.linkedin.com/in/md-nowshad-hasan/",
       "company": "@DSi",
       "companyWebsite": "https://www.dsinnovators.com",
-      "image": "assets/images/team/team04.png"
+      "image": "assets/images/team/team05.png"
     },
     {
       "fullName": "Abdullah Al Mamun Oronno",
       "linkedin": "https://www.linkedin.com/in/oronno/",
       "company": "@Index Exchange",
       "companyWebsite": "https://www.indexexchange.com/li",
-      "image": "assets/images/team/team05.png"
+      "image": "assets/images/team/team04.png"
     },
     {
       "fullName": "Mosharraf Hosain",
