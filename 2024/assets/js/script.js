@@ -83,7 +83,7 @@ const populateGallery = (galleryImages) => {
     const gallery = document.getElementById('gallery');
 
     const title = document.createElement("h2");
-    title.innerHTML = "Image Gallery"
+
 
     const galleryWrapper = document.createElement("div");
     galleryWrapper.classList.add("galler-wrapper");
@@ -149,7 +149,7 @@ const populateSpeakers = (speakers) => {
     const speakersSection = document.getElementById('speakers');
 
     const title = document.createElement('h2');
-    title.innerHTML = "Speakers";
+    title.innerHTML = "Featured Speakers";
     const speakerGrid = document.createElement('div');
     speakerGrid.classList.add('speaker-grid');
 
@@ -160,8 +160,8 @@ const populateSpeakers = (speakers) => {
         speakerCard.innerHTML = `
         <div class="speaker-img" style="background-image: url(${speaker.image})"></div>
             <div class="speaker-info">
-                <h3>${speaker.fullName}</h3>
-                <p>@${speaker.company.trim()}</p>
+                <h3><a href="${speaker.linkedin}" target="_blank">${speaker.fullName}</h3>
+                <p><a href="${speaker.companyWebsite}" target="_blank">${speaker.company}</p>
             </div>
         `;
 
@@ -185,6 +185,7 @@ const populateTeam = (teamMembers) => {
         teamCard.classList.add('team-card');
 
         teamCard.innerHTML = `
+            <div class="team-img" style="background-image: url(${member.image})"></div>
             <div class="team-info">
                 <h3><a href="${member.linkedin}" target="_blank">${member.fullName}</a></h3>
                 <p><a href="${member.companyWebsite}" target="_blank">${member.company}</a></p>
@@ -198,20 +199,65 @@ const populateTeam = (teamMembers) => {
     teamSection.appendChild(teamGrid);
 };
 
-
 const populateCountdown = (cdC, hero) => {
     const countdown = document.getElementById('countdown');
-
     const linkStart = cdC.subsection.body.indexOf("{{link}}");
+
     countdown.innerHTML = `
         <h3>${cdC.title.replace('\n', '<br>')}</h3>
+        <div class="timer-container">
+            <div class="timer-block">
+                <span id="days">00</span>
+                <label>Days</label>
+            </div>
+            <div class="timer-block">
+                <span id="hours">00</span>
+                <label>Hours</label>
+            </div>
+            <div class="timer-block">
+                <span id="minutes">00</span>
+                <label>Minutes</label>
+            </div>
+            <div class="timer-block">
+                <span id="seconds">00</span>
+                <label>Seconds</label>
+            </div>
+        </div>
         <div class="subsection">
             <h3>${cdC.subsection.title}</h3>
-            <p>${cdC.subsection.body.substring(0, linkStart)}  <a href="${cdC.subsection.link.url}" target="_blank" rel="noopener">${cdC.subsection.link.text}</a> ${cdC.subsection.body.substring(linkStart + 8)}</p>
+            <p>${cdC.subsection.body.substring(0, linkStart)}
+                <a href="${cdC.subsection.link.url}" target="_blank" rel="noopener">${cdC.subsection.link.text}</a>
+                ${cdC.subsection.body.substring(linkStart + 8)}
+            </p>
         </div>
-
         <a href="${hero.cta.link}" target="_blank" rel="noopener">${hero.cta.text}</a>
     `;
+
+    const targetDate = new Date('2024-12-10T23:59:59').getTime(); // need to implement fetch from json.
+
+    const timerInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+        }
+    }, 1000);
 };
 
 const populateLocation = (location) => {

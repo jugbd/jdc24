@@ -244,7 +244,6 @@ main {
     width: 100%;
     align-content: center;
     text-align: center;
-    padding: 6rem 2rem;
   }
 }
 
@@ -269,14 +268,18 @@ main {
 
   a {
     color: var(--primary);
-    margin: 2rem auto 0;
+    font-size: large;
+    margin: 4.5rem auto 0;
     padding: 0.5rem 1rem;
     background: var(--accent);
     border-radius: 2rem;
     transition: all 0.2s ease-in-out;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 
     &:hover {
       background-color: var(--bg-secondary);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 6);
+
     }
   }
 }
@@ -331,9 +334,8 @@ main {
 
 .gallery {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
-  background-color: var(--bg-secondary);
 
   h2 {
     padding: 0 2rem 2rem;
@@ -386,44 +388,103 @@ main {
 }
 
 .speakers {
+  padding: 6rem 2rem;
+  background-color: var(--bg-primary);
+
   h2 {
-    padding-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .speaker-card {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-    .speaker-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 250px;
-      gap: 1rem;
-
-      &:not(:last-of-type) {
-        margin-bottom: 2rem;
-      }
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 
       .speaker-img {
-        height: 200px;
-        width: 200px;
-        background-size: cover;
-        border-radius: 2rem;
-        transition: all 0.2s ease-in-out;
+        transform: scale(1.05);
+      }
+    }
 
-        &:hover {
-          box-shadow: 0 2px 8px #ffffff;
+    .speaker-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .speaker-info {
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      text-align: center;
+
+      h3 {
+        margin-bottom: 0.75rem;
+
+        a {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: var(--primary);
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: var(--accent);
+          }
         }
       }
 
       p {
-        max-width: 250px;
-        font-size: 1rem;
+        margin: 0;
+
+        a {
+          color: var(--tertiary);
+          font-size: 1rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: var(--accent);
+          }
+        }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .speakers {
+    padding: 4rem 1rem;
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+
+    .speaker-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
   }
 }
@@ -450,19 +511,100 @@ main {
     padding-bottom: 2rem;
   }
 
-  &>a {
-    background-color: var(--accent);
-    border-radius: 2rem;
+  a {
+    color: var(--primary);
+    font-size: large;
+    margin: 4.5rem auto 0;
     padding: 0.5rem 1rem;
+    background: var(--accent);
+    border-radius: 2rem;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: var(--bg-secondary);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 6);
+
+    }
+  }
+
+  .timer-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .timer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    span {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: monospace;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: var(--tertiary);
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timer-container {
+      gap: 1rem;
+    }
+
+    .timer-block {
+      min-width: 80px;
+      padding: 1rem;
+
+      span {
+        font-size: 2rem;
+      }
+
+      label {
+        font-size: 0.8rem;
+      }
+    }
   }
 }
 
+
+
+
+
 .venue {
+  padding: 6rem 0 5rem;
   text-align: center;
   margin: 0 auto;
 
   h2 {
-    padding-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .map {
@@ -476,29 +618,107 @@ main {
   }
 }
 
+
+
 .our-team {
+  padding: 6rem 2rem;
+  background-color: var(--bg-primary);
+
   h2 {
-    padding-bottom: 2rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-}
 
-/* Responsive Design */
-@media (max-width: 48rem) {
-  .carousel-indicators {
-    .indicator {
-      width: 14px;
-      height: 8px;
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
 
-      &.active {
-        width: 20px;
-        height: 10px;
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+      .team-img {
+        transform: scale(1.05);
+      }
+    }
+
+    .team-img {
+      width: 100%;
+      aspect-ratio: 1;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .team-info {
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      text-align: center;
+
+      h3 {
+        margin-bottom: 0.75rem;
+
+        a {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: var(--primary);
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: var(--accent);
+          }
+        }
+      }
+
+      p {
+        margin: 0;
+
+        a {
+          color: var(--tertiary);
+          font-size: 1rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: var(--accent);
+          }
+        }
       }
     }
   }
+}
 
-  .venue .map iframe {
-    height: 50vh;
-    width: calc(100% - 2rem);
+@media (max-width: 768px) {
+  .our-team {
+    padding: 4rem 1rem;
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
   }
 }
 
