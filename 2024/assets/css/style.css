@@ -548,9 +548,6 @@ main {
 }
 
 
-
-
-
 .speakers {
   padding: 4.5rem 2rem;
   background-color: var(--bg-primary);
@@ -567,11 +564,11 @@ main {
   }
 
   .speaker-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
-    max-width: 1400px;
     margin: 0 auto;
+    justify-content: center;
     padding: 0 1rem;
   }
 
@@ -583,6 +580,8 @@ main {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 calc(280px);
+    max-width: 280px;
 
     &:hover {
       transform: translateY(-10px);
@@ -674,7 +673,7 @@ main {
     padding-bottom: 2rem;
   }
 
-  a {
+  &>a {
     color: var(--primary);
     font-size: large;
     margin: 4.5rem auto 0;
@@ -690,6 +689,7 @@ main {
 
     }
   }
+
 
   .timer-container {
     display: flex;
@@ -751,9 +751,6 @@ main {
 }
 
 
-
-
-
 .venue {
   padding: 5rem 0 7rem;
   text-align: center;
@@ -799,12 +796,12 @@ main {
   }
 
   .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2.5rem;
-    max-width: 1400px;
     margin: 0 auto;
     padding: 0 1rem;
+    justify-content: center;
   }
 
   .team-card {
@@ -815,6 +812,7 @@ main {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 280px;
 
     &:hover {
       transform: translateY(-10px);
