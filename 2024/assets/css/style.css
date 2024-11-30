@@ -28,7 +28,6 @@
 body {
   font-family: var(--font-sans);
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
   background-color: var(--bg-primary);
   color: var(--primary);
 
@@ -89,12 +88,12 @@ h6 {
 
 p {
   text-wrap: pretty;
-  width: clamp(20rem, 90vw, 40rem);
 }
 
 a,
 a:visited {
   color: var(--primary);
+  text-decoration: none;
 }
 
 h1,
@@ -114,6 +113,7 @@ header {
   right: 0;
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  z-index: 100000;
 
   nav {
     display: flex;
@@ -133,13 +133,14 @@ header {
       padding: 0;
 
       li {
+        padding: 1rem 0.5rem;
         align-content: center;
       }
 
       a {
-        padding: 1rem;
         transition: all 0.2s ease-in-out;
-        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        border-bottom-width: 0;
 
         &,
         &:visited {
@@ -149,6 +150,8 @@ header {
         &:hover,
         &:active {
           color: var(--accent);
+          border-bottom: 2px solid var(--accent);
+          border-bottom-width: 100%;
         }
       }
     }
@@ -183,6 +186,7 @@ header {
 
         li {
           width: 100%;
+          padding: 0;
         }
 
         a {
@@ -192,10 +196,12 @@ header {
           left: 0;
           text-align: center;
           display: block;
+          border: none;
 
           &:hover,
           &:active {
             background-color: var(--bg-primary);
+            border: none;
           }
         }
 
@@ -236,19 +242,21 @@ main {
 
   section {
     width: 100%;
-    min-height: 50rem;
     align-content: center;
     text-align: center;
-    padding: 2rem;
+    padding: 6rem 2rem;
   }
 }
 
 .hero {
-  background: linear-gradient(165deg, var(--bg-primary), var(--bg-tertiary));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5)),
+    url("../images/backgrounds/banner2.png");
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 
   h1 {
     font-size: clamp(2rem, 2.5vw, 4rem);
@@ -260,11 +268,10 @@ main {
   }
 
   a {
-    text-decoration: none;
-    color: var(--accent);
+    color: var(--primary);
     margin: 2rem auto 0;
     padding: 0.5rem 1rem;
-    background: var(--bg-primary);
+    background: var(--accent);
     border-radius: 2rem;
     transition: all 0.2s ease-in-out;
 
@@ -276,60 +283,202 @@ main {
 
 .intro {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 8rem 2rem;
+  text-align: left;
+  gap: 2rem;
 
-  background: var(--bg-secondary);
+  .wrapper {
+    max-width: 50%;
+    color: var(--primary);
 
-  h2 {
-    font-size: clamp(1.5rem, 2vw, 3rem);
-    padding-bottom: 1rem;
+    p {
+      width: 100%;
+      font-family: var(--font-serif);
+    }
+
+    h3 {
+      span {
+        color: var(--accent);
+      }
+
+      text-decoration: underline;
+      text-underline-offset: 5px;
+      text-decoration-color: var(--accent);
+      padding-bottom: 1rem;
+    }
+
+    h2 {
+      padding-bottom: 1rem;
+    }
+  }
+
+  img {
+    max-width: 40%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 48rem) {
+    flex-direction: column;
+
+    .wrapper,
+    img {
+      max-width: 100%;
+    }
   }
 }
 
 .gallery {
-  position: relative;
   width: 100%;
-  height: 50vh;
+  height: 90vh;
   overflow: hidden;
+  background-color: var(--bg-secondary);
 
-  .carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    height: 100%;
-
-    .carousel-image {
-      min-width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  h2 {
+    padding: 0 2rem 2rem;
   }
 
-  .carousel-indicators {
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+  .galler-wrapper {
+    height: 75%;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
 
-    .indicator {
-      width: 16px;
-      height: 10px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50px;
-      background-color: transparent;
-      transition: all 0.3s ease;
-      cursor: pointer;
+    .carousel {
+      transition: transform 0.5s ease-in-out;
+      display: flex;
+      height: 100%;
 
-      &.active {
-        width: 27px;
-        height: 12px;
-        border-color: var(--primary);
-        background-color: var(--bg-tertiary);
+      .carousel-image {
+        min-width: 100%;
+        object-fit: cover;
       }
     }
+
+    .carousel-indicators {
+      margin-top: 1rem;
+      display: flex;
+      gap: 10px;
+
+      .indicator {
+        width: 16px;
+        height: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        background-color: transparent;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &.active {
+          width: 24px;
+          height: 12px;
+          border-color: var(--primary);
+          background-color: var(--bg-tertiary);
+        }
+      }
+    }
+  }
+}
+
+.why-jdc {
+  /* some style */
+}
+
+.speakers {
+  h2 {
+    padding-bottom: 2rem;
+  }
+
+  .speaker-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+
+    .speaker-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 250px;
+      gap: 1rem;
+
+      &:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+
+      .speaker-img {
+        height: 200px;
+        width: 200px;
+        background-size: cover;
+        border-radius: 2rem;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 2px 8px #ffffff;
+        }
+      }
+
+      p {
+        max-width: 250px;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.countdown {
+  background-color: var(--bg-secondary);
+  padding: 6rem 1rem;
+
+  h3 {
+    padding-bottom: 2rem;
+  }
+
+  .subsection {
+    h3 {
+      font-size: 2rem;
+      padding: 3rem 1rem 1rem;
+    }
+
+    p {
+      text-align: center;
+      width: 100%;
+    }
+
+    padding-bottom: 2rem;
+  }
+
+  &>a {
+    background-color: var(--accent);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.venue {
+  text-align: center;
+  margin: 0 auto;
+
+  h2 {
+    padding-bottom: 2rem;
+  }
+
+  .map {
+    margin-top: 2rem;
+
+    iframe {
+      height: 50vh;
+      width: 70vw;
+      border-radius: 1rem;
+    }
+  }
+}
+
+.our-team {
+  h2 {
+    padding-bottom: 2rem;
   }
 }
 
@@ -346,6 +495,11 @@ main {
       }
     }
   }
+
+  .venue .map iframe {
+    height: 50vh;
+    width: calc(100% - 2rem);
+  }
 }
 
 /* FOOTER */
@@ -353,4 +507,16 @@ footer {
   text-align: center;
   color: var(--primary);
   padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: #000;
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 }
