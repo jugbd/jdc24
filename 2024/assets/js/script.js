@@ -82,6 +82,12 @@ const populateAbout = (aboutContent) => {
 const populateGallery = (galleryImages) => {
     const gallery = document.getElementById('gallery');
 
+    const title = document.createElement("h2");
+    title.innerHTML = "Image Gallery"
+
+    const galleryWrapper = document.createElement("div");
+    galleryWrapper.classList.add("galler-wrapper");
+
     const carousel = document.createElement('div');
     carousel.classList.add('carousel');
 
@@ -93,8 +99,6 @@ const populateGallery = (galleryImages) => {
         carousel.appendChild(img);
     });
 
-    gallery.appendChild(carousel);
-
     const indicators = document.createElement('div');
     indicators.classList.add('carousel-indicators');
     galleryImages.forEach((_, index) => {
@@ -104,7 +108,11 @@ const populateGallery = (galleryImages) => {
         indicator.dataset.index = index;
         indicators.appendChild(indicator);
     });
-    gallery.appendChild(indicators);
+
+    galleryWrapper.appendChild(carousel);
+    galleryWrapper.appendChild(indicators);
+    gallery.appendChild(title);
+    gallery.appendChild(galleryWrapper);
 
     // Initialize carousel
     let currentIndex = 0;
@@ -153,7 +161,7 @@ const populateSpeakers = (speakers) => {
         <div class="speaker-img" style="background-image: url(${speaker.image})"></div>
             <div class="speaker-info">
                 <h3>${speaker.fullName}</h3>
-                <p>${speaker.company}</p>
+                <p>@${speaker.company.trim()}</p>
             </div>
         `;
 
@@ -239,7 +247,6 @@ const populateFooter = (footerContent) => {
     copyright.innerHTML = footerContent.copyright.replace('{{YYYY}}', new Date().getFullYear());
     footer.appendChild(socialLinks);
     footer.appendChild(copyright);
-    console.log("vong chong")
 };
 
 // am i hungry?

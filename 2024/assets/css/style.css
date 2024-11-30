@@ -88,7 +88,6 @@ h6 {
 
 p {
   text-wrap: pretty;
-  width: clamp(20rem, 90vw, 40rem);
 }
 
 a,
@@ -114,6 +113,7 @@ header {
   right: 0;
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  z-index: 100000;
 
   nav {
     display: flex;
@@ -244,7 +244,7 @@ main {
     width: 100%;
     align-content: center;
     text-align: center;
-    padding: 2rem;
+    padding: 6rem 2rem;
   }
 }
 
@@ -285,20 +285,17 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  /* background: var(--bg-secondary); */
+  padding: 8rem 2rem;
   text-align: left;
-  gap: 2rem; /* Add spacing between the image and the text */
+  gap: 2rem;
 
   .wrapper {
     max-width: 50%;
-    line-height: 1.5; /* Improve text readability */
-    color: var(--primary); /* Add text color for better visibility */
+    color: var(--primary);
 
     p {
       width: 100%;
       font-family: var(--font-serif);
-      line-height: 1.75;
     }
 
     h3 {
@@ -320,51 +317,71 @@ main {
     max-width: 40%;
     object-fit: cover;
   }
+
+  @media (max-width: 48rem) {
+    flex-direction: column;
+
+    .wrapper,
+    img {
+      max-width: 100%;
+    }
+  }
 }
 
 .gallery {
-  position: relative;
   width: 100%;
-  height: 70vh;
+  height: 90vh;
   overflow: hidden;
+  background-color: var(--bg-secondary);
 
-  .carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    height: 100%;
-
-    .carousel-image {
-      min-width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  h2 {
+    padding: 0 2rem 2rem;
   }
 
-  .carousel-indicators {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+  .galler-wrapper {
+    height: 75%;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: center;
 
-    .indicator {
-      width: 16px;
-      height: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50px;
-      background-color: transparent;
-      transition: all 0.3s ease;
-      cursor: pointer;
+    .carousel {
+      transition: transform 0.5s ease-in-out;
+      display: flex;
+      height: 100%;
 
-      &.active {
-        width: 24px;
-        height: 12px;
-        border-color: var(--primary);
-        background-color: var(--bg-tertiary);
+      .carousel-image {
+        min-width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .carousel-indicators {
+      margin-top: 1rem;
+      display: flex;
+      gap: 10px;
+
+      .indicator {
+        width: 16px;
+        height: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50px;
+        background-color: transparent;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &.active {
+          width: 24px;
+          height: 12px;
+          border-color: var(--primary);
+          background-color: var(--bg-tertiary);
+        }
       }
     }
   }
+}
+
+.why-jdc {
+  /* some style */
 }
 
 .speakers {
@@ -403,6 +420,7 @@ main {
 
       p {
         max-width: 250px;
+        font-size: 1rem;
       }
     }
   }
@@ -437,12 +455,22 @@ main {
 .venue {
   text-align: center;
   margin: 0 auto;
+  h2 {
+    padding-bottom: 2rem;
+  }
   .map {
-    margin-top: 1rem;
+    margin-top: 2rem;
     iframe {
       height: 50vh;
       width: 70vw;
+      border-radius: 1rem;
     }
+  }
+}
+
+.our-team {
+  h2 {
+    padding-bottom: 2rem;
   }
 }
 

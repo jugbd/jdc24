@@ -93,6 +93,34 @@
       "image": "assets/images/speakers/hasanat.jpg"
     }
   ],
+  "whyJdc": {
+    "why": {
+      "title": "Taking part in this event&mdash;",
+      "items": [
+        "Meet some great Java guys right here",
+        "While sipping coffee and snacking, converse with your fellow devs about your favourite Java technology",
+        "Attend the presentations made by seasoned Java professionals (local & international)",
+        "Get gifts and have a great time"
+      ]
+    },
+    "sections": [
+      {
+        "icon": "iconPath",
+        "title": "Brilliant Speakers",
+        "description": "Meet the most exciting names from the world of software development. Come and listen to their stories, hear their ideas, absorb their knowledge and learn from the best."
+      },
+      {
+        "icon": "iconPath",
+        "title": "Featured Title",
+        "description": "Get a complete overview of recent insights, best practices and future trends in modern software development."
+      },
+      {
+        "icon": "iconPath",
+        "title": "Connect and Network",
+        "description": "Meet like-minded people and expand your career, business and industry network. Yes, it's also a perfect opportunity to do team-building or just meet old and make new friends."
+      }
+    ]
+  },
   "countdown": {
     "title": "Call for papers is open until December 10, 2024!\nDon't wail until the last minute!",
     "subsection": {
@@ -180,10 +208,10 @@
 
   "location": {
     "title": "Location",
-    "description": "To be announced soon...",
+    "description": "To be announced soon ...",
     "email": "info@jugbd.org",
     "map": "https://maps.app.goo.gl/kGE92o9VaB2escrd7",
-    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d123045.11579967866!2d92.23605820209234!3d11.554845843503296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1732867615503!5m2!1sen!2sbd\"  style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.761768668374!2d90.37299938808292!3d23.75587333542309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf534ad4b313%3A0xc7765243f282059f!2sSELISE%20Digital%20Platforms!5e0!3m2!1sen!2sbd!4v1732933928076!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
   },
   "footer": {
     "social": [
