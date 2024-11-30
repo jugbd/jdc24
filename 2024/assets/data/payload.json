@@ -34,10 +34,11 @@
       "talkTitle": "Your Java Code in the Fastlane: Project Loom\n",
       "abstract": "Project Loom introduces virtual threads, lightweight threads that aim to dramatically reduce the effort of writing, maintaining, and monitoring high-throughput concurrent applications with the Java platform.\n\nWe need threads to achieve high throughput. However, threads are not cheap and are limited in number. To get around this problem, various alternatives such as the reactive programming style have emerged. These techniques bypass creating a lot of threads at the expense of more difficult debugging. This makes developers grumpy. However, with virtual threads, we get the best of both worlds, cheap, lightweight threads and easy debugging, which would make developers happy again.\n\nThis talk will explore what virtual threads are, how they are implemented, how they solve our modern problems and what, if any, shortcomings there are.\n\n",
       "twitter": "bazlur_rahman",
-      "linkedIn": "https://www.linkedin.com/in/bazlur/",
+      "linkedin": "https://www.linkedin.com/in/bazlur/",
       "website": "https://bazlur.ca/",
       "title": "Java Champion | Software Engineer",
-      "company": "Contrast Security",
+      "company": "@DNAstack",
+      "companyWebsite": "http://www.dnastack.com",
       "image": "assets/images/speakers/rokon.png"
     },
     {
@@ -47,24 +48,12 @@
       "talkTitle": "TBD\n",
       "abstract": "TBD",
       "twitter": "mozammel",
-      "linkedIn": "https://www.linkedin.com/in/mozammel/",
+      "linkedin": "https://www.linkedin.com/in/mozammel/",
       "website": "https://mozammelhaque.com/",
       "title": "EVP, Head of Department, Software Research and Engineering, Product & Technology\n",
-      "company": "bKash Limited",
+      "company": "@bKash Limited",
+      "companyWebsite": "https://www.bkash.com/",
       "image": "assets/images/speakers/moz.jpg"
-    },
-    {
-      "fullName": "Oronno Abdullah Al Mamun",
-      "name": "oronno_mamun",
-      "bio": "<strong>Abdullah Al Mamun Oronno</strong> is a Java Expert with 10+ years of professional working experience in the Java platform & Distributed System. He has vast experience developing large-scale application in both enterprise and consumer-facing business. When it comes to preferred tech stack, he likes to work with Spring, Spring Boot, JPA/Hibernate, Apache kafka, Redis, Docker & Kubernetes etc. Oronno's passions include clean code, scalable design and open source.\n",
-      "talkTitle": "TBD\n",
-      "abstract": "TBD",
-      "twitter": "oneous",
-      "linkedIn": "https://www.linkedin.com/in/oronno/",
-      "website": "https://github.com/oronno",
-      "title": "Senior Software Engineer",
-      "company": "Index Exchange",
-      "image": "assets/images/speakers/oronno.png"
     },
     {
       "fullName": "Reza Rahman",
@@ -73,11 +62,26 @@
       "talkTitle": "TBD\n",
       "abstract": "TBD",
       "twitter": "reza_rahman",
-      "linkedIn": "https://www.linkedin.com/in/javareza/",
+      "linkedin": "https://www.linkedin.com/in/javareza/",
       "website": "https://bazlur.ca/",
       "title": "Principal Program Manager | Author, Speaker, Leader",
-      "company": "Microsoft",
+      "company": "@Microsoft",
+      "companyWebsite": "https://news.microsoft.com/",
       "image": "assets/images/speakers/RezaRahman.png"
+    },
+    {
+      "fullName": "Oronno Abdullah Al Mamun",
+      "name": "oronno_mamun",
+      "bio": "<strong>Abdullah Al Mamun Oronno</strong> is a Java Expert with 10+ years of professional working experience in the Java platform & Distributed System. He has vast experience developing large-scale application in both enterprise and consumer-facing business. When it comes to preferred tech stack, he likes to work with Spring, Spring Boot, JPA/Hibernate, Apache kafka, Redis, Docker & Kubernetes etc. Oronno's passions include clean code, scalable design and open source.\n",
+      "talkTitle": "TBD\n",
+      "abstract": "TBD",
+      "twitter": "oneous",
+      "linkedin": "https://www.linkedin.com/in/oronno/",
+      "website": "https://github.com/oronno",
+      "title": "Senior Software Engineer",
+      "company": "@Index Exchange",
+      "companyWebsite": "https://www.indexexchange.com/li",
+      "image": "assets/images/speakers/oronno.png"
     },
     {
       "fullName": "Mojahedul Hoque Abul Hasanat",
@@ -86,16 +90,17 @@
       "talkTitle": "TBD\n",
       "abstract": "TBD",
       "twitter": "just_unix",
-      "linkedIn": "https://www.linkedin.com/in/mojahedul/",
+      "linkedin": "https://www.linkedin.com/in/mojahedul/",
       "website": "https://github.com/unixdev",
       "title": "Chief Technology Officer",
-      "company": "Dynamic Solution Innovators",
+      "company": "@Dynamic Solution Innovators",
+      "companyWebsite": "https://www.dsinnovators.com",
       "image": "assets/images/speakers/hasanat.jpg"
     }
   ],
   "whyJdc": {
     "why": {
-      "title": "Taking part in this event&mdash;",
+      "title": "Taking part in this event &mdash;",
       "items": [
         "Meet some great Java guys right here",
         "While sipping coffee and snacking, converse with your fellow devs about your favourite Java technology",
@@ -116,13 +121,14 @@
       },
       {
         "icon": "iconPath",
-        "title": "Connect and Network",
+        "title": "Connect & Network",
         "description": "Meet like-minded people and expand your career, business and industry network. Yes, it's also a perfect opportunity to do team-building or just meet old and make new friends."
       }
     ]
   },
   "countdown": {
-    "title": "Call for papers is open until December 10, 2024!\nDon't wail until the last minute!",
+    "title": "Call for papers is open until December 12, 2024!\nDon't wail until the last minute!",
+    "targetDate": "2024-12-10T23:59:59",
     "subsection": {
       "title": "Get realtime event updates",
       "body": "Always keep an eye on the {{link}} group on Facebook",
@@ -132,7 +138,6 @@
       }
     }
   },
-
   "ourTeam": [
     {
       "fullName": "A N M Bazlur Rahman",
@@ -160,14 +165,14 @@
       "linkedin": "https://www.linkedin.com/in/md-nowshad-hasan/",
       "company": "@DSi",
       "companyWebsite": "https://www.dsinnovators.com",
-      "image": "assets/images/team/team04.png"
+      "image": "assets/images/team/team05.png"
     },
     {
       "fullName": "Abdullah Al Mamun Oronno",
       "linkedin": "https://www.linkedin.com/in/oronno/",
       "company": "@Index Exchange",
       "companyWebsite": "https://www.indexexchange.com/li",
-      "image": "assets/images/team/team05.png"
+      "image": "assets/images/team/team04.png"
     },
     {
       "fullName": "Mosharraf Hosain",
@@ -198,17 +203,23 @@
       "image": "assets/images/team/team09.png"
     },
     {
-      "fullName": "S M Mahmudul (Shohan) Hasan",
-      "linkedin": "https://www.linkedin.com/in/s-m-mahmudul-hasan-a6bb0626/",
+      "fullName": "S M Mahmudul Hasan",
+      "linkedin": "https://www.linkedin.com/in/tanvir-anjum-rifat-63977a229/",
       "company": "@Therap (BD) Ltd.",
       "companyWebsite": "https://therapbd.com/",
       "image": "assets/images/team/team10.png"
+    },
+    {
+      "fullName": "Tanvir Anjum Rifat",
+      "linkedin": "https://www.linkedin.com/in/s-m-mahmudul-hasan-a6bb0626/",
+      "company": "",
+      "companyWebsite": "https://therapbd.com/",
+      "image": "assets/images/team/team11.png"
     }
   ],
-
   "location": {
-    "title": "Location",
-    "description": "To be announced soon ...",
+    "title": "Venu",
+    "description": "House 5, SELISE Bangladesh Limited, MIDAS Center, Road No 16, Dhaka 1209",
     "email": "info@jugbd.org",
     "map": "https://maps.app.goo.gl/kGE92o9VaB2escrd7",
     "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.761768668374!2d90.37299938808292!3d23.75587333542309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf534ad4b313%3A0xc7765243f282059f!2sSELISE%20Digital%20Platforms!5e0!3m2!1sen!2sbd!4v1732933928076!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
