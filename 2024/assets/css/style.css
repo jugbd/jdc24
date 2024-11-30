@@ -299,6 +299,7 @@ main {
     p {
       width: 100%;
       font-family: var(--font-serif);
+      font-size: 1.25rem;
     }
 
     h3 {
@@ -665,6 +666,12 @@ main {
       padding: 3rem 1rem 1rem;
     }
 
+    a {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-color: var(--accent);
+    }
+
     p {
       text-align: center;
       width: 100%;
@@ -765,6 +772,14 @@ main {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  & p:first-of-type {
+    padding-bottom: 1rem;
+  }
+
+  & p:last-of-type {
+    font-weight: bold;
   }
 
   .map {
