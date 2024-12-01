@@ -757,9 +757,39 @@ main {
   }
 }
 
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 1rem;
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  h2,
+  h3 {
+    padding-bottom: 2rem;
+  }
+
+  div {
+    max-width: 340px;
+    padding: 1.25rem;
+    background-color: var(--primary);
+    border-radius: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  div:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
 
 .venue {
-  padding: 5rem 0 7rem;
+  padding: 6rem 1rem;
   text-align: center;
   margin: 0 auto;
 
@@ -792,7 +822,6 @@ main {
     }
   }
 }
-
 
 
 .our-team {
@@ -952,11 +981,9 @@ footer::before {
   height: 0;
   background: var(--accent);
   border-radius: 50%;
-  /* Circular ripple effect */
   z-index: -1;
   transform: translate(-50%, -50%);
   transition: width 0.4s ease, height 0.4s ease;
-  /* Smooth expansion */
 }
 
 .social-links a:hover::before {
@@ -966,9 +993,7 @@ footer::before {
 
 .social-links a:hover {
   color: var(--bg-secondary);
-  /* Text color inverts for contrast */
   transform: translateY(-2px);
-  /* Slight elevation effect */
 }
 
 .social-links a:hover::after {
@@ -981,7 +1006,6 @@ footer::before {
   background: var(--accent-light);
   z-index: 1;
   animation: slide-in 0.4s ease forwards;
-  /* Subtle bottom border animation */
 }
 
 footer p {

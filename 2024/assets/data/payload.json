@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Java Developers' Conference 2024",
-    "edition": "11th Edition",
+    "edition": "10th Edition",
     "cta": {
       "text": "Submit Your Talk Now",
       "link": "https://sessionize.com/java-developers-conference-2024"
@@ -219,10 +219,10 @@
   ],
   "location": {
     "title": "Venu",
-    "description": "House 5, SELISE Bangladesh Limited, MIDAS Center, Road No 16, Dhaka 1209",
+    "description": "SELISE Bangladesh Ltd, Midas Center, H-05, R-16 (New) Dhanmondi, Dhaka-1209, Bangladesh",
     "email": "info@jugbd.org",
     "map": "https://maps.app.goo.gl/kGE92o9VaB2escrd7",
-    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.761768668374!2d90.37299938808292!3d23.75587333542309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf534ad4b313%3A0xc7765243f282059f!2sSELISE%20Digital%20Platforms!5e0!3m2!1sen!2sbd!4v1732933928076!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d228.2354884274654!2d90.3744716!3d23.7556578!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf534ad4b313%3A0xc7765243f282059f!2sSELISE%20Digital%20Platforms!5e0!3m2!1sen!2sbd!4v1733044561366!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
   },
   "footer": {
     "social": [
