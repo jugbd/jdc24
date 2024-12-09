@@ -1,0 +1,240 @@
+{
+  "hero": {
+    "title": "Java Developers' Conference 2024",
+    "edition": "11th Edition",
+    "cta": {
+      "text": "Submit Your Talk Now",
+      "link": "https://sessionize.com/java-developers-conference-2024"
+    }
+  },
+  "about": {
+    "title": "Learning, and Growing as a Community.",
+    "description": "In Bangladesh, the Java Developers' Conference is one of the most successful community-driven software conferences, and it's organized by the Bangladesh Java User Group. The conference helps developers to learn the cutting edge technologies about Java, Web, Mobile, Big Data, Cloud, DevOps, Agile and many more. This also gives the opportunity to developers and software industries to establish networks among them.",
+    "image": "assets/images/backgrounds/speaker1.jpg"
+  },
+  "gallery": [
+    "assets/images/gallery/00-slider.png",
+    "assets/images/gallery/01-slider.jpg",
+    "assets/images/gallery/02-slider.jpg",
+    "assets/images/gallery/03-slider.jpg",
+    "assets/images/gallery/04-slider.jpg",
+    "assets/images/gallery/05-slider.jpg",
+    "assets/images/gallery/06-slider.jpg",
+    "assets/images/gallery/07-slider.jpg",
+    "assets/images/gallery/08-slider.jpg",
+    "assets/images/gallery/09-slider.jpg",
+    "assets/images/gallery/10-slider.jpg",
+    "assets/images/gallery/11-slider.png"
+  ],
+  "speakers": [
+    {
+      "fullName": "A N M Bazlur Rahman",
+      "name": "bazlur_rahman",
+      "bio": "<p><br /><strong>A N M Bazlur Rahman</strong> works at&nbsp;<a href=\"https://www.contrastsecurity.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Contrast Security</a> as a Sr. Software Engineer. He has more than ten years of professional experience in the software industry, predominantly in Java and Java-related technologies. Recently, he was honoured by being given the title of <a href=\"https://twitter.com/Java_Champions/status/1523728715368509440\" target=\"_blank\" rel=\"noopener ugc\">&nbsp;Java Champion</a>.</p>\n<p>Outside of his regular work hours, he loves to mentor, write, speak at conferences, and contribute to open-source projects. He is the founder and current moderator of the<a href=\"https://jugbd.org/\" target=\"_blank\" rel=\"nofollow noopener ugc\">&nbsp;Java User Group in Bangladesh</a>. He has organized meetups and conferences to share Java-related knowledge with the community since 2013. He was named Most Valuable Blogger (MVP) at&nbsp;<a href=\"https://dzone.com/users/1298119/bazlur_rahman.html\" target=\"_blank\" rel=\"nofollow noopener ugc\">DZone</a>, one of the most recognized technology publishers in the world. Besides DZone, he is an editor for the Java Queue at&nbsp;<a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a>, another leading technology content publisher and conference organizer, and an editor at&nbsp;<a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Foojay.io</a>, a place for friends of OpenJDK. In addition, he has published&nbsp;<a href=\"https://www.rokomari.com/book/129165/java-programming\" target=\"_blank\" rel=\"nofollow noopener ugc\">four books</a>&nbsp;about the Java programming language in Bengali; they were bestsellers in Bangladesh.</p>\n<p>He earned his bachelor&rsquo;s degree from the Institute of Information Technology, University of Dhaka, Bangladesh, in Information Technology, majoring in Software Engineering. He currently lives in Toronto, Canada.</p>",
+      "talkTitle": "Your Java Code in the Fastlane: Project Loom\n",
+      "abstract": "Project Loom introduces virtual threads, lightweight threads that aim to dramatically reduce the effort of writing, maintaining, and monitoring high-throughput concurrent applications with the Java platform.\n\nWe need threads to achieve high throughput. However, threads are not cheap and are limited in number. To get around this problem, various alternatives such as the reactive programming style have emerged. These techniques bypass creating a lot of threads at the expense of more difficult debugging. This makes developers grumpy. However, with virtual threads, we get the best of both worlds, cheap, lightweight threads and easy debugging, which would make developers happy again.\n\nThis talk will explore what virtual threads are, how they are implemented, how they solve our modern problems and what, if any, shortcomings there are.\n\n",
+      "twitter": "bazlur_rahman",
+      "linkedin": "https://www.linkedin.com/in/bazlur/",
+      "website": "https://bazlur.ca/",
+      "title": "Java Champion | Software Engineer",
+      "company": "@DNAstack",
+      "companyWebsite": "http://www.dnastack.com",
+      "image": "assets/images/speakers/rokon.png"
+    },
+    {
+      "fullName": "Mozammel Haque",
+      "name": "mozammel_haque",
+      "bio": "<strong> Mozammel Haque </strong>has been involved in creating software solutions for more than 20 years now. Starting from creating the first 3D racing game back in 2002, namely 'Dhaka Racing', Mozammel has worked on developing softwares that target hyper growth oriented Silicon Valley based startups, as well as creating solutions for larger enterprises which require high scalability and reliability. At bKash, Mozammel is leading Software Research and Engineering team which is taking care of bKash's in-house software development needs. Apart from work, he is a cycling and health enthusiast and mostly bikes around everywhere in Dhaka.",
+      "talkTitle": "TBD\n",
+      "abstract": "TBD",
+      "twitter": "mozammel",
+      "linkedin": "https://www.linkedin.com/in/mozammel/",
+      "website": "https://mozammelhaque.com/",
+      "title": "EVP, Head of Department, Software Research and Engineering, Product & Technology\n",
+      "company": "@bKash Limited",
+      "companyWebsite": "https://www.bkash.com/",
+      "image": "assets/images/speakers/moz.jpg"
+    },
+    {
+      "fullName": "Reza Rahman",
+      "name": "reza_rahman",
+      "bio": "<p>Reza Rahman is Principal Program Manager for Java on Azure at Microsoft. He works to make sure Java developers are first class citizens at Microsoft and Microsoft is a first class citizen of the Java ecosystem\n<p> Reza has been an official Java technologist at Oracle. He is the author of the popular book EJB 3 in Action from Manning Publishing. Reza has long been a frequent speaker at Java User Groups and conferences worldwide including JavaOne and Devoxx. He has been the lead for the Java EE track at JavaOne as well as a JavaOne Rock Star Speaker award recipient. He was the program chair for the inaugural JakartaOne conference. Reza is an avid contributor to industry journals like DZone. He has been a member of the Java EE, EJB and JMS expert groups over the years. Reza implemented the EJB container for the Resin open source Java EE application server. He helps lead the Philadelphia Java User Group. Reza is proud to be a founding member of the Jakarta EE Ambassadors.</p>\n<p>Reza has over a decade of experience with technology leadership, enterprise architecture and consulting. He has been working with Java EE technology since its inception, developing on almost every major application platform ranging from Tomcat to JBoss, GlassFish, WebSphere and WebLogic. Reza has developed enterprise systems for well-known companies like eBay, Motorola, Comcast, Nokia, Prudential, Guardian Life, USAA, Independence Blue Cross, Anthem, CapitalOne and AAA using Java EE and Spring. He is particularly interested in distributed systems, messaging, middleware, persistence and machine learning.</p>\n<p>Reza is an inductee to Phi Beta Kappa, the oldest and most respected national honor society for undergraduates in liberal arts and sciences. He earned his bachelors degree from&nbsp;Gettysburg College. He graduated Summa Cum Laude with a double major in Computer Science and Economics as well as a minor in Mathematics.</p>",
+      "talkTitle": "TBD\n",
+      "abstract": "TBD",
+      "twitter": "reza_rahman",
+      "linkedin": "https://www.linkedin.com/in/javareza/",
+      "website": "https://bazlur.ca/",
+      "title": "Principal Program Manager | Author, Speaker, Leader",
+      "company": "@Microsoft",
+      "companyWebsite": "https://news.microsoft.com/",
+      "image": "assets/images/speakers/RezaRahman.png"
+    },
+    {
+      "fullName": "Oronno Abdullah Al Mamun",
+      "name": "oronno_mamun",
+      "bio": "<strong>Abdullah Al Mamun Oronno</strong> is a Java Expert with 10+ years of professional working experience in the Java platform & Distributed System. He has vast experience developing large-scale application in both enterprise and consumer-facing business. When it comes to preferred tech stack, he likes to work with Spring, Spring Boot, JPA/Hibernate, Apache kafka, Redis, Docker & Kubernetes etc. Oronno's passions include clean code, scalable design and open source.\n",
+      "talkTitle": "TBD\n",
+      "abstract": "TBD",
+      "twitter": "oneous",
+      "linkedin": "https://www.linkedin.com/in/oronno/",
+      "website": "https://github.com/oronno",
+      "title": "Senior Software Engineer",
+      "company": "@Index Exchange",
+      "companyWebsite": "https://www.indexexchange.com/li",
+      "image": "assets/images/speakers/oronno.png"
+    },
+    {
+      "fullName": "Mojahedul Hoque Abul Hasanat",
+      "name": "mojahedul_hasanat",
+      "bio": "<p><br /><strong>Mojahedul Hoque Abul Hasanat</strong> works at&nbsp;<a href=\"https://www.dsinnovators.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Dynamic Solution Innovators</a> as the Chief Technology Officer. He is an Application Architect and Developer. He has 20 years of experience in the design and development of large scale applications in Java, systems applications in Perl, C and assembly, and expert knowledge on Spring Framework, Hibernate, and WebLogic.",
+      "talkTitle": "TBD\n",
+      "abstract": "TBD",
+      "twitter": "just_unix",
+      "linkedin": "https://www.linkedin.com/in/mojahedul/",
+      "website": "https://github.com/unixdev",
+      "title": "Chief Technology Officer",
+      "company": "@Dynamic Solution Innovators",
+      "companyWebsite": "https://www.dsinnovators.com",
+      "image": "assets/images/speakers/hasanat.jpg"
+    }
+  ],
+  "whyJdc": {
+    "why": {
+      "title": "Taking part in this event &mdash;",
+      "items": [
+        "Meet some great Java guys right here",
+        "While sipping coffee and snacking, converse with your fellow devs about your favourite Java technology",
+        "Attend the presentations made by seasoned Java professionals (local & international)",
+        "Get gifts and have a great time"
+      ]
+    },
+    "sections": [
+      {
+        "icon": "iconPath",
+        "title": "Brilliant Speakers",
+        "description": "Meet the most exciting names from the world of software development. Come and listen to their stories, hear their ideas, absorb their knowledge and learn from the best."
+      },
+      {
+        "icon": "iconPath",
+        "title": "Featured Title",
+        "description": "Get a complete overview of recent insights, best practices and future trends in modern software development."
+      },
+      {
+        "icon": "iconPath",
+        "title": "Connect & Network",
+        "description": "Meet like-minded people and expand your career, business and industry network. Yes, it's also a perfect opportunity to do team-building or just meet old and make new friends."
+      }
+    ]
+  },
+  "countdown": {
+    "title": "Call for papers is open until December 12, 2024!\nDon't wail until the last minute!",
+    "targetDate": "2024-12-10T23:59:59",
+    "subsection": {
+      "title": "Get realtime event updates",
+      "body": "Always keep an eye on the {{link}} group on Facebook",
+      "link": {
+        "text": "JUGBD",
+        "url": "https://www.facebook.com/groups/jugbd"
+      }
+    }
+  },
+  "ourTeam": [
+    {
+      "fullName": "A N M Bazlur Rahman",
+      "linkedin": "https://www.linkedin.com/in/bazlur/",
+      "company": "@DNAstack",
+      "companyWebsite": "http://www.dnastack.com",
+      "image": "assets/images/team/team01.png"
+    },
+    {
+      "fullName": "Mozammel Haque",
+      "linkedin": "https://www.linkedin.com/in/mozammel/",
+      "company": "@bkash",
+      "companyWebsite": "https://www.bkash.com/",
+      "image": "assets/images/team/team02.png"
+    },
+    {
+      "fullName": "Mukit Chowdhury",
+      "linkedin": "https://www.linkedin.com/in/mukit-chowdhury-492a94125/",
+      "company": "@Vivasoft Limited",
+      "companyWebsite": "http://www.vivasoftltd.com/",
+      "image": "assets/images/team/team03.png"
+    },
+    {
+      "fullName": "Md. Nowshad Hasan Apu",
+      "linkedin": "https://www.linkedin.com/in/md-nowshad-hasan/",
+      "company": "@DSi",
+      "companyWebsite": "https://www.dsinnovators.com",
+      "image": "assets/images/team/team05.png"
+    },
+    {
+      "fullName": "Abdullah Al Mamun Oronno",
+      "linkedin": "https://www.linkedin.com/in/oronno/",
+      "company": "@Index Exchange",
+      "companyWebsite": "https://www.indexexchange.com/li",
+      "image": "assets/images/team/team04.png"
+    },
+    {
+      "fullName": "Mosharraf Hosain",
+      "linkedin": "https://www.linkedin.com/in/mh0s41n/",
+      "company": "@bkash",
+      "companyWebsite": "https://www.bkash.com/",
+      "image": "assets/images/team/team06.png"
+    },
+    {
+      "fullName": "C M Abdullah Khan",
+      "linkedin": "https://www.linkedin.com/in/cmabdullah/",
+      "company": "@IdeaScale",
+      "companyWebsite": "https://ideascale.com/",
+      "image": "assets/images/team/team07.png"
+    },
+    {
+      "fullName": "Md Arif Hasan",
+      "linkedin": "https://www.linkedin.com/in/md-arif-hasan23/",
+      "company": "@Beyond Stories",
+      "companyWebsite": "https://www.linkedin.com/company/beyond-stories-bd/",
+      "image": "assets/images/team/team08.png"
+    },
+    {
+      "fullName": "Md Ruhul Quddus",
+      "linkedin": "https://www.linkedin.com/in/shakkhor/",
+      "company": "@bkash",
+      "companyWebsite": "https://www.bkash.com/",
+      "image": "assets/images/team/team09.png"
+    },
+    {
+      "fullName": "S M Mahmudul Hasan",
+      "linkedin": "https://www.linkedin.com/in/tanvir-anjum-rifat-63977a229/",
+      "company": "@Therap (BD) Ltd.",
+      "companyWebsite": "https://therapbd.com/",
+      "image": "assets/images/team/team10.png"
+    },
+    {
+      "fullName": "Tanvir Anjum Rifat",
+      "linkedin": "https://www.linkedin.com/in/s-m-mahmudul-hasan-a6bb0626/",
+      "company": "",
+      "companyWebsite": "https://therapbd.com/",
+      "image": "assets/images/team/team11.png"
+    }
+  ],
+  "location": {
+    "title": "Venu",
+    "description": "House 5, SELISE Bangladesh Limited, MIDAS Center, Road No 16, Dhaka 1209",
+    "email": "info@jugbd.org",
+    "map": "https://maps.app.goo.gl/kGE92o9VaB2escrd7",
+    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.761768668374!2d90.37299938808292!3d23.75587333542309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf534ad4b313%3A0xc7765243f282059f!2sSELISE%20Digital%20Platforms!5e0!3m2!1sen!2sbd!4v1732933928076!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+  },
+  "footer": {
+    "social": [
+      {
+        "name": "Facebook",
+        "link": "https://www.facebook.com/groups/jugbd"
+      },
+      {
+        "name": "LinkedIn",
+        "link": "https://www.linkedin.com/groups/5072388/"
+      }
+    ],
+    "copyright": "&copy; {{YYYY}} JugBD.org. All rights reserved."
+  }
+}
