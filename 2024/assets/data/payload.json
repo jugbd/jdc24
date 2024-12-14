@@ -42,6 +42,34 @@
       "image": "assets/images/speakers/rokon.png"
     },
     {
+      "fullName": "Mushraful Hoque Anik",
+      "name": "bazlur_rahman",
+      "bio": "Director Of Technology at Dynamic Solution Innovators Ltd.",
+      "talkTitle": "TBD",
+      "abstract": "",
+      "twitter": "",
+      "linkedin": "https://www.linkedin.com/in/anikgnr/",
+      "website": "",
+      "title": "",
+      "company": "@DSi",
+      "companyWebsite": "https://www.dsinnovators.com/",
+      "image": "assets/images/speakers/anik.jpeg"
+    },
+    {
+      "fullName": "Minhajul Abedin ",
+      "name": "",
+      "bio": "Chief Technology Officer & Enterprise Software Architect",
+      "talkTitle": "TBD",
+      "abstract": "",
+      "twitter": "",
+      "linkedin": "https://www.linkedin.com/in/minhajulabedin/",
+      "website": "",
+      "title": "",
+      "company": "@BRAC IT",
+      "companyWebsite": "https://www.bracits.com/",
+      "image": "assets/images/speakers/minhaj.jpeg"
+    },
+    {
       "fullName": "Mozammel Haque",
       "name": "mozammel_haque",
       "bio": "<strong> Mozammel Haque </strong>has been involved in creating software solutions for more than 20 years now. Starting from creating the first 3D racing game back in 2002, namely 'Dhaka Racing', Mozammel has worked on developing softwares that target hyper growth oriented Silicon Valley based startups, as well as creating solutions for larger enterprises which require high scalability and reliability. At bKash, Mozammel is leading Software Research and Engineering team which is taking care of bKash's in-house software development needs. Apart from work, he is a cycling and health enthusiast and mostly bikes around everywhere in Dhaka.",
@@ -128,7 +156,7 @@
   },
   "countdown": {
     "title": "Call for papers is open until December 12, 2024!\nDon't wail until the last minute!",
-    "targetDate": "2024-12-10T23:59:59",
+    "targetDate": "2024-21-10T2:59:59",
     "subsection": {
       "title": "Get realtime event updates",
       "body": "Always keep an eye on the {{link}} group on Facebook",
