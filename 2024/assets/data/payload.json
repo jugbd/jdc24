@@ -155,9 +155,10 @@
     ]
   },
   "countdown": {
-    "title": "Call for papers is open until December 12, 2024!\nDon't wail until the last minute!",
-    "targetDate": "2024-21-10T2:59:59",
+    "title": "The <span>Conference</span> starts in...",
+    "targetDate": "2024-12-21T14:59:59",
     "subsection": {
+      "date": "At 15:00 on 21st December",
       "title": "Get realtime event updates",
       "body": "Always keep an eye on the {{link}} group on Facebook",
       "link": {
