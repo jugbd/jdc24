@@ -1056,3 +1056,114 @@ footer p {
     text-align: center;
   }
 }
+
+/* session */
+
+.session-title {
+  margin-top: var(--header-height);
+  background-color: #7f5a83;
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  padding: 10rem 0;
+  font-size: clamp(2rem, 5vw, 3rem);
+  width: 100%;
+  text-align: center;
+}
+
+.session {
+  display: flex;
+  gap: 2.5rem;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 1000px;
+  text-align: left;
+  padding: 5rem 1rem;
+
+  .img {
+    flex-basis: 150px;
+    flex-shrink: 0;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid var(--tertiary);
+  }
+
+}
+
+.session .img img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+}
+
+
+.session .head h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+.session .head .meta {
+  font-size: 1rem;
+}
+
+.session .head .meta a {
+  color: #ff5733;
+  text-decoration: none;
+}
+
+.session .head .social {
+  padding-top: .75rem;
+  font-size: 0.9rem;
+  display: flex;
+
+  div {
+    margin-left: .5rem;
+  }
+
+  svg {
+    display: inline-block;
+  }
+
+  svg:hover {
+    color: var(--accent);
+  }
+}
+
+.session .head .social a {
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.session .head .social a:hover {
+  text-decoration: underline;
+}
+
+.session .abstract p,
+.session .abstract ul {
+  font-family: var(--font-serif);
+  margin-top: 20px;
+  line-height: 1.5;
+}
+
+.session .abstract ul {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .session {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .session .img img {
+    margin-bottom: 20px;
+  }
+
+  .session .content {
+    align-items: center;
+  }
+
+}

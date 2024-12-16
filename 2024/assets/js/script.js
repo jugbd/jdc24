@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     body.appendChild(loader);
 
     try {
-        const url = "assets/data/payload.json"
+        const url = "/assets/data/payload.json"
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
