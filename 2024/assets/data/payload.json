@@ -116,29 +116,32 @@
     "why": {
       "title": "Taking part in this event &mdash;",
       "items": [
-        "Meet some great Java guys right here",
-        "While sipping coffee and snacking, converse with your fellow devs about your favourite Java technology",
-        "Attend the presentations made by seasoned Java professionals (local & international)",
-        "Get gifts and have a great time"
+        {
+          "title": "Meet Java Enthusiasts",
+          "body": "Connect with passionate Java developers over coffee and snacks."
+        },
+        {
+          "title": "Engage in Conversations",
+          "body": "Share ideas about your favorite Java technologies with like-minded peers."
+        },
+        {
+          "title": "Learn from Experts",
+          "body": "Attend sessions by seasoned Java professionals from around the globe."
+        },
+        {
+          "title": "Get Inspired",
+          "body": "Discover new tools, trends, and insights to level up your Java skills."
+        },
+        {
+          "title": "Have a Great Time",
+          "body": "Experience a perfect mix of learning, networking, and fun!"
+        },
+        {
+          "title": "Enjoy Gifts and Fun",
+          "body": "Participate in exciting activities and win cool giveaways."
+        }
       ]
-    },
-    "sections": [
-      {
-        "icon": "iconPath",
-        "title": "Brilliant Speakers",
-        "description": "Meet the most exciting names from the world of software development. Come and listen to their stories, hear their ideas, absorb their knowledge and learn from the best."
-      },
-      {
-        "icon": "iconPath",
-        "title": "Featured Title",
-        "description": "Get a complete overview of recent insights, best practices and future trends in modern software development."
-      },
-      {
-        "icon": "iconPath",
-        "title": "Connect & Network",
-        "description": "Meet like-minded people and expand your career, business and industry network. Yes, it's also a perfect opportunity to do team-building or just meet old and make new friends."
-      }
-    ]
+    }
   },
   "countdown": {
     "title": "The <span>Conference</span> starts in...",

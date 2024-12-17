@@ -1,4 +1,4 @@
-const CACHE_NAME = 'site-cache-v3'; // Update this when you want to bust the cache
+const CACHE_NAME = 'site-cache-v6'; // Update this when you want to bust the cache
 
 self.addEventListener('install', event => {
     event.waitUntil(

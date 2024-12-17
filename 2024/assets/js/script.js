@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateHero(content.hero);
         populateAbout(content.about);
         populateGallery(content.gallery);
+        populateWhyJDC(content.whyJdc);
         populateSpeakers(content.speakers);
         populateCountdown(content.countdown, content.hero);
         populateTeam(content.ourTeam)
@@ -142,6 +143,40 @@ const populateGallery = (galleryImages) => {
 
     updateCarousel();
 };
+
+const populateWhyJDC = (whyJDC) => {
+    const whySection = document.getElementById("why-jdc");
+
+    // Create and append the section title
+    const title = document.createElement('h2');
+    title.innerHTML = whyJDC.why.title;
+    title.classList.add('section-title');
+    whySection.appendChild(title);
+
+    // Create the list container
+    const itemsList = document.createElement('ul');
+    itemsList.classList.add('why-items');
+
+    // Iterate over the items and append them as list elements
+    whyJDC.why.items.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('why-item');
+
+        const itemTitle = document.createElement('h3');
+        itemTitle.textContent = item.title;
+        itemTitle.classList.add('why-item-title');
+
+        const itemBody = document.createElement('p');
+        itemBody.textContent = item.body;
+        itemBody.classList.add('why-item-body');
+
+        listItem.append(itemTitle, itemBody);
+        itemsList.appendChild(listItem);
+    });
+
+    whySection.appendChild(itemsList);
+}
+
 
 const populateSpeakers = (speakers) => {
     const speakersSection = document.getElementById('speakers');
