@@ -846,6 +846,14 @@ main {
       border-radius: 1rem;
     }
   }
+
+  @media (max-width: 768px) {
+    .map {
+      iframe {
+        width: 90vw;
+      }
+    }
+  }
 }
 
 
@@ -1060,9 +1068,9 @@ footer p {
 /* session */
 .session-title {
   margin-top: var(--header-height);
-  background: var(--bg-gradient);
-  padding: clamp(3rem, 8vw, 6rem) 1rem;
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  padding: 5rem 1rem;
+  transform: translateY(-100px);
+  font-size: clamp(2.5rem, 4vw, 3rem);
   width: 100%;
   text-align: center;
   background: linear-gradient(to right, #E32636, #E31837 70%);
@@ -1086,7 +1094,7 @@ footer p {
 .session {
   display: flex;
   gap: clamp(1rem, 3vw, 2.5rem);
-  padding: clamp(2rem, 4vw, 5rem) 1rem;
+  padding: 3rem 1rem;
   margin: 0 auto;
   max-width: min(90vw, 1000px);
   text-align: left;
@@ -1191,7 +1199,7 @@ footer p {
 
 @media (max-width: 768px) {
   .session-title {
-    text-align: left;
+    text-align: center;
     padding-left: 1.5rem;
   }
 
