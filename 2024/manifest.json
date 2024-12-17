@@ -23,10 +23,16 @@
     "assets/images/gallery/10-slider.jpg",
     "assets/images/gallery/11-slider.png",
     "assets/images/speakers/RezaRahman.png",
+    "assets/images/speakers/abir.jpeg",
+    "assets/images/speakers/anik.jpeg",
+    "assets/images/speakers/habib.png",
     "assets/images/speakers/hasanat.jpg",
+    "assets/images/speakers/minhaj.jpeg",
     "assets/images/speakers/moz.jpg",
     "assets/images/speakers/oronno.png",
     "assets/images/speakers/rokon.png",
+    "assets/images/speakers/zahur.jpg",
+    "assets/images/sponsor/sponsorlogo.png",
     "assets/images/team/team01.png",
     "assets/images/team/team02.png",
     "assets/images/team/team03.png",
@@ -41,6 +47,7 @@
     "assets/js/script.js",
     "generate-manifest.js",
     "index.html",
-    "service-worker.js"
+    "service-worker.js",
+    "sessions/index.html"
   ]
 }
