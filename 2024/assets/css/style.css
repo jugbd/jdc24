@@ -1058,12 +1058,11 @@ footer p {
 }
 
 /* session */
-
 .session-title {
   margin-top: var(--header-height);
   background: var(--bg-gradient);
-  padding: 6rem 0;
-  font-size: clamp(2rem, 5vw, 3rem);
+  padding: clamp(3rem, 8vw, 6rem) 1rem;
+  font-size: clamp(1.5rem, 4vw, 3rem);
   width: 100%;
   text-align: center;
   background: linear-gradient(to right, #E32636, #E31837 70%);
@@ -1086,24 +1085,23 @@ footer p {
 
 .session {
   display: flex;
-  gap: 2.5rem;
-  padding: 1rem;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(2rem, 4vw, 5rem) 1rem;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: min(90vw, 1000px);
   text-align: left;
-  padding: 5rem 1rem;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.6s ease-out forwards;
+}
 
-  .img {
-    flex-basis: 150px;
-    flex-shrink: 0;
-  }
+.session .img {
+  flex-basis: clamp(100px, 20vw, 150px);
+  flex-shrink: 0;
+}
 
-  &:not(:last-of-type) {
-    border-bottom: 1px solid var(--tertiary);
-  }
+.session:not(:last-of-type) {
+  border-bottom: 1px solid var(--tertiary);
 }
 
 @keyframes fadeInUp {
@@ -1119,97 +1117,121 @@ footer p {
 }
 
 .session .img img {
-  width: 150px;
-  height: 150px;
+  width: clamp(100px, 20vw, 150px);
+  height: clamp(100px, 20vw, 150px);
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #ddd;
   transition: all 0.3s ease;
+}
 
-  &:hover {
-    transform: scale(1.05);
-    border-color: var(--accent);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  }
+.session .img img:hover {
+  transform: scale(1.05);
+  border-color: var(--accent);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .session .head h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
   font-weight: bold;
-  margin: 0 0 10px;
+  margin: 0 0 clamp(0.5rem, 2vw, 10px);
   transition: color 0.2s ease;
+}
 
-  &:hover {
-    color: var(--accent);
-  }
+.session .head h2:hover {
+  color: var(--accent);
 }
 
 .session .head .meta {
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .session .head .meta a {
   color: #ff5733;
   text-decoration: none;
   transition: all 0.2s ease;
+}
 
-  &:hover {
-    color: darken(#ff5733, 10%);
-    text-decoration: underline;
-  }
+.session .head .meta a:hover {
+  color: #e64a2e;
+  text-decoration: underline;
 }
 
 .session .head .social {
-  padding-top: .75rem;
-  font-size: 0.9rem;
+  padding-top: clamp(0.5rem, 2vw, 0.75rem);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   display: flex;
-
-  div {
-    margin-left: .5rem;
-  }
-
-  svg {
-    display: inline-block;
-    transition: transform 0.2s ease, color 0.2s ease;
-
-    &:hover {
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-  }
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.session .head .social a {
-  margin-right: 10px;
-  text-decoration: none;
-  transition: all 0.2s ease;
+.session .head .social svg {
+  display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.session .head .social svg:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .session .abstract p,
 .session .abstract ul {
   font-family: var(--font-serif);
-  margin-top: 20px;
+  margin-top: clamp(1rem, 3vw, 20px);
   line-height: 1.5;
-  transition: all 0.3s ease;
+  font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .session .abstract ul {
   margin-top: 1rem;
+  padding-left: 1.5rem;
 }
 
+
 @media (max-width: 768px) {
+  .session-title {
+    text-align: left;
+    padding-left: 1.5rem;
+  }
+
   .session {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: all 0.3s ease;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.5rem;
   }
 
-  .session .img img {
-    margin-bottom: 20px;
+  .session .img {
+    flex-basis: auto;
   }
 
-  .session .content {
-    align-items: center;
+  .session .head {
+    width: 100%;
+  }
+
+  .session .head .social {
+    justify-content: flex-start;
+  }
+
+  .session .abstract {
+    text-align: left;
+  }
+
+  .session .abstract ul {
+    text-align: left;
+    padding-left: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .session {
+    padding: 2rem 0.75rem;
+  }
+
+  .session .head .social {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 }
