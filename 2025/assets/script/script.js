@@ -43,7 +43,13 @@ function createThemeToggle() {
 
     themeToggle.addEventListener('click', toggleTheme);
 
-    document.body.appendChild(themeToggle);
+    // Place inside navbar
+    const navbarThemeToggle = document.getElementById('navbar-theme-toggle');
+    if (navbarThemeToggle) {
+        navbarThemeToggle.appendChild(themeToggle);
+    } else {
+        document.body.appendChild(themeToggle);
+    }
 }
 
 /**
@@ -791,6 +797,19 @@ function showNotification(message, type = 'info') {
         }, 300);
     }, 5000);
 }
+
+/**
+ * Responsive Navbar Toggle
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbarMenu = document.querySelector('.navbar-menu');
+    if (navbarToggle && navbarMenu) {
+        navbarToggle.addEventListener('click', function() {
+            navbarMenu.classList.toggle('active');
+        });
+    }
+});
 
 /**
  * Initialize accessibility features
