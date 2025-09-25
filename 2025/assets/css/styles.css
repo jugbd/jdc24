@@ -1,70 +1,19 @@
-/* CSS Custom Properties (Variables) for Unified Theme */
+/* Softer, subtle red for modern accent */
 :root {
-    --color-primary: #e53935; /* Red accent */
-    --color-bg: #fff8f6;      /* Soft background */
+    --color-primary: #f44336; /* Subtle red accent */
+    --color-bg: #faf9f6;      /* Neutral soft background */
     --color-text: #222222;    /* Main text */
     --color-contrast: #ffffff;/* Contrast (cards, buttons) */
-    /* Background Colors */
-    --color-bg-primary: #ffffff;
-    --color-bg-secondary: #000000;
-    --color-bg-tertiary: #111111;
-    --color-bg-quaternary: #333333;
-    --color-bg-light-gray: #f0f0f0;
-    --color-bg-medium-gray: #e0e0e0;
-    --color-bg-dark-gray: #f8f8f8;
-
-    /* Text Colors */
-    --color-text-primary: #333333;
-    --color-text-secondary: #ffffff;
-    --color-text-muted: #666666;
-    --color-text-light-muted: rgba(255, 255, 255, 0.9);
-
-    /* Border Colors */
-    --color-border-light: #f0f0f0;
-    --color-border-medium: #333333;
-    --color-border-transparent: transparent;
-
-    /* Shadow Colors */
-    --shadow-light: rgba(0, 0, 0, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.15);
-    --shadow-dark: rgba(0, 0, 0, 0.3);
-    --shadow-strong: rgba(0, 0, 0, 0.5);
-
-    --gradient-hero: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-quaternary) 100%);
-    --gradient-text: linear-gradient(135deg, var(--color-text-secondary) 0%, var(--color-primary) 100%);
-    --gradient-card: linear-gradient(45deg, var(--color-bg-light-gray), var(--color-bg-medium-gray));
-    --gradient-sponsor: linear-gradient(45deg, var(--color-bg-dark-gray), var(--color-bg-light-gray));
-    --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary));
-    --gradient-overlay: linear-gradient(45deg, var(--color-primary), rgba(0, 0, 0, 0.1));
-    --gradient-carousel-bg: linear-gradient(135deg, var(--color-bg-quaternary) 0%, var(--color-text-muted) 50%, var(--color-bg-quaternary) 100%);
-    --gradient-carousel-caption: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-secondary) 100%);
-    
-    /* Gradients and shadows using basic colors */
-    --gradient-hero: linear-gradient(135deg, var(--color-primary) 0%, var(--color-bg) 100%);
-    --gradient-card: linear-gradient(45deg, var(--color-contrast), var(--color-bg));
-    --gradient-primary: linear-gradient(135deg, var(--color-primary), #b71c1c);
-    --gradient-overlay: linear-gradient(45deg, rgba(229,57,53,0.08), rgba(0,0,0,0.05));
-    --shadow-light: rgba(229,57,53,0.08);
-    --shadow-medium: rgba(229,57,53,0.15);
-    --shadow-strong: rgba(229,57,53,0.25);
-    --opacity-light: 0.1;
-    --opacity-medium: 0.9;
-    --opacity-hover: 0.7;
+    --shadow-light: 0 2px 8px rgba(244,67,54,0.08);
+    --shadow-medium: 0 10px 25px rgba(244,67,54,0.15);
+    --shadow-strong: 0 20px 50px rgba(244,67,54,0.25);
 }
 
-/* Dark Theme Variables */
-[data-theme="dark"] {
-    --color-bg: #1a1a1a;
-    --color-text: #ffffff;
-    --color-contrast: #222222;
-    --shadow-light: rgba(229,57,53,0.15);
-    --shadow-medium: rgba(229,57,53,0.25);
-}
-
-/* Light Theme Variables */
-[data-theme="light"] {
-    --color-bg-secondary: #f5f5f5;
-    --color-text-secondary: #333333;
+/* Utility shadow colors using primary */
+:root {
+    --shadow-light: 0 2px 8px rgba(244,67,54,0.08);
+    --shadow-medium: 0 10px 25px rgba(244,67,54,0.15);
+    --shadow-strong: 0 20px 50px rgba(244,67,54,0.25);
 }
 
 /* Reset and Base Styles */
@@ -160,60 +109,26 @@ section.hero {
     font-weight: 600;
     transition: all 0.3s ease;
     border: 2px solid var(--color-primary);
+    box-shadow: var(--shadow-light);
 }
 
 .btn:hover {
     background-color: var(--color-contrast);
     color: var(--color-primary);
-    box-shadow: 0 10px 25px var(--shadow-medium);
-}
-
-.btn-outline {
-    background-color: var(--color-border-transparent);
-    color: var(--color-text-secondary);
-    border: 2px solid var(--color-text-secondary);
-}
-
-.btn-outline:hover {
-    background-color: var(--color-text-secondary);
-    color: var(--color-bg-secondary);
+    box-shadow: var(--shadow-medium);
 }
 
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: var(--gradient-hero);
+    background: var(--color-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: var(--color-text-secondary);
+    color: var(--color-text);
     position: relative;
     overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>') repeat;
-    animation: float 20s ease-in-out infinite;
-    opacity: var(--opacity-light);
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    33% {
-        transform: translate(30px, -30px) rotate(120deg);
-    }
-    66% {
-        transform: translate(-20px, 20px) rotate(240deg);
-    }
 }
 
 .hero-content {
@@ -235,16 +150,13 @@ section.hero {
 
 .hero h1 {
     margin-bottom: 1rem;
-    background: var(--gradient-text);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
 }
 
 .hero-date {
     font-size: 1.3rem;
     margin-bottom: 2rem;
-    opacity: var(--opacity-medium);
+    opacity: 0.8;
 }
 
 /* Intro Section Specific Styles */
@@ -442,20 +354,16 @@ section.hero {
     box-shadow: 0 0 10px var(--color-primary);
 }
 
-/* Cards */
+/* Card Styles */
 .card {
     background: var(--color-contrast);
     color: var(--color-text);
-    box-shadow: 0 10px 30px var(--shadow-light);
-    border: 1px solid var(--color-primary);
-    transition: all 0.3s ease;
-    border-radius: 15px;
-    padding: 2rem;
+    border: 1px solid #eee;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--shadow-medium);
+    border: 1.5px solid var(--color-primary);
+    box-shadow: var(--shadow-medium);
 }
 
 .section-dark .card {
@@ -671,116 +579,132 @@ section.hero {
     }
 }
 
-/* Navbar Styles - Complete */
+/* Navbar Styles */
 .navbar {
     width: 100%;
-    background: var(--color-bg-primary);
-    box-shadow: 0 2px 8px var(--shadow-light);
+    background: var(--color-contrast);
+    color: var(--color-text);
+    box-shadow: var(--shadow-light);
     position: sticky;
     top: 0;
-    z-index: 1000;
-    font-family: 'Poppins', sans-serif;
-    transition: background 0.3s, box-shadow 0.3s;
+    z-index: 100;
 }
 
 .navbar .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.navbar-brand {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
+.navbar-brand .logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.7rem;
     font-weight: 700;
-    font-size: 1.5rem;
     color: var(--color-primary);
     text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     transition: color 0.2s;
 }
 
-.logo:hover,
-.logo:focus {
-    color: var(--color-primary);
+.navbar-brand .logo:hover {
+    color: var(--color-text);
 }
 
 .navbar-menu {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center;
-    transition: all 0.3s;
-}
-
-.navbar-menu li {
-    display: block;
 }
 
 .navbar-menu li a {
-    color: var(--color-text-primary);
+    color: var(--color-text);
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
-    padding: 0.5rem 0.25rem;
-    border-radius: 4px;
-    transition: color 0.2s, background 0.2s;
-    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
 }
 
-.navbar-menu li a:hover,
-.navbar-menu li a:focus {
-    color: var(--color-primary);
+.navbar-menu li a:hover {
     background: var(--color-primary);
+    color: var(--color-contrast);
 }
 
+/* Theme Toggle Button (rightmost) */
+#navbar-theme-toggle {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-btn {
+    background: var(--color-contrast);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-light);
+    transition: background 0.2s, color 0.2s;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-contrast);
+}
+
+/* Navbar Toggle (Hamburger) */
 .navbar-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    gap: 4px;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
 }
 
 .navbar-toggle .bar {
     width: 24px;
     height: 3px;
-    background: var(--color-primary);
+    background: var(--color-contrast);
+    margin: 3px 0;
     border-radius: 2px;
     transition: background 0.2s;
 }
 
 /* Responsive Navbar */
 @media (max-width: 900px) {
+    .navbar .container {
+        flex-wrap: wrap;
+        padding: 0.5rem 1rem;
+    }
+
     .navbar-menu {
         gap: 1rem;
     }
 }
 
 @media (max-width: 700px) {
-    .navbar .container {
-        flex-wrap: wrap;
-    }
-
     .navbar-menu {
+        display: none;
         position: absolute;
         top: 60px;
         left: 0;
         width: 100%;
-        background: var(--color-bg-primary);
+        background: var(--color-primary);
         flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 2rem;
-        box-shadow: 0 2px 8px var(--shadow-light);
-        display: none;
+        gap: 0;
+        box-shadow: var(--shadow-light);
     }
 
     .navbar-menu.active {
@@ -789,16 +713,6 @@ section.hero {
 
     .navbar-toggle {
         display: flex;
-    }
-
-    .navbar-menu li {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-
-    .navbar-menu li a {
-        width: 100%;
-        padding: 0.75rem 0.5rem;
     }
 }
 
