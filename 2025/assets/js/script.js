@@ -1,3 +1,4 @@
+/*
 // Custom Cursor
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
@@ -11,6 +12,7 @@ document.addEventListener('mousemove', (e) => {
         follower.style.top = e.clientY - 10 + 'px';
     }, 100);
 });
+*/
 
 // Navbar Scroll Effect
 window.addEventListener('scroll', () => {
@@ -21,6 +23,29 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('scrolled');
     }
 });
+
+// Fade out on first scroll
+window.addEventListener('scroll', () => {
+    const indicator = document.querySelector('.scroll-indicator');
+    if (indicator && !indicator.classList.contains('hide')) {
+        indicator.classList.add('hide');
+    }
+}, { once: true });
+
+// Fade in when hero section is in view
+const hero = document.getElementById('hero');
+const indicator = document.querySelector('.scroll-indicator');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && indicator) {
+            indicator.classList.remove('hide');
+        }
+    });
+}, { threshold: 0.7 });
+
+if (hero && indicator) {
+    observer.observe(hero);
+}
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -45,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     body.appendChild(loader);
 
     try {
-        const url = "/assets/data/payload.json"
+        const url = "/2025/assets/data/payload.json"
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
@@ -205,7 +230,7 @@ const populateWhyJDC = (whyJDC) => {
 
     const sectionTag = document.createElement('span');
     sectionTag.classList.add('section-tag');
-    sectionTag.innerHTML = "▲ Why Attend";
+    sectionTag.innerHTML = "Why Attend";
     whySection.appendChild(sectionTag);
 
     const title = document.createElement('h2');
@@ -213,26 +238,26 @@ const populateWhyJDC = (whyJDC) => {
     title.classList.add('section-title', 'gradient-text');
     whySection.appendChild(title);
 
-    const itemsList = document.createElement('ul');
-    itemsList.classList.add('why-items');
+    const itemsGrid = document.createElement('div');
+    itemsGrid.classList.add('why-grid'); // Using a grid for card layout
 
     whyJDC.why.items.forEach((item) => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('why-item');
+        const card = document.createElement('div');
+        card.classList.add('why-card'); // Card element
 
         const itemTitle = document.createElement('h3');
         itemTitle.textContent = item.title;
-        itemTitle.classList.add('why-item-title');
+        itemTitle.classList.add('why-card-title');
 
         const itemBody = document.createElement('p');
         itemBody.textContent = item.body;
-        itemBody.classList.add('why-item-body');
+        itemBody.classList.add('why-card-body');
 
-        listItem.append(itemTitle, itemBody);
-        itemsList.appendChild(listItem);
+        card.append(itemTitle, itemBody);
+        itemsGrid.appendChild(card);
     });
 
-    whySection.appendChild(itemsList);
+    whySection.appendChild(itemsGrid);
 }
 
 
@@ -533,3 +558,5 @@ window.addEventListener('load', () => {
         document.body.style.opacity = '1';
     }, 100);
 });
+
+

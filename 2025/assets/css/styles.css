@@ -8,11 +8,11 @@
     --primary: #ffffff;
     --accent: #ff0040;
     --accent-glow: #ff0040;
-    --bg-dark: #0a0a0a;
-    --bg-darker: #000000;
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-dim: rgba(255, 255, 255, 0.6);
+    --bg-dark: #2d2d30;           /* Much lighter from #0a0a0a */
+    --bg-darker: #252526;         /* Much lighter from #000000 */
+    --glass: rgba(255, 255, 255, 0.15);     /* Much more visible */
+    --glass-border: rgba(255, 255, 255, 0.25); /* Much more visible */
+    --text-dim: rgba(255, 255, 255, 0.8);   /* More readable */
     --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
@@ -22,31 +22,7 @@ body {
     background: var(--bg-dark);
     color: var(--primary);
     overflow-x: hidden;
-    cursor: none;
-}
-
-/* Custom Cursor */
-.cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    mix-blend-mode: difference;
-}
-
-.cursor-follower {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 0, 64, 0.1);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.3s ease;
+    cursor:default;
 }
 
 /* Animated Background */
@@ -118,17 +94,25 @@ nav.scrolled {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
+    /*font-size: 1.8rem;*/
+    /*font-weight: 800;*/
     background: linear-gradient(135deg, var(--accent), #ff6b6b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -1px;
     position: relative;
+    filter: drop-shadow(5px 5px 10px #ff6b6b);
+    img{
+        width: 80px;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+
+    }
 }
 
-.logo::after {
-    content: '2024';
+/*.logo::after {
+    content: '2025';
     position: absolute;
     top: -5px;
     right: -35px;
@@ -138,7 +122,7 @@ nav.scrolled {
     padding: 2px 6px;
     border-radius: 4px;
     font-weight: 600;
-}
+}*/
 
 .nav-links {
     display: flex;
@@ -217,7 +201,7 @@ nav.scrolled {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 7rem);
+    font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 900;
     line-height: 1;
     margin-bottom: 20px;
@@ -227,31 +211,11 @@ nav.scrolled {
     letter-spacing: -3px;
 }
 
-.glitch {
-    position: relative;
-    animation: glitch 3s infinite;
-}
-
-@keyframes glitch {
-    0%, 100% { text-shadow: none; }
-    97% { text-shadow: none; }
-    98% {
-        text-shadow:
-                -2px 0 #ff0040,
-                2px 2px #00ffff;
-    }
-    99% {
-        text-shadow:
-                2px 0 #00ffff,
-                -2px -2px #ff0040;
-    }
-}
-
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: var(--text-dim);
     margin-bottom: 40px;
-    font-weight: 300;
+    font-weight: bold;
 }
 
 .cta-button {
@@ -296,6 +260,17 @@ nav.scrolled {
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
+}
+
+/* In assets/css/styles.css */
+.scroll-indicator {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.scroll-indicator.hide {
+    opacity: 0;
+    pointer-events: none;
 }
 
 @keyframes bounce {
@@ -560,6 +535,95 @@ nav.scrolled {
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--text-dim);
+}
+
+/* Why JDC Section - Card Layout */
+#why-jdc {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Adds the red underline to the section title */
+#why-jdc .section-title.gradient-text {
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    background: none; /* Override gradient for this title to make it plain white */
+    -webkit-text-fill-color: unset; /* Corrected property value for better compatibility */
+    color: #fff;
+}
+
+#why-jdc .section-title.gradient-text::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background-color: #CF0060; /* Solid red color for the line */
+    border-radius: 2px;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.why-card {
+    /* Frosted glass effect */
+    background: rgba(42, 47, 76, 0.55); /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to define the edge */
+
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative; /* Required for the glowing border pseudo-element */
+    overflow: hidden; /* Keeps the glow effect contained */
+    z-index: 1;
+}
+
+/* This pseudo-element creates the animated glowing border */
+.why-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    border: 2px solid transparent;
+}
+
+
+.why-card:hover {
+    transform: translateY(-10px) scale(1.03); /* Lift and enlarge the card */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4); /* Add a stronger shadow for depth */
+}
+
+/* On hover, make the glowing border visible */
+.why-card:hover::before {
+    opacity: 1;
+}
+
+
+.why-card-title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.why-card-body {
+    font-size: 1rem;
+    color: #a9b3d2; /* The light, muted text color */
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* Countdown Section */
