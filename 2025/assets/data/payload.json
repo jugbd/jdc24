@@ -145,7 +145,7 @@
   },
   "countdown": {
     "title": "The <span>Conference</span> starts in...",
-    "targetDate": "2025-11-15T9:59:59",
+    "targetDate": "2025-11-15T09:59:59",
     "subsection": {
       "date": "At 10:00 on 15st December",
       "title": "Get realtime event updates",
