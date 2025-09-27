@@ -318,19 +318,20 @@ const populateSpeakers = (speakers) => {
     const speakerGrid = document.createElement('div');
     speakerGrid.classList.add('speakers-grid');
 
-    speakers.forEach(speaker => {
+    speakers.forEach((speaker, idx) => {
         const speakerCard = document.createElement('div');
         speakerCard.classList.add('speaker-card');
-
         speakerCard.innerHTML = `
         <img src="${speaker.image}" alt="${speaker.fullName}" class="speaker-image">
             <div class="speaker-info">
                 <h3 class="speaker-name">${speaker.fullName}</h3>
                 <p class="speaker-title">${speaker.company}</p>
-                <p class="speaker-bio">${speaker.bio}</p>
             </div>
         `;
-
+        // Add click event to go to speakers.html with id
+        speakerCard.addEventListener('click', () => {
+            window.location.href = `speakers.html?id=${idx}`;
+        });
         speakerGrid.appendChild(speakerCard);
     });
 
@@ -346,7 +347,7 @@ const populateTeam = (teamMembers) => {
 
     const sectionTag = document.createElement('span');
     sectionTag.classList.add('section-tag');
-    sectionTag.innerHTML = "▲ Our Team";
+    sectionTag.innerHTML = "Our Team";
 
     const title = document.createElement('h2');
     title.innerHTML = "Meet the Organizers";

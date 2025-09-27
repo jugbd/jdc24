@@ -37,8 +37,8 @@
       "linkedin": "https://www.linkedin.com/in/bazlur/",
       "website": "https://bazlur.ca/",
       "title": "Java Champion | Software Engineer",
-      "company": "@DNAstack",
-      "companyWebsite": "http://www.dnastack.com",
+      "company": "@Hammerspace",
+      "companyWebsite": "https://hammerspace.com/",
       "image": "assets/images/speakers/rokon.png"
     },
     {
@@ -145,9 +145,9 @@
   },
   "countdown": {
     "title": "The <span>Conference</span> starts in...",
-    "targetDate": "2024-12-21T14:59:59",
+    "targetDate": "2025-11-15T9:59:59",
     "subsection": {
-      "date": "At 15:00 on 21st December",
+      "date": "At 10:00 on 15st December",
       "title": "Get realtime event updates",
       "body": "Always keep an eye on the {{link}} group on Facebook",
       "link": {
