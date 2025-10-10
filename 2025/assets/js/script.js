@@ -125,15 +125,15 @@ const populateAbout = (aboutContent) => {
     aboutText.appendChild(title);
     aboutText.appendChild(description);
 
-    const aboutImage = document.createElement("div");
+/*    const aboutImage = document.createElement("div");
     aboutImage.classList.add('about-image');
     const image = document.createElement("img");
     image.src = aboutContent.image;
     image.alt = "JDC 2024 Event";
-    aboutImage.appendChild(image);
+    aboutImage.appendChild(image);*/
 
     aboutContentDiv.appendChild(aboutText);
-    aboutContentDiv.appendChild(aboutImage);
+    //aboutContentDiv.appendChild(aboutImage);
     about.appendChild(aboutContentDiv);
 };
 
@@ -150,10 +150,9 @@ const populateGallery = (galleryImages) => {
     carouselTrack.className = 'modern-carousel-track';
 
     // Slides
-    galleryImages.forEach((imagePath, idx) => {
+    galleryImages.forEach((imagePath) => {
         const slide = document.createElement('div');
         slide.className = 'modern-carousel-slide';
-        if (idx === 0) slide.classList.add('active');
         const img = document.createElement('img');
         img.src = imagePath;
         img.alt = 'Gallery Image';
@@ -161,17 +160,6 @@ const populateGallery = (galleryImages) => {
         slide.appendChild(img);
         carouselTrack.appendChild(slide);
     });
-
-    // Navigation buttons (overlaid)
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'modern-carousel-btn prev';
-    prevBtn.setAttribute('aria-label', 'Previous Slide');
-    prevBtn.innerHTML = '&#10094;';
-
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'modern-carousel-btn next';
-    nextBtn.setAttribute('aria-label', 'Next Slide');
-    nextBtn.innerHTML = '&#10095;';
 
     // Indicators (overlaid)
     const indicators = document.createElement('div');
@@ -184,12 +172,11 @@ const populateGallery = (galleryImages) => {
     });
 
     carouselContainer.appendChild(carouselTrack);
-    carouselContainer.appendChild(prevBtn);
-    carouselContainer.appendChild(nextBtn);
+    // REMOVED: Navigation buttons are no longer created here.
     carouselContainer.appendChild(indicators);
     gallery.appendChild(carouselContainer);
 
-    // Carousel logic
+    // --- Carousel Logic ---
     let currentIndex = 0;
     const slides = carouselTrack.querySelectorAll('.modern-carousel-slide');
     const dots = indicators.querySelectorAll('.modern-carousel-dot');
@@ -199,11 +186,14 @@ const populateGallery = (galleryImages) => {
     function goToSlide(idx) {
         if (isTransitioning || idx === currentIndex) return;
         isTransitioning = true;
-        slides[currentIndex].classList.remove('active');
+
         dots[currentIndex].classList.remove('active');
-        slides[idx].classList.add('active');
         dots[idx].classList.add('active');
-        carouselTrack.style.transform = `translateX(-${idx * 100}vw)`;
+
+        // Use % for responsive translation
+        carouselTrack.style.transform = `translateX(-${idx * 100}%)`;
+
+        // Allow time for the CSS transition to finish
         setTimeout(() => { isTransitioning = false; }, 500);
         currentIndex = idx;
     }
@@ -215,11 +205,31 @@ const populateGallery = (galleryImages) => {
         goToSlide((currentIndex - 1 + slides.length) % slides.length);
     }
 
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
+    // REMOVED: Event listeners for the old buttons.
+
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => goToSlide(idx));
     });
+
+    // NEW: Interactive container for navigation
+    carouselContainer.addEventListener('click', (event) => {
+        // If the user clicked on a dot, let the dot's own event listener handle it.
+        if (event.target.classList.contains('modern-carousel-dot')) {
+            return;
+        }
+
+        const containerRect = carouselContainer.getBoundingClientRect();
+        // Calculate the horizontal click position relative to the container's left edge
+        const clickPositionX = event.clientX - containerRect.left;
+
+        // If the click is in the right half of the container, go to the next slide
+        if (clickPositionX > containerRect.width / 2) {
+            nextSlide();
+        } else { // Otherwise, go to the previous slide
+            prevSlide();
+        }
+    });
+
 
     // Touch/swipe support
     let startX = 0;
@@ -227,37 +237,52 @@ const populateGallery = (galleryImages) => {
     carouselTrack.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         isDragging = true;
-    });
+        stopAutoSlide(); // Pause autoplay during touch
+    }, { passive: true });
+
     carouselTrack.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
         const diff = e.touches[0].clientX - startX;
-        if (Math.abs(diff) > 50) {
+        if (Math.abs(diff) > 50) { // Swipe threshold
             if (diff > 0) prevSlide();
             else nextSlide();
             isDragging = false;
         }
-    });
+    }, { passive: true });
+
     carouselTrack.addEventListener('touchend', () => {
         isDragging = false;
+        startAutoSlide(); // Resume autoplay after touch
     });
 
-    // Auto-slide
+    // Auto-slide functionality
     function startAutoSlide() {
+        stopAutoSlide(); // Ensure no multiple intervals are running
         autoSlideInterval = setInterval(nextSlide, 5000);
     }
     function stopAutoSlide() {
         clearInterval(autoSlideInterval);
     }
+
+    // Pause on hover
     carouselContainer.addEventListener('mouseenter', stopAutoSlide);
     carouselContainer.addEventListener('mouseleave', startAutoSlide);
-    startAutoSlide();
+
+    startAutoSlide(); // Start the slideshow initially
 
     // Responsive: update transform on resize
     window.addEventListener('resize', () => {
-        carouselTrack.style.transform = `translateX(-${currentIndex * 100}vw)`;
+        // Temporarily disable transition for instant repositioning
+        carouselTrack.style.transition = 'none';
+        carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        // Restore the transition after a tiny delay
+        setTimeout(() => {
+            carouselTrack.style.transition = 'transform 0.8s ease-in-out';
+        }, 50);
     });
-    // Initial transform
-    carouselTrack.style.transform = 'translateX(0vw)';
+
+    // Set initial state
+    goToSlide(0);
 };
 
 const populateWhyJDC = (whyJDC) => {
@@ -318,25 +343,172 @@ const populateSpeakers = (speakers) => {
     const speakerGrid = document.createElement('div');
     speakerGrid.classList.add('speakers-grid');
 
+    // Create modal overlay (only once)
+    createSpeakerModal();
+
     speakers.forEach((speaker, idx) => {
         const speakerCard = document.createElement('div');
         speakerCard.classList.add('speaker-card');
         speakerCard.innerHTML = `
-        <img src="${speaker.image}" alt="${speaker.fullName}" class="speaker-image">
+            <img src="${speaker.image}" alt="${speaker.fullName}" class="speaker-image">
             <div class="speaker-info">
                 <h3 class="speaker-name">${speaker.fullName}</h3>
                 <p class="speaker-title">${speaker.company}</p>
             </div>
         `;
-        // Add click event to go to speakers.html with id
+
+        // Add click event to show modal instead of navigating
         speakerCard.addEventListener('click', () => {
-            window.location.href = `speakers.html?id=${idx}`;
+            showSpeakerModal(speaker);
         });
+
         speakerGrid.appendChild(speakerCard);
     });
 
     speakersSection.appendChild(speakerGrid);
 };
+
+// Function to create the modal structure
+function createSpeakerModal() {
+    // Check if modal already exists
+    if (document.getElementById('speaker-modal-overlay')) return;
+
+    const modalOverlay = document.createElement('div');
+    modalOverlay.id = 'speaker-modal-overlay';
+    modalOverlay.className = 'speaker-modal-overlay';
+
+    modalOverlay.innerHTML = `
+        <div class="speaker-modal">
+            <button class="speaker-modal-close" aria-label="Close modal"></button>
+            <div class="speaker-modal-content">
+                <div class="speaker-modal-header">
+                    <img class="speaker-modal-image" src="" alt="">
+                    <div class="speaker-modal-info">
+                        <h2 class="speaker-modal-name"></h2>
+                        <p class="speaker-modal-title"></p>
+                        <p class="speaker-modal-company"></p>
+                    </div>
+                </div>
+                <div class="speaker-modal-bio">
+                    <h3>Biography</h3>
+                    <p></p>
+                </div>
+                <div class="speaker-modal-details"></div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(modalOverlay);
+
+    // Close modal when clicking overlay
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeSpeakerModal();
+        }
+    });
+
+    // Close modal with close button
+    const closeBtn = modalOverlay.querySelector('.speaker-modal-close');
+    closeBtn.addEventListener('click', closeSpeakerModal);
+
+    // Close modal with ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSpeakerModal();
+        }
+    });
+}
+
+// Function to show the modal with speaker data
+function showSpeakerModal(speaker) {
+    const modalOverlay = document.getElementById('speaker-modal-overlay');
+    if (!modalOverlay) return;
+
+    // Populate modal with speaker data
+    const modal = modalOverlay.querySelector('.speaker-modal');
+    modal.querySelector('.speaker-modal-image').src = speaker.image;
+    modal.querySelector('.speaker-modal-image').alt = speaker.fullName;
+    modal.querySelector('.speaker-modal-name').textContent = speaker.fullName;
+    modal.querySelector('.speaker-modal-title').textContent = speaker.title || speaker.designation || 'Speaker';
+    modal.querySelector('.speaker-modal-company').textContent = speaker.company;
+
+    // --- FIX IS HERE ---
+    // Use .innerHTML to correctly render HTML tags from the bio string
+    modal.querySelector('.speaker-modal-bio p').innerHTML = speaker.bio || 'Biography coming soon...';
+
+    // Add additional details if available
+    const detailsContainer = modal.querySelector('.speaker-modal-details');
+    detailsContainer.innerHTML = ''; // Clear previous details
+
+    // Add experience if available
+    if (speaker.experience) {
+        detailsContainer.innerHTML += `
+            <div class="speaker-detail-item">
+                <div class="speaker-detail-label">Experience</div>
+                <div class="speaker-detail-value">${speaker.experience}</div>
+            </div>
+        `;
+    }
+
+    // Add expertise if available
+    if (speaker.expertise) {
+        detailsContainer.innerHTML += `
+            <div class="speaker-detail-item">
+                <div class="speaker-detail-label">Expertise</div>
+                <div class="speaker-detail-value">${speaker.expertise}</div>
+            </div>
+        `;
+    }
+
+    // Add session topic if available
+    if (speaker.sessionTopic) {
+        detailsContainer.innerHTML += `
+            <div class="speaker-detail-item">
+                <div class="speaker-detail-label">Session Topic</div>
+                <div class="speaker-detail-value">${speaker.sessionTopic}</div>
+            </div>
+        `;
+    }
+
+    // Show modal
+    modalOverlay.classList.add('active');
+    document.body.classList.add('modal-open');
+}
+
+// Function to close the modal
+function closeSpeakerModal() {
+    const modalOverlay = document.getElementById('speaker-modal-overlay');
+    if (modalOverlay) {
+        modalOverlay.classList.remove('active');
+        document.body.classList.remove('modal-open');
+    }
+}
+
+// Optional: Add swipe to close on mobile
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.addEventListener('touchstart', (e) => {
+    const modal = document.querySelector('.speaker-modal');
+    if (modal && modal.contains(e.target)) {
+        touchStartY = e.changedTouches[0].screenY;
+    }
+});
+
+document.addEventListener('touchend', (e) => {
+    const modal = document.querySelector('.speaker-modal');
+    if (modal && modal.contains(e.target)) {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }
+});
+
+function handleSwipe() {
+    if (touchEndY - touchStartY > 100) {
+        // Swipe down
+        closeSpeakerModal();
+    }
+}
 
 const populateTeam = (teamMembers) => {
     const teamSection = document.getElementById('our-team');
