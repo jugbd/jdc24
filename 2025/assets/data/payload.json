@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Java Developers' Conference 2024",
-    "edition": "10th Edition",
+    "title": "Java Developers' Conference 2025",
+    "edition": "11th Edition",
     "cta": {
       "text": "Secure Your Place Now",
       "link": "https://www.eventbrite.com/e/java-developers-conference-2024-tickets-1110475485069"
@@ -37,8 +37,8 @@
       "linkedin": "https://www.linkedin.com/in/bazlur/",
       "website": "https://bazlur.ca/",
       "title": "Java Champion | Software Engineer",
-      "company": "@DNAstack",
-      "companyWebsite": "http://www.dnastack.com",
+      "company": "@Hammerspace",
+      "companyWebsite": "https://hammerspace.com/",
       "image": "assets/images/speakers/rokon.png"
     },
     {
@@ -145,9 +145,9 @@
   },
   "countdown": {
     "title": "The <span>Conference</span> starts in...",
-    "targetDate": "2024-12-21T14:59:59",
+    "targetDate": "2025-11-15T09:59:59",
     "subsection": {
-      "date": "At 15:00 on 21st December",
+      "date": "At 10:00 on 15st December",
       "title": "Get realtime event updates",
       "body": "Always keep an eye on the {{link}} group on Facebook",
       "link": {
