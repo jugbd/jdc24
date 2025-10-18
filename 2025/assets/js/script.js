@@ -1,4 +1,3 @@
-
 // ============================================
 // THEME TOGGLE FUNCTIONALITY
 // ============================================
@@ -120,22 +119,6 @@ function throttle(func, limit) {
 }
 
 // ============================================
-// NAVBAR FUNCTIONALITY
-// ============================================
-
-// Navbar scroll effect with debounce
-const handleNavbarScroll = debounce(() => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-}, 10);
-
-window.addEventListener('scroll', handleNavbarScroll);
-
-// ============================================
 // SCROLL INDICATOR
 // ============================================
 
@@ -152,81 +135,14 @@ window.addEventListener('scroll', () => {
 });
 
 // ============================================
-// SMOOTH SCROLLING WITH NAVBAR OFFSET
-// ============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-
-            // Skip if it's just "#"
-            if (targetId === '#') return;
-
-            const target = document.querySelector(targetId);
-
-            if (target) {
-                const navbar = document.getElementById('navbar');
-                const navHeight = navbar ? navbar.offsetHeight : 0;
-                const targetPosition = target.offsetTop - navHeight - 20;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu if open
-                const navLinks = document.querySelector('.nav-links');
-                const menuToggle = document.querySelector('.menu-toggle');
-                if (navLinks && menuToggle && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('open');
-                    document.body.classList.remove('menu-open');
-                }
-            }
-        });
-    });
-});
-
-// ============================================
 // ENHANCED LOADING STATE
 // ============================================
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const body = document.querySelector("body");
-    body.setAttribute("loading", "");
-
-    // Create enhanced loader
-    const loaderOverlay = document.createElement("div");
-    loaderOverlay.classList.add("loader-overlay");
-    loaderOverlay.innerHTML = `
-        <div class="loader-logo"></div>
-        <div class="loader-progress">
-            <div class="loader-progress-bar" id="loaderProgressBar"></div>
-        </div>
-        <div class="loader-text" id="loaderText">Loading content...</div>
-    `;
-    body.appendChild(loaderOverlay);
-
-    const progressBar = document.getElementById('loaderProgressBar');
-    let progress = 0;
-
-    // Simulate progress
-    const progressInterval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress > 90) progress = 90;
-        if (progressBar) progressBar.style.width = progress + '%';
-    }, 200);
+    const loader = showLoader('Loading content...');
 
     try {
-        const url = "/2025/assets/data/payload.json";
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const content = await response.json();
+        const content = await fetchData("./assets/data/payload.json");
 
         // Populate all sections
         populateHero(content.hero);
@@ -234,31 +150,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateGallery(content.gallery);
         populateWhyJDC(content.whyJdc);
         populateSpeakers(content.speakers);
+        populateSessionPreview(content.sessions);
         populateCountdown(content.countdown, content.hero);
         populateSponsors(content.sponsors);
         populateTeam(content.ourTeam);
         populateLocation(content.location);
         populateFooter(content.footer);
 
-        // Complete loading
-        clearInterval(progressInterval);
-        if (progressBar) progressBar.style.width = '100%';
-
-        setTimeout(() => {
-            loaderOverlay.classList.add('hidden');
-            setTimeout(() => {
-                body.removeChild(loaderOverlay);
-            }, 500);
-        }, 500);
-
     } catch (e) {
         console.error(e.message);
-        clearInterval(progressInterval);
-        if (document.getElementById('loaderText')) {
-            document.getElementById('loaderText').textContent = 'Error loading content';
+        if (loader && loader.element) {
+            const loaderText = loader.element.querySelector('.loader-text');
+            if (loaderText) {
+                loaderText.textContent = 'Error loading content. Please refresh.';
+            }
         }
     } finally {
-        body.removeAttribute("loading");
+        hideLoader(loader);
         initializeIntersectionObserver();
         initializeBackToTop();
     }
@@ -295,7 +203,8 @@ function initializeIntersectionObserver() {
 // ============================================
 
 const populateHero = (heroContent) => {
-    const hero = document.getElementById("hero").querySelector('.hero-content');
+    const hero = document.getElementById("hero")?.querySelector('.hero-content');
+    if (!hero) return;
     hero.innerHTML = '';
     hero.setAttribute('role', 'banner');
 
@@ -325,6 +234,7 @@ const populateHero = (heroContent) => {
 
 const populateAbout = (aboutContent) => {
     const about = document.getElementById("about");
+    if (!about) return;
     about.innerHTML = '';
 
     const aboutContentDiv = document.createElement("div");
@@ -353,159 +263,161 @@ const populateAbout = (aboutContent) => {
 };
 
 // ============================================
-// GALLERY SECTION WITH ENHANCED CAROUSEL
+// GALLERY SECTION
 // ============================================
 
 const populateGallery = (galleryImages) => {
-    const gallery = document.getElementById('gallery');
-    gallery.innerHTML = '';
+    const gallerySection = document.getElementById('gallery');
+    if (!gallerySection) return;
 
-    const carouselContainer = document.createElement('div');
-    carouselContainer.className = 'modern-carousel-container';
-    carouselContainer.setAttribute('tabindex', '0');
-    carouselContainer.setAttribute('role', 'region');
-    carouselContainer.setAttribute('aria-label', 'Image carousel');
+    gallerySection.innerHTML = `
+        <div class="gallery-header">
+            <span class="section-tag">Memories</span>
+            <h2 class="section-title gradient-text">From Our Last Event</h2>
+        </div>
+        <div class="image-carousel-container" role="region" aria-label="Image Carousel">
+            <div class="carousel-track-container">
+                <ul class="carousel-track"></ul>
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-button prev" aria-label="Previous Slide">&#10094;</button>
+                <button class="carousel-button next" aria-label="Next Slide">&#10095;</button>
+            </div>
+            <div class="carousel-indicators"></div>
+        </div>
+    `;
 
-    const carouselTrack = document.createElement('div');
-    carouselTrack.className = 'modern-carousel-track';
+    const track = gallerySection.querySelector('.carousel-track');
+    const indicatorsContainer = gallerySection.querySelector('.carousel-indicators');
 
-    // Create slides
-    galleryImages.forEach((imagePath) => {
-        const slide = document.createElement('div');
-        slide.className = 'modern-carousel-slide';
-        const img = document.createElement('img');
-        img.src = imagePath;
-        img.alt = 'Gallery Image';
-        img.className = 'modern-carousel-image';
-        img.loading = 'lazy';
-        slide.appendChild(img);
-        carouselTrack.appendChild(slide);
+    galleryImages.forEach((image, index) => {
+        // Create slide
+        const slide = document.createElement('li');
+        slide.className = 'carousel-slide';
+        if (index === 0) slide.classList.add('active');
+        slide.innerHTML = `<img src="${image}" alt="Gallery image ${index + 1}" loading="lazy">`;
+        track.appendChild(slide);
+
+        // Create indicator
+        const indicator = document.createElement('button');
+        indicator.className = 'carousel-indicator';
+        if (index === 0) indicator.classList.add('active');
+        indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        indicator.dataset.index = index;
+        indicatorsContainer.appendChild(indicator);
     });
 
-    // Create indicators
-    const indicators = document.createElement('div');
-    indicators.className = 'modern-carousel-indicators';
-    galleryImages.forEach((_, idx) => {
-        const dot = document.createElement('span');
-        dot.className = 'modern-carousel-dot' + (idx === 0 ? ' active' : '');
-        dot.setAttribute('data-slide', idx);
-        dot.setAttribute('role', 'button');
-        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
-        indicators.appendChild(dot);
-    });
+    const slides = Array.from(track.children);
+    const indicators = Array.from(indicatorsContainer.children);
+    const nextButton = gallerySection.querySelector('.next');
+    const prevButton = gallerySection.querySelector('.prev');
+    const slideWidth = slides.length > 0 ? slides[0].getBoundingClientRect().width : 0;
 
-    carouselContainer.appendChild(carouselTrack);
-    carouselContainer.appendChild(indicators);
-    gallery.appendChild(carouselContainer);
-
-    // Carousel logic
     let currentIndex = 0;
-    const slides = carouselTrack.querySelectorAll('.modern-carousel-slide');
-    const dots = indicators.querySelectorAll('.modern-carousel-dot');
-    let autoSlideInterval;
-    let isTransitioning = false;
+    let autoPlayInterval;
 
-    function goToSlide(idx) {
-        if (isTransitioning || idx === currentIndex) return;
-        isTransitioning = true;
+    const updateCarousel = (targetIndex) => {
+        if(slides.length === 0) return;
+        const currentSlide = slides[currentIndex];
+        const targetSlide = slides[targetIndex];
 
-        dots[currentIndex].classList.remove('active');
-        dots[idx].classList.add('active');
+        // Move slides
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('active');
+        targetSlide.classList.add('active');
 
-        carouselTrack.style.transform = `translateX(-${idx * 100}%)`;
+        // Update indicators
+        indicators[currentIndex].classList.remove('active');
+        indicators[targetIndex].classList.add('active');
 
-        setTimeout(() => { isTransitioning = false; }, 500);
-        currentIndex = idx;
-    }
+        currentIndex = targetIndex;
+    };
 
-    function nextSlide() {
-        goToSlide((currentIndex + 1) % slides.length);
-    }
+    const setSlidePositions = () => {
+        if(slides.length === 0) return;
+        const currentSlideWidth = slides[0].getBoundingClientRect().width;
+        slides.forEach((slide, index) => {
+            slide.style.left = currentSlideWidth * index + 'px';
+        });
+    };
 
-    function prevSlide() {
-        goToSlide((currentIndex - 1 + slides.length) % slides.length);
-    }
+    const nextSlide = () => {
+        if(slides.length === 0) return;
+        const nextIndex = (currentIndex + 1) % slides.length;
+        updateCarousel(nextIndex);
+    };
 
-    // Dot click navigation
-    dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => goToSlide(idx));
+    const prevSlide = () => {
+        if(slides.length === 0) return;
+        const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel(prevIndex);
+    };
+
+    const startAutoPlay = () => {
+        stopAutoPlay(); // Prevent multiple intervals
+        autoPlayInterval = setInterval(nextSlide, 5000);
+    };
+
+    const stopAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+    };
+
+    // Event Listeners
+    nextButton.addEventListener('click', () => {
+        stopAutoPlay();
+        nextSlide();
+        startAutoPlay();
     });
 
-    // Click navigation on container
-    carouselContainer.addEventListener('click', (event) => {
-        if (event.target.classList.contains('modern-carousel-dot')) {
-            return;
-        }
-
-        const containerRect = carouselContainer.getBoundingClientRect();
-        const clickPositionX = event.clientX - containerRect.left;
-
-        if (clickPositionX > containerRect.width / 2) {
-            nextSlide();
-        } else {
-            prevSlide();
-        }
+    prevButton.addEventListener('click', () => {
+        stopAutoPlay();
+        prevSlide();
+        startAutoPlay();
     });
 
-    // Keyboard navigation
-    carouselContainer.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            prevSlide();
-        } else if (e.key === 'ArrowRight') {
-            nextSlide();
-        }
+    indicatorsContainer.addEventListener('click', e => {
+        const targetIndicator = e.target.closest('button');
+        if (!targetIndicator) return;
+
+        stopAutoPlay();
+        const targetIndex = parseInt(targetIndicator.dataset.index, 10);
+        updateCarousel(targetIndex);
+        startAutoPlay();
     });
 
-    // Touch/swipe support
-    let startX = 0;
-    let isDragging = false;
+    // Swipe support
+    let touchstartX = 0;
+    let touchendX = 0;
 
-    carouselTrack.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        stopAutoSlide();
+    track.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
     }, { passive: true });
 
-    carouselTrack.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        const diff = e.touches[0].clientX - startX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) prevSlide();
-            else nextSlide();
-            isDragging = false;
-        }
-    }, { passive: true });
-
-    carouselTrack.addEventListener('touchend', () => {
-        isDragging = false;
-        startAutoSlide();
+    track.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX;
+        if (touchendX < touchstartX - 50) nextSlide();
+        if (touchendX > touchstartX + 50) prevSlide();
+        startAutoPlay();
     });
 
-    // Auto-slide functionality
-    function startAutoSlide() {
-        stopAutoSlide();
-        autoSlideInterval = setInterval(nextSlide, 5000);
-    }
+    // Initial setup
+    setSlidePositions();
+    startAutoPlay();
 
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-    }
-
-    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
-    carouselContainer.addEventListener('mouseleave', startAutoSlide);
-
-    // Responsive: update transform on resize
+    // Recalculate on resize
     window.addEventListener('resize', debounce(() => {
-        carouselTrack.style.transition = 'none';
-        carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+        setSlidePositions();
+        track.style.transition = 'none'; // Disable transition during resize adjustment
+        if(slides.length > 0){
+             track.style.transform = 'translateX(-' + slides[currentIndex].style.left + ')';
+        }
         setTimeout(() => {
-            carouselTrack.style.transition = 'transform 0.8s ease-in-out';
+            track.style.transition = '';
         }, 50);
     }, 250));
-
-    startAutoSlide();
-    goToSlide(0);
 };
+
 
 // ============================================
 // WHY JDC SECTION
@@ -513,6 +425,7 @@ const populateGallery = (galleryImages) => {
 
 const populateWhyJDC = (whyJDC) => {
     const whySection = document.getElementById("why-jdc");
+    if (!whySection) return;
     whySection.innerHTML = '';
 
     const sectionTag = document.createElement('span');
@@ -554,6 +467,7 @@ const populateWhyJDC = (whyJDC) => {
 
 const populateSpeakers = (speakers) => {
     const speakersSection = document.getElementById('speakers');
+    if (!speakersSection) return;
     speakersSection.innerHTML = '';
 
     const header = document.createElement('div');
@@ -753,6 +667,7 @@ document.addEventListener('touchend', (e) => {
 
 const populateTeam = (teamMembers) => {
     const teamSection = document.getElementById('our-team');
+    if (!teamSection) return;
     teamSection.innerHTML = '';
 
     const header = document.createElement('div');
@@ -826,6 +741,11 @@ const populateSponsors = (sponsors) => {
         sponsorCard.rel = 'noopener noreferrer';
         sponsorCard.setAttribute('aria-label', `Visit ${sponsor.name}`);
 
+        // Add a special class for the DSI logo to make it pop
+        if (sponsor.id === 'dsi') {
+            sponsorCard.classList.add('sponsor-card-dsi');
+        }
+
         sponsorCard.innerHTML = `
             <img src="${sponsor.logo}" alt="${sponsor.name} Logo" class="sponsor-logo" loading="lazy">
         `;
@@ -836,12 +756,14 @@ const populateSponsors = (sponsors) => {
     sponsorsSection.appendChild(sponsorGrid);
 };
 
+
 // ============================================
 // COUNTDOWN SECTION
 // ============================================
 
 const populateCountdown = (cdC) => {
     const countdown = document.getElementById('countdown');
+    if (!countdown) return;
     countdown.innerHTML = '';
 
     const countdownContent = document.createElement('div');
@@ -923,6 +845,7 @@ const populateCountdown = (cdC) => {
 
 const populateLocation = (location) => {
     const venue = document.getElementById('venue');
+    if (!venue) return;
     venue.innerHTML = '';
 
     const venueContent = document.createElement('div');
@@ -968,70 +891,69 @@ const populateLocation = (location) => {
 };
 
 // ============================================
-// FOOTER SECTION
+// SESSION SECTION POPULATION
 // ============================================
 
-const populateFooter = (footerContent) => {
-    const footer = document.querySelector('footer');
-    footer.innerHTML = '';
+const populateSessionPreview = (sessionsData) => {
+    const sessionSection = document.getElementById('session');
+    if (!sessionSection) return;
 
-    const footerContentDiv = document.createElement('div');
-    footerContentDiv.classList.add('footer-content');
+    sessionSection.innerHTML = '';
 
-    const socialLinks = document.createElement('div');
-    socialLinks.classList.add('social-links');
+    const header = document.createElement('div');
+    header.classList.add('session-preview-header');
+    header.innerHTML = `
+        <span class="section-tag">Conference Sessions</span>
+        <h2 class="section-title gradient-text">Featured Sessions</h2>
+        <p class="section-description">
+            Get a glimpse of our exciting lineup of sessions covering the latest in Java development
+        </p>
+    `;
+    sessionSection.appendChild(header);
 
-    footerContent.social.forEach((social) => {
-        const link = document.createElement('a');
-        link.href = social.link;
-        link.textContent = social.name;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.classList.add('social-link');
-        socialLinks.appendChild(link);
+    const previewGrid = document.createElement('div');
+    previewGrid.classList.add('session-preview-grid');
+
+    const featuredSessions = sessionsData.slice(0, 3);
+
+    featuredSessions.forEach((session, index) => {
+        const card = document.createElement('div');
+        card.classList.add('session-preview-card');
+        card.style.animationDelay = `${index * 0.1}s`;
+
+        card.innerHTML = `
+            <div class="session-preview-badge">${session.track}</div>
+            <div class="session-preview-time">
+                <span class="preview-time">${session.time}</span>
+                <span class="preview-duration">${session.duration}</span>
+            </div>
+            <h3 class="session-preview-title">${session.title}</h3>
+            <p class="session-preview-excerpt">${session.abstract.substring(0, 150)}...</p>
+            <div class="session-preview-speaker">
+                <img src="${session.speaker.image}" alt="${session.speaker.name}" class="preview-speaker-avatar">
+                <div>
+                    <div class="preview-speaker-name">${session.speaker.name}</div>
+                    <div class="preview-speaker-role">${session.speaker.role}</div>
+                </div>
+            </div>
+        `;
+
+        previewGrid.appendChild(card);
     });
 
-    const copyright = document.createElement('p');
-    copyright.classList.add('copyright');
-    copyright.innerHTML = footerContent.copyright.replace('{{YYYY}}', new Date().getFullYear());
+    sessionSection.appendChild(previewGrid);
 
-    footerContentDiv.appendChild(socialLinks);
-    footerContentDiv.appendChild(copyright);
-    footer.appendChild(footerContentDiv);
+    const ctaContainer = document.createElement('div');
+    ctaContainer.classList.add('session-preview-cta');
+    ctaContainer.innerHTML = `
+        <a href="./sessions.html" class="cta-button">
+            View All Sessions
+            <span class="cta-arrow">→</span>
+        </a>
+        <p class="cta-subtitle">Explore ${sessionsData.length}+ sessions from industry experts</p>
+    `;
+    sessionSection.appendChild(ctaContainer);
 };
-
-// ============================================
-// MOBILE MENU FUNCTIONALITY
-// ============================================
-
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navLinks.classList.toggle('active');
-        menuToggle.classList.toggle('open');
-        document.body.classList.toggle('menu-open');
-    });
-
-    navLinks.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-            navLinks.classList.remove('active');
-            menuToggle.classList.remove('open');
-            document.body.classList.remove('menu-open');
-        }
-    });
-}
 
 // ============================================
 // PARALLAX EFFECT ON HERO (Optimized)

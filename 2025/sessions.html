@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessions - Java Developers' Conference 2025</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/sessions.css">
+</head>
+<body>
+<!-- Custom Cursor -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Animated Background -->
+<div class="bg-animation">
+    <div class="glow-orb orb1"></div>
+    <div class="glow-orb orb2"></div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-content">
+        <a href="./index.html" class="logo"><img src="./assets/icons/android-chrome-192x192.png" alt="JDC Logo"></a>
+        <ul class="nav-links">
+            <li><a href="./index.html#about">About</a></li>
+            <li><a href="./index.html#speakers">Speakers</a></li>
+            <li><a href="./sessions.html" class="active">Sessions</a></li>
+            <li><a href="./index.html#venue">Venue</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-content">
+        <h1 class="page-title">Explore Our Sessions</h1>
+        <p class="page-subtitle">
+            Dive deep into cutting-edge Java technologies, best practices, and innovation through our carefully curated sessions
+        </p>
+    </div>
+</section>
+
+<!-- Sessions Section -->
+<section class="sessions-page" id="sessionsPage">
+    <!-- Filter Tabs -->
+    <div class="session-filters">
+        <button class="filter-btn active" data-filter="all">All Sessions</button>
+        <button class="filter-btn" data-filter="keynote">Keynotes</button>
+        <button class="filter-btn" data-filter="technical">Technical Talks</button>
+        <button class="filter-btn" data-filter="workshop">Workshops</button>
+        <button class="filter-btn" data-filter="panel">Panel Discussions</button>
+    </div>
+
+    <!-- Sessions Grid -->
+    <div class="sessions-grid" id="sessionsGrid">
+        <!-- Sessions will be populated by JavaScript -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-state-icon"></div>
+        <h3>No sessions found</h3>
+        <p>Try selecting a different category</p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <!-- Content will be populated by JavaScript -->
+</footer>
+
+<!-- Load scripts -->
+<script src="assets/js/common.js"></script>
+<script src="assets/js/sessions.js"></script>
+</body>
+</html>

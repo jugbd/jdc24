@@ -172,9 +172,77 @@
   },
   "sponsors": [
     {
-      "name": "Sponsor One",
-      "logo": "assets/images/sponsor/sponsor.jpeg",
+      "id": "dsi",
+      "name": "Dynamic Solution Innovators",
+      "logo": "assets/images/sponsor/dsi_logo.svg",
       "website": "https://www.dsinnovators.com/"
+    }
+  ],
+  "sessions": [
+    {
+      "time": "9:00 AM",
+      "duration": "60 min",
+      "track": "keynote",
+      "title": "The Future of Java: Beyond Java 21",
+      "abstract": "Explore the exciting roadmap of Java's evolution, including Project Loom's virtual threads, pattern matching enhancements, and the revolutionary changes coming with Project Valhalla. This keynote will provide insights into how these features will transform the way we write Java applications, making them more efficient, maintainable, and expressive. We'll also discuss the impact of these changes on existing codebases and migration strategies.",
+      "speaker": {
+        "name": "Dr. Sarah Chen",
+        "role": "Principal Engineer, Oracle",
+        "image": "./assets/images/speakers/speaker1.jpg"
+      },
+      "tags": ["Java 21+", "Project Loom", "Future Trends"]
+    },
+    {
+      "time": "10:30 AM",
+      "duration": "45 min",
+      "track": "technical",
+      "title": "Microservices Architecture with Spring Boot 3.2",
+      "abstract": "Deep dive into building scalable microservices using Spring Boot 3.2 and Spring Cloud. Learn about service discovery, load balancing, circuit breakers, and distributed tracing. We'll cover practical patterns for handling inter-service communication, data consistency, and fault tolerance in a microservices ecosystem.",
+      "speaker": {
+        "name": "Michael Rodriguez",
+        "role": "Senior Architect, Pivotal",
+        "image": "./assets/images/speakers/speaker2.jpg"
+      },
+      "tags": ["Spring Boot", "Microservices", "Cloud Native"]
+    },
+    {
+      "time": "2:00 PM",
+      "duration": "120 min",
+      "track": "workshop",
+      "title": "Hands-on: Reactive Programming with Project Reactor",
+      "abstract": "Get hands-on experience with reactive programming using Project Reactor. This workshop covers the fundamentals of reactive streams, backpressure handling, and building non-blocking applications. You'll build a complete reactive REST API and learn how to test reactive code effectively. Bring your laptop with JDK 17+ installed.",
+      "speaker": {
+        "name": "Emily Watson",
+        "role": "Tech Lead, Netflix",
+        "image": "./assets/images/speakers/speaker3.jpg"
+      },
+      "tags": ["Reactive", "Project Reactor", "Hands-on"]
+    },
+    {
+      "time": "11:30 AM",
+      "duration": "45 min",
+      "track": "technical",
+      "title": "Performance Optimization: JVM Tuning & GC Strategies",
+      "abstract": "Master the art of JVM performance tuning and garbage collection optimization. Learn how to analyze heap dumps, understand GC logs, and choose the right garbage collector for your application. We'll explore ZGC, Shenandoah, and G1GC with real-world case studies showing dramatic performance improvements.",
+      "speaker": {
+        "name": "David Kumar",
+        "role": "Performance Engineer, Google",
+        "image": "./assets/images/speakers/speaker4.jpg"
+      },
+      "tags": ["JVM", "Performance", "GC Tuning"]
+    },
+    {
+      "time": "4:30 PM",
+      "duration": "60 min",
+      "track": "panel",
+      "title": "The State of Java in Enterprise: A Panel Discussion",
+      "abstract": "Join industry leaders for an engaging discussion about Java's current state in enterprise environments. Topics include adoption of modern Java features, migration challenges, the role of Kotlin and other JVM languages, and the future of Java in cloud-native architectures. Q&A session included.",
+      "speaker": {
+        "name": "Multiple Speakers",
+        "role": "Industry Leaders Panel",
+        "image": "./assets/images/speakers/panel.jpg"
+      },
+      "tags": ["Enterprise", "Discussion", "Q&A"]
     }
   ],
   "ourTeam": [
@@ -202,8 +270,8 @@
     {
       "fullName": "Md. Nowshad Hasan Apu",
       "linkedin": "https://www.linkedin.com/in/md-nowshad-hasan/",
-      "company": "@DSi",
-      "companyWebsite": "https://www.dsinnovators.com",
+      "company": "@BizMotion",
+      "companyWebsite": "https://www.biz-motion.com/",
       "image": "assets/images/team/team05.png"
     },
     {
@@ -253,9 +321,10 @@
       "linkedin": "https://www.linkedin.com/in/s-m-mahmudul-hasan-a6bb0626/",
       "company": "@BRAC IT",
       "companyWebsite": "https://www.bracits.com/",
-      "image": "assets/images/team/team11.png"
+      "image": "assets/images/team/team11.jpg"
     }
   ],
+
   "location": {
     "title": "Venue",
     "description": "Krishibid Institution Bangladesh",

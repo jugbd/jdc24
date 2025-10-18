@@ -1,0 +1,477 @@
+/* ============================================
+   SESSIONS PAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Page Header */
+.page-header {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 120px 2rem 4rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+}
+
+.page-header-content {
+    max-width: 800px;
+    animation: fadeInUp 1s ease;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding: 10px 20px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--accent);
+    color: var(--primary);
+    transform: translateX(-5px);
+}
+
+.page-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin: 1rem 0;
+    background: linear-gradient(135deg, var(--primary), var(--text-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-subtitle {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Sessions Page Container */
+.sessions-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+}
+
+/* Filter Tabs */
+.session-filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    padding: 0 2rem;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--accent);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Sessions Grid */
+.sessions-grid {
+    display: grid;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+/* Session Card */
+.session-card {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.session-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.session-card:hover::before {
+    transform: scaleX(1);
+}
+
+.session-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px var(--shadow);
+    border-color: var(--accent);
+}
+
+.session-content {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Time Badge */
+.session-time {
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: white;
+    padding: 1rem;
+    border-radius: 15px;
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.session-time .time {
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.session-time .duration {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Session Info */
+.session-info {
+    flex: 1;
+}
+
+.session-category {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(102, 126, 234, 0.15);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.session-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.session-abstract {
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.session-card.expanded .session-abstract {
+    -webkit-line-clamp: unset;
+}
+
+.read-more {
+    color: var(--accent);
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s ease;
+    user-select: none;
+}
+
+.read-more:hover {
+    gap: 1rem;
+}
+
+.read-more::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.session-card.expanded .read-more::after {
+    content: '↑';
+}
+
+/* Speaker Info */
+.session-speaker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 1.5rem;
+}
+
+.speaker-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.speaker-details {
+    flex: 1;
+}
+
+.speaker-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+}
+
+.speaker-role {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.session-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.tag {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Track Colors */
+.session-card[data-track="keynote"] .session-time {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.session-card[data-track="keynote"] .session-category {
+    background: rgba(240, 147, 251, 0.15);
+    color: #f093fb;
+}
+
+.session-card[data-track="technical"] .session-time {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.session-card[data-track="workshop"] .session-time {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.session-card[data-track="workshop"] .session-category {
+    background: rgba(79, 172, 254, 0.15);
+    color: #4facfe;
+}
+
+.session-card[data-track="panel"] .session-time {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
+
+.session-card[data-track="panel"] .session-category {
+    background: rgba(67, 233, 123, 0.15);
+    color: #43e97b;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-dim);
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.empty-state p {
+    color: var(--text-muted);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Active nav link */
+.nav-links a.active {
+    color: var(--accent);
+    position: relative;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+}
+
+/* Responsive Styles */
+@media (max-width: 968px) {
+    .session-content {
+        grid-template-columns: 1fr;
+    }
+
+    .session-time {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+    }
+
+    .session-time .time,
+    .session-time .duration {
+        display: inline;
+    }
+
+    .page-header {
+        min-height: 50vh;
+        padding: 100px 2rem 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sessions-page {
+        padding: 2rem 0 4rem;
+    }
+
+    .sessions-grid {
+        padding: 0 1rem;
+    }
+
+    .session-filters {
+        padding: 0 1rem;
+    }
+
+    .session-title {
+        font-size: 1.5rem;
+    }
+
+    .session-speaker {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-btn {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+    }
+
+    .page-header {
+        padding: 80px 1rem 2rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .session-card {
+        border-radius: 16px;
+    }
+
+    .session-content {
+        padding: 1.5rem;
+    }
+
+    .session-time {
+        min-width: auto;
+        border-radius: 12px;
+    }
+
+    .session-time .time {
+        font-size: 1.2rem;
+    }
+
+    .session-title {
+        font-size: 1.3rem;
+    }
+
+    .speaker-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .session-filters {
+        gap: 0.5rem;
+    }
+}
