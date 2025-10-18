@@ -4,7 +4,7 @@
     "edition": "11th Edition",
     "cta": {
       "text": "Secure Your Place Now",
-      "link": "https://www.eventbrite.com/e/java-developers-conference-2024-tickets-1110475485069"
+      "link": "TBD"
     }
   },
   "about": {
@@ -30,7 +30,7 @@
     {
       "fullName": "A N M Bazlur Rahman",
       "name": "bazlur_rahman",
-      "bio": "<p><br /><strong>A N M Bazlur Rahman</strong> works at&nbsp;<a href=\"https://www.contrastsecurity.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Contrast Security</a> as a Sr. Software Engineer. He has more than ten years of professional experience in the software industry, predominantly in Java and Java-related technologies. Recently, he was honoured by being given the title of <a href=\"https://twitter.com/Java_Champions/status/1523728715368509440\" target=\"_blank\" rel=\"noopener ugc\">&nbsp;Java Champion</a>.</p>\n<p>Outside of his regular work hours, he loves to mentor, write, speak at conferences, and contribute to open-source projects. He is the founder and current moderator of the<a href=\"https://jugbd.org/\" target=\"_blank\" rel=\"nofollow noopener ugc\">&nbsp;Java User Group in Bangladesh</a>. He has organized meetups and conferences to share Java-related knowledge with the community since 2013. He was named Most Valuable Blogger (MVP) at&nbsp;<a href=\"https://dzone.com/users/1298119/bazlur_rahman.html\" target=\"_blank\" rel=\"nofollow noopener ugc\">DZone</a>, one of the most recognized technology publishers in the world. Besides DZone, he is an editor for the Java Queue at&nbsp;<a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a>, another leading technology content publisher and conference organizer, and an editor at&nbsp;<a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Foojay.io</a>, a place for friends of OpenJDK. In addition, he has published&nbsp;<a href=\"https://www.rokomari.com/book/129165/java-programming\" target=\"_blank\" rel=\"nofollow noopener ugc\">four books</a>&nbsp;about the Java programming language in Bengali; they were bestsellers in Bangladesh.</p>\n<p>He earned his bachelor&rsquo;s degree from the Institute of Information Technology, University of Dhaka, Bangladesh, in Information Technology, majoring in Software Engineering. He currently lives in Toronto, Canada.</p>",
+      "bio": "<p><br/><strong>A N M Bazlur Rahman</strong> works at&nbsp; <a href=\"https://www.contrastsecurity.com/\" target=\"_blank\"\n                                                              rel=\"nofollow noopener ugc\">Contrast Security</a> as a Sr.\n    Software Engineer. He has more than ten years of professional experience in the software industry, predominantly in\n    Java and Java-related technologies. Recently, he was honoured by being given the title of  <a href=\"https://twitter.com/Java_Champions/status/1523728715368509440\" target=\"_blank\" rel=\"noopener ugc\">&nbsp;Java\n        Champion</a>.</p>\n<p>Outside of his regular work hours, he loves to mentor, write, speak at conferences, and contribute to open-source\n    projects. He is the founder and current moderator of the  <a href=\"https://jugbd.org/\" target=\"_blank\"\n                                                               rel=\"nofollow noopener ugc\">&nbsp;Java User Group in\n        Bangladesh</a>. He has organized meetups and conferences to share Java-related knowledge with the community\n    since 2013. He was named Most Valuable Blogger (MVP) at&nbsp;  <a href=\"https://dzone.com/users/1298119/bazlur_rahman.html\" target=\"_blank\"\n            rel=\"nofollow noopener ugc\">DZone</a>, one of the most recognized technology publishers in the world.\n    Besides DZone, he is an editor for the Java Queue at&nbsp;  <a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\"\n            rel=\"nofollow noopener ugc\">InfoQ</a>, another leading technology content publisher and conference\n    organizer, and an editor at&nbsp; <a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\"\n                                        rel=\"nofollow noopener ugc\">Foojay.io</a>, a place for friends of OpenJDK. In\n    addition, he has published&nbsp; <a href=\"https://www.rokomari.com/book/129165/java-programming\" target=\"_blank\"\n                                       rel=\"nofollow noopener ugc\">four books</a>&nbsp;about the Java programming\n    language in Bengali; they were bestsellers in Bangladesh.</p>\n<p>He earned his bachelor&rsquo;s degree from the Institute of Information Technology, University of Dhaka, Bangladesh,\n    in Information Technology, majoring in Software Engineering. He currently lives in Toronto, Canada.</p>",
       "talkTitle": "Your Java Code in the Fastlane: Project Loom\n",
       "abstract": "Project Loom introduces virtual threads, lightweight threads that aim to dramatically reduce the effort of writing, maintaining, and monitoring high-throughput concurrent applications with the Java platform.\n\nWe need threads to achieve high throughput. However, threads are not cheap and are limited in number. To get around this problem, various alternatives such as the reactive programming style have emerged. These techniques bypass creating a lot of threads at the expense of more difficult debugging. This makes developers grumpy. However, with virtual threads, we get the best of both worlds, cheap, lightweight threads and easy debugging, which would make developers happy again.\n\nThis talk will explore what virtual threads are, how they are implemented, how they solve our modern problems and what, if any, shortcomings there are.\n\n",
       "twitter": "bazlur_rahman",
@@ -43,14 +43,14 @@
     },
     {
       "fullName": "Minhajul Abedin",
-      "name": "",
-      "bio": "Chief Technology Officer & Enterprise Software Architect",
+      "name": "minhajul_abedin",
+      "bio": "<p><strong>Minhajul Abedin</strong> is the Chief Technology Officer and Enterprise Software Architect at <a href=\"https://www.bracits.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">BRAC IT</a>. With a strong passion for excellence in planning, design, and execution, he has led multiple high-impact projects across fintech, cloud, and enterprise software domains.</p><p>Over the years, Minhajul has guided teams in building scalable platforms serving millions of users, integrated AWS-based Big Data solutions for global clients like <strong>Widespace AB</strong>, and re-architected complex enterprise and social systems for better scalability and performance. He has also consulted for organizations such as <strong>a2i</strong> (National Portal) and <strong>Implevista Ltd</strong>, Denmark.</p><p>His expertise spans architecture design, distributed systems, BI solutions, and DevOps. Minhajul’s technical leadership continues to shape innovative and resilient software systems that drive organizational growth.</p>",
       "talkTitle": "TBD",
-      "abstract": "",
+      "abstract": "TBD",
       "twitter": "",
       "linkedin": "https://www.linkedin.com/in/minhajulabedin/",
       "website": "",
-      "title": "",
+      "title": "Chief Technology Officer & Enterprise Software Architect",
       "company": "@BRAC IT",
       "companyWebsite": "https://www.bracits.com/",
       "image": "assets/images/speakers/minhaj.jpeg"
@@ -110,6 +110,20 @@
       "company": "@Dynamic Solution Innovators",
       "companyWebsite": "https://www.dsinnovators.com",
       "image": "assets/images/speakers/hasanat.jpg"
+    },
+    {
+      "fullName": "Shaaf Syed",
+      "name": "shaaf_syed",
+      "bio": "<p><strong>Shaaf Syed</strong> is a Developer Advocate at <a href=\"https://www.redhat.com\" target=\"_blank\" rel=\"nofollow noopener ugc\">Red Hat</a>, Technical Editor at <a href=\"https://www.infoq.com\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a>, and author at <a href=\"https://shaaf.dev\" target=\"_blank\" rel=\"nofollow noopener ugc\">shaaf.dev</a>. He is passionate about open source and focuses on Cloud, Software Defined Data Center, DevOps and Continuous Delivery.</p><p>He began his career as a Software Engineer specializing in build engineering across Solaris, Linux, and Windows. Later he moved into Continuous Integration for C/Java components, applying that experience across many projects as tools evolved. Over the years he has worked with multiple languages (Java, .NET, etc.) as tools to reach business goals.</p><p>Beyond his work, he actively participates in local meetups and speaks at conferences on Cloud, DevOps and open source technologies.</p><p>Find more about him via <a href=\"https://shaaf.dev\" target=\"_blank\" rel=\"nofollow noopener ugc\">shaaf.dev</a> and his <a href=\"http://www.slideshare.net/sshaaf\" target=\"_blank\" rel=\"nofollow noopener ugc\">SlideShare</a>.</p>",
+      "talkTitle": "TBD",
+      "abstract": "TBD",
+      "twitter": "",
+      "linkedin": "https://www.linkedin.com/in/shaaf",
+      "website": "https://shaaf.dev",
+      "title": "Developer Advocate",
+      "company": "@Red Hat",
+      "companyWebsite": "https://www.redhat.com",
+      "image": "assets/images/speakers/shaaf.jpg"
     }
   ],
   "whyJdc": {
@@ -147,7 +161,7 @@
     "title": "The <span>Conference</span> starts in...",
     "targetDate": "2025-11-15T09:59:59",
     "subsection": {
-      "date": "At 10:00 on 15st December",
+      "date": "At 10:00 on 6th December",
       "title": "Get realtime event updates",
       "body": "Always keep an eye on the {{link}} group on Facebook",
       "link": {
@@ -156,6 +170,13 @@
       }
     }
   },
+  "sponsors": [
+    {
+      "name": "Sponsor One",
+      "logo": "assets/images/sponsor/sponsor.jpeg",
+      "website": "https://www.dsinnovators.com/"
+    }
+  ],
   "ourTeam": [
     {
       "fullName": "A N M Bazlur Rahman",
@@ -230,17 +251,22 @@
     {
       "fullName": "Tanvir Anjum Rifat",
       "linkedin": "https://www.linkedin.com/in/s-m-mahmudul-hasan-a6bb0626/",
-      "company": "",
-      "companyWebsite": "https://therapbd.com/",
+      "company": "@BRAC IT",
+      "companyWebsite": "https://www.bracits.com/",
       "image": "assets/images/team/team11.png"
     }
   ],
   "location": {
     "title": "Venue",
-    "description": "SELISE Bangladesh Ltd, Midas Center, House 05, Road 16, (New) Dhanmondi, Dhaka-1209, Bangladesh",
+    "description": "Krishibid Institution Bangladesh",
     "email": "info@jugbd.org",
-    "map": "https://maps.app.goo.gl/kGE92o9VaB2escrd7",
-    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d228.2354884274654!2d90.3744716!3d23.7556578!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755bf534ad4b313%3A0xc7765243f282059f!2sSELISE%20Digital%20Platforms!5e0!3m2!1sen!2sbd!4v1733044561366!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
+    "map": "https://maps.app.goo.gl/ksLLdcir4VQWv4jE9",
+    "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.6620325323306!2d90.38290107609288!3d23.759428488428203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a648794c3d%3A0xf21993d3715834cd!2sKrishibid%20Institution%20Bangladesh!5e0!3m2!1sen!2sbd!4v1760735274834!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "address": {
+      "name": "Krishibid Institution Bangladesh",
+      "street": "Khamar Bari Road",
+      "city": "Dhaka, Bangladesh"
+    }
   },
   "footer": {
     "social": [

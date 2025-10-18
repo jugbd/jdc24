@@ -1,56 +1,226 @@
-// Navbar Scroll Effect
-window.addEventListener('scroll', () => {
+
+// ============================================
+// THEME TOGGLE FUNCTIONALITY
+// ============================================
+
+// Initialize theme before DOM loads to prevent flash
+(function() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+})();
+
+// Theme management after DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+    initializeThemeToggle();
+});
+
+function initializeThemeToggle() {
+    // Create theme toggle button in nav
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+
+    const themeToggleItem = document.createElement('li');
+    themeToggleItem.innerHTML = `
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+            <div class="theme-toggle-slider">
+                <span id="themeIcon">🌙</span>
+            </div>
+        </button>
+    `;
+    navLinks.appendChild(themeToggleItem);
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    // Set initial icon
+    const currentTheme = html.getAttribute('data-theme') || 'dark';
+    themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+
+    // Toggle theme function
+    function toggleTheme() {
+        const currentTheme = html.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+
+        // Dispatch custom event
+        window.dispatchEvent(new CustomEvent('themeChange', {
+            detail: { theme: newTheme }
+        }));
+
+        // Analytics tracking (if available)
+        if (typeof trackEvent === 'function') {
+            trackEvent('Theme', 'Toggle', newTheme);
+        }
+    }
+
+    // Event listeners
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // Keyboard support
+    themeToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only auto-switch if user hasn't manually set a preference
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        }
+    });
+
+    // Sync theme across tabs
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'theme' && e.newValue) {
+            html.setAttribute('data-theme', e.newValue);
+            themeIcon.textContent = e.newValue === 'dark' ? '🌙' : '☀️';
+        }
+    });
+}
+
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+// Debounce function for performance optimization
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Throttle function for scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// ============================================
+// NAVBAR FUNCTIONALITY
+// ============================================
+
+// Navbar scroll effect with debounce
+const handleNavbarScroll = debounce(() => {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}, 10);
 
-// Fade out on scroll
+window.addEventListener('scroll', handleNavbarScroll);
+
+// ============================================
+// SCROLL INDICATOR
+// ============================================
+
+// Show/hide scroll indicator based on scroll position
 window.addEventListener('scroll', () => {
     const indicator = document.querySelector('.scroll-indicator');
-    if (indicator && !indicator.classList.contains('hide')) {
+    if (!indicator) return;
+
+    if (window.scrollY === 0) {
+        indicator.classList.remove('hide');
+    } else {
         indicator.classList.add('hide');
     }
 });
 
-// Show/hide scroll indicator based on scroll position (show at top, hide otherwise)
-window.addEventListener('scroll', () => {
-    const indicator = document.querySelector('.scroll-indicator');
-    if (!indicator) return;
-    if (window.scrollY === 0) {
-        indicator.classList.remove('hide'); // Show indicator at top
-    } else {
-        indicator.classList.add('hide'); // Hide indicator when scrolled down
-    }
-});
+// ============================================
+// SMOOTH SCROLLING WITH NAVBAR OFFSET
+// ============================================
 
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+
+            // Skip if it's just "#"
+            if (targetId === '#') return;
+
+            const target = document.querySelector(targetId);
+
+            if (target) {
+                const navbar = document.getElementById('navbar');
+                const navHeight = navbar ? navbar.offsetHeight : 0;
+                const targetPosition = target.offsetTop - navHeight - 20;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                const navLinks = document.querySelector('.nav-links');
+                const menuToggle = document.querySelector('.menu-toggle');
+                if (navLinks && menuToggle && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                    document.body.classList.remove('menu-open');
+                }
+            }
+        });
     });
 });
 
+// ============================================
+// ENHANCED LOADING STATE
+// ============================================
 
 document.addEventListener('DOMContentLoaded', async () => {
     const body = document.querySelector("body");
-    body.setAttribute("loading", "")
-    const loader = document.createElement("div");
-    loader.classList.add("loader");
-    body.appendChild(loader);
+    body.setAttribute("loading", "");
+
+    // Create enhanced loader
+    const loaderOverlay = document.createElement("div");
+    loaderOverlay.classList.add("loader-overlay");
+    loaderOverlay.innerHTML = `
+        <div class="loader-logo"></div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar" id="loaderProgressBar"></div>
+        </div>
+        <div class="loader-text" id="loaderText">Loading content...</div>
+    `;
+    body.appendChild(loaderOverlay);
+
+    const progressBar = document.getElementById('loaderProgressBar');
+    let progress = 0;
+
+    // Simulate progress
+    const progressInterval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress > 90) progress = 90;
+        if (progressBar) progressBar.style.width = progress + '%';
+    }, 200);
 
     try {
-        const url = "/2025/assets/data/payload.json"
+        const url = "/2025/assets/data/payload.json";
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
@@ -58,28 +228,77 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const content = await response.json();
 
-        // data population
+        // Populate all sections
         populateHero(content.hero);
         populateAbout(content.about);
         populateGallery(content.gallery);
         populateWhyJDC(content.whyJdc);
         populateSpeakers(content.speakers);
         populateCountdown(content.countdown, content.hero);
-        populateTeam(content.ourTeam)
+        populateSponsors(content.sponsors);
+        populateTeam(content.ourTeam);
         populateLocation(content.location);
         populateFooter(content.footer);
 
+        // Complete loading
+        clearInterval(progressInterval);
+        if (progressBar) progressBar.style.width = '100%';
+
+        setTimeout(() => {
+            loaderOverlay.classList.add('hidden');
+            setTimeout(() => {
+                body.removeChild(loaderOverlay);
+            }, 500);
+        }, 500);
+
     } catch (e) {
-        console.error(e.message)
+        console.error(e.message);
+        clearInterval(progressInterval);
+        if (document.getElementById('loaderText')) {
+            document.getElementById('loaderText').textContent = 'Error loading content';
+        }
     } finally {
-        body.removeChild(loader);
         body.removeAttribute("loading");
+        initializeIntersectionObserver();
+        initializeBackToTop();
     }
 });
 
+// ============================================
+// INTERSECTION OBSERVER FOR ANIMATIONS
+// ============================================
+
+function initializeIntersectionObserver() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+        if (!section.id) return; // Skip sections without IDs
+        section.classList.add('fade-in-section');
+        observer.observe(section);
+    });
+}
+
+// ============================================
+// HERO SECTION
+// ============================================
+
 const populateHero = (heroContent) => {
     const hero = document.getElementById("hero").querySelector('.hero-content');
-    hero.innerHTML = ''; // Clear existing content
+    hero.innerHTML = '';
+    hero.setAttribute('role', 'banner');
+
     const title = document.createElement("h1");
     title.classList.add('hero-title', 'glitch');
     title.innerHTML = heroContent.title;
@@ -93,15 +312,20 @@ const populateHero = (heroContent) => {
     cta.innerHTML = heroContent.cta.text;
     cta.setAttribute("href", heroContent.cta.link);
     cta.setAttribute("target", "_blank");
+    cta.setAttribute("rel", "noopener noreferrer");
 
     hero.appendChild(title);
     hero.appendChild(subtitle);
     hero.appendChild(cta);
-}
+};
+
+// ============================================
+// ABOUT SECTION
+// ============================================
 
 const populateAbout = (aboutContent) => {
     const about = document.getElementById("about");
-    about.innerHTML = ''; // Clear existing content
+    about.innerHTML = '';
 
     const aboutContentDiv = document.createElement("div");
     aboutContentDiv.classList.add("about-content");
@@ -111,7 +335,7 @@ const populateAbout = (aboutContent) => {
 
     const sectionTag = document.createElement("span");
     sectionTag.classList.add('section-tag');
-    sectionTag.innerHTML = "About the Event"
+    sectionTag.innerHTML = "About the Event";
 
     const title = document.createElement("h2");
     title.classList.add('section-title', 'gradient-text');
@@ -124,32 +348,28 @@ const populateAbout = (aboutContent) => {
     aboutText.appendChild(sectionTag);
     aboutText.appendChild(title);
     aboutText.appendChild(description);
-
-/*    const aboutImage = document.createElement("div");
-    aboutImage.classList.add('about-image');
-    const image = document.createElement("img");
-    image.src = aboutContent.image;
-    image.alt = "JDC 2024 Event";
-    aboutImage.appendChild(image);*/
-
     aboutContentDiv.appendChild(aboutText);
-    //aboutContentDiv.appendChild(aboutImage);
     about.appendChild(aboutContentDiv);
 };
+
+// ============================================
+// GALLERY SECTION WITH ENHANCED CAROUSEL
+// ============================================
 
 const populateGallery = (galleryImages) => {
     const gallery = document.getElementById('gallery');
     gallery.innerHTML = '';
 
-    // Carousel container
     const carouselContainer = document.createElement('div');
     carouselContainer.className = 'modern-carousel-container';
+    carouselContainer.setAttribute('tabindex', '0');
+    carouselContainer.setAttribute('role', 'region');
+    carouselContainer.setAttribute('aria-label', 'Image carousel');
 
-    // Carousel track
     const carouselTrack = document.createElement('div');
     carouselTrack.className = 'modern-carousel-track';
 
-    // Slides
+    // Create slides
     galleryImages.forEach((imagePath) => {
         const slide = document.createElement('div');
         slide.className = 'modern-carousel-slide';
@@ -157,26 +377,28 @@ const populateGallery = (galleryImages) => {
         img.src = imagePath;
         img.alt = 'Gallery Image';
         img.className = 'modern-carousel-image';
+        img.loading = 'lazy';
         slide.appendChild(img);
         carouselTrack.appendChild(slide);
     });
 
-    // Indicators (overlaid)
+    // Create indicators
     const indicators = document.createElement('div');
     indicators.className = 'modern-carousel-indicators';
     galleryImages.forEach((_, idx) => {
         const dot = document.createElement('span');
         dot.className = 'modern-carousel-dot' + (idx === 0 ? ' active' : '');
         dot.setAttribute('data-slide', idx);
+        dot.setAttribute('role', 'button');
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
         indicators.appendChild(dot);
     });
 
     carouselContainer.appendChild(carouselTrack);
-    // REMOVED: Navigation buttons are no longer created here.
     carouselContainer.appendChild(indicators);
     gallery.appendChild(carouselContainer);
 
-    // --- Carousel Logic ---
+    // Carousel logic
     let currentIndex = 0;
     const slides = carouselTrack.querySelectorAll('.modern-carousel-slide');
     const dots = indicators.querySelectorAll('.modern-carousel-dot');
@@ -190,10 +412,8 @@ const populateGallery = (galleryImages) => {
         dots[currentIndex].classList.remove('active');
         dots[idx].classList.add('active');
 
-        // Use % for responsive translation
         carouselTrack.style.transform = `translateX(-${idx * 100}%)`;
 
-        // Allow time for the CSS transition to finish
         setTimeout(() => { isTransitioning = false; }, 500);
         currentIndex = idx;
     }
@@ -201,49 +421,55 @@ const populateGallery = (galleryImages) => {
     function nextSlide() {
         goToSlide((currentIndex + 1) % slides.length);
     }
+
     function prevSlide() {
         goToSlide((currentIndex - 1 + slides.length) % slides.length);
     }
 
-    // REMOVED: Event listeners for the old buttons.
-
+    // Dot click navigation
     dots.forEach((dot, idx) => {
         dot.addEventListener('click', () => goToSlide(idx));
     });
 
-    // NEW: Interactive container for navigation
+    // Click navigation on container
     carouselContainer.addEventListener('click', (event) => {
-        // If the user clicked on a dot, let the dot's own event listener handle it.
         if (event.target.classList.contains('modern-carousel-dot')) {
             return;
         }
 
         const containerRect = carouselContainer.getBoundingClientRect();
-        // Calculate the horizontal click position relative to the container's left edge
         const clickPositionX = event.clientX - containerRect.left;
 
-        // If the click is in the right half of the container, go to the next slide
         if (clickPositionX > containerRect.width / 2) {
             nextSlide();
-        } else { // Otherwise, go to the previous slide
+        } else {
             prevSlide();
         }
     });
 
+    // Keyboard navigation
+    carouselContainer.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
 
     // Touch/swipe support
     let startX = 0;
     let isDragging = false;
+
     carouselTrack.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         isDragging = true;
-        stopAutoSlide(); // Pause autoplay during touch
+        stopAutoSlide();
     }, { passive: true });
 
     carouselTrack.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
         const diff = e.touches[0].clientX - startX;
-        if (Math.abs(diff) > 50) { // Swipe threshold
+        if (Math.abs(diff) > 50) {
             if (diff > 0) prevSlide();
             else nextSlide();
             isDragging = false;
@@ -252,42 +478,42 @@ const populateGallery = (galleryImages) => {
 
     carouselTrack.addEventListener('touchend', () => {
         isDragging = false;
-        startAutoSlide(); // Resume autoplay after touch
+        startAutoSlide();
     });
 
     // Auto-slide functionality
     function startAutoSlide() {
-        stopAutoSlide(); // Ensure no multiple intervals are running
+        stopAutoSlide();
         autoSlideInterval = setInterval(nextSlide, 5000);
     }
+
     function stopAutoSlide() {
         clearInterval(autoSlideInterval);
     }
 
-    // Pause on hover
     carouselContainer.addEventListener('mouseenter', stopAutoSlide);
     carouselContainer.addEventListener('mouseleave', startAutoSlide);
 
-    startAutoSlide(); // Start the slideshow initially
-
     // Responsive: update transform on resize
-    window.addEventListener('resize', () => {
-        // Temporarily disable transition for instant repositioning
+    window.addEventListener('resize', debounce(() => {
         carouselTrack.style.transition = 'none';
         carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-        // Restore the transition after a tiny delay
         setTimeout(() => {
             carouselTrack.style.transition = 'transform 0.8s ease-in-out';
         }, 50);
-    });
+    }, 250));
 
-    // Set initial state
+    startAutoSlide();
     goToSlide(0);
 };
 
+// ============================================
+// WHY JDC SECTION
+// ============================================
+
 const populateWhyJDC = (whyJDC) => {
     const whySection = document.getElementById("why-jdc");
-    whySection.innerHTML = ''; // Clear existing content
+    whySection.innerHTML = '';
 
     const sectionTag = document.createElement('span');
     sectionTag.classList.add('section-tag');
@@ -300,11 +526,12 @@ const populateWhyJDC = (whyJDC) => {
     whySection.appendChild(title);
 
     const itemsGrid = document.createElement('div');
-    itemsGrid.classList.add('why-grid'); // Using a grid for card layout
+    itemsGrid.classList.add('why-grid');
 
-    whyJDC.why.items.forEach((item) => {
+    whyJDC.why.items.forEach((item, index) => {
         const card = document.createElement('div');
-        card.classList.add('why-card'); // Card element
+        card.classList.add('why-card');
+        card.style.animationDelay = `${index * 0.1}s`;
 
         const itemTitle = document.createElement('h3');
         itemTitle.textContent = item.title;
@@ -319,12 +546,15 @@ const populateWhyJDC = (whyJDC) => {
     });
 
     whySection.appendChild(itemsGrid);
-}
+};
 
+// ============================================
+// SPEAKERS SECTION WITH MODAL
+// ============================================
 
 const populateSpeakers = (speakers) => {
     const speakersSection = document.getElementById('speakers');
-    speakersSection.innerHTML = ''; // Clear existing content
+    speakersSection.innerHTML = '';
 
     const header = document.createElement('div');
     header.classList.add('speakers-header');
@@ -336,6 +566,7 @@ const populateSpeakers = (speakers) => {
     const title = document.createElement('h2');
     title.innerHTML = "Learn from the Best";
     title.classList.add('section-title', 'gradient-text');
+
     header.appendChild(sectionTag);
     header.appendChild(title);
     speakersSection.appendChild(header);
@@ -343,23 +574,29 @@ const populateSpeakers = (speakers) => {
     const speakerGrid = document.createElement('div');
     speakerGrid.classList.add('speakers-grid');
 
-    // Create modal overlay (only once)
     createSpeakerModal();
 
     speakers.forEach((speaker, idx) => {
         const speakerCard = document.createElement('div');
         speakerCard.classList.add('speaker-card');
+        speakerCard.setAttribute('tabindex', '0');
+        speakerCard.setAttribute('role', 'button');
+        speakerCard.setAttribute('aria-label', `View ${speaker.fullName}'s details`);
+
         speakerCard.innerHTML = `
-            <img src="${speaker.image}" alt="${speaker.fullName}" class="speaker-image">
+            <img src="${speaker.image}" alt="${speaker.fullName}" class="speaker-image" loading="lazy">
             <div class="speaker-info">
                 <h3 class="speaker-name">${speaker.fullName}</h3>
                 <p class="speaker-title">${speaker.company}</p>
             </div>
         `;
 
-        // Add click event to show modal instead of navigating
-        speakerCard.addEventListener('click', () => {
-            showSpeakerModal(speaker);
+        speakerCard.addEventListener('click', () => showSpeakerModal(speaker));
+        speakerCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                showSpeakerModal(speaker);
+            }
         });
 
         speakerGrid.appendChild(speakerCard);
@@ -368,14 +605,16 @@ const populateSpeakers = (speakers) => {
     speakersSection.appendChild(speakerGrid);
 };
 
-// Function to create the modal structure
+// Create speaker modal structure
 function createSpeakerModal() {
-    // Check if modal already exists
     if (document.getElementById('speaker-modal-overlay')) return;
 
     const modalOverlay = document.createElement('div');
     modalOverlay.id = 'speaker-modal-overlay';
     modalOverlay.className = 'speaker-modal-overlay';
+    modalOverlay.setAttribute('role', 'dialog');
+    modalOverlay.setAttribute('aria-modal', 'true');
+    modalOverlay.setAttribute('aria-labelledby', 'speaker-modal-name');
 
     modalOverlay.innerHTML = `
         <div class="speaker-modal">
@@ -384,7 +623,7 @@ function createSpeakerModal() {
                 <div class="speaker-modal-header">
                     <img class="speaker-modal-image" src="" alt="">
                     <div class="speaker-modal-info">
-                        <h2 class="speaker-modal-name"></h2>
+                        <h2 class="speaker-modal-name" id="speaker-modal-name"></h2>
                         <p class="speaker-modal-title"></p>
                         <p class="speaker-modal-company"></p>
                     </div>
@@ -400,18 +639,18 @@ function createSpeakerModal() {
 
     document.body.appendChild(modalOverlay);
 
-    // Close modal when clicking overlay
+    // Close on overlay click
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) {
             closeSpeakerModal();
         }
     });
 
-    // Close modal with close button
+    // Close button
     const closeBtn = modalOverlay.querySelector('.speaker-modal-close');
     closeBtn.addEventListener('click', closeSpeakerModal);
 
-    // Close modal with ESC key
+    // ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeSpeakerModal();
@@ -419,28 +658,24 @@ function createSpeakerModal() {
     });
 }
 
-// Function to show the modal with speaker data
+// Show speaker modal
 function showSpeakerModal(speaker) {
     const modalOverlay = document.getElementById('speaker-modal-overlay');
     if (!modalOverlay) return;
 
-    // Populate modal with speaker data
+    const previouslyFocused = document.activeElement;
+
     const modal = modalOverlay.querySelector('.speaker-modal');
     modal.querySelector('.speaker-modal-image').src = speaker.image;
     modal.querySelector('.speaker-modal-image').alt = speaker.fullName;
     modal.querySelector('.speaker-modal-name').textContent = speaker.fullName;
     modal.querySelector('.speaker-modal-title').textContent = speaker.title || speaker.designation || 'Speaker';
     modal.querySelector('.speaker-modal-company').textContent = speaker.company;
-
-    // --- FIX IS HERE ---
-    // Use .innerHTML to correctly render HTML tags from the bio string
     modal.querySelector('.speaker-modal-bio p').innerHTML = speaker.bio || 'Biography coming soon...';
 
-    // Add additional details if available
     const detailsContainer = modal.querySelector('.speaker-modal-details');
-    detailsContainer.innerHTML = ''; // Clear previous details
+    detailsContainer.innerHTML = '';
 
-    // Add experience if available
     if (speaker.experience) {
         detailsContainer.innerHTML += `
             <div class="speaker-detail-item">
@@ -450,7 +685,6 @@ function showSpeakerModal(speaker) {
         `;
     }
 
-    // Add expertise if available
     if (speaker.expertise) {
         detailsContainer.innerHTML += `
             <div class="speaker-detail-item">
@@ -460,7 +694,6 @@ function showSpeakerModal(speaker) {
         `;
     }
 
-    // Add session topic if available
     if (speaker.sessionTopic) {
         detailsContainer.innerHTML += `
             <div class="speaker-detail-item">
@@ -470,21 +703,30 @@ function showSpeakerModal(speaker) {
         `;
     }
 
-    // Show modal
     modalOverlay.classList.add('active');
     document.body.classList.add('modal-open');
+
+    modalOverlay.dataset.previousFocus = previouslyFocused;
+    setTimeout(() => {
+        modalOverlay.querySelector('.speaker-modal-close').focus();
+    }, 100);
 }
 
-// Function to close the modal
+// Close speaker modal
 function closeSpeakerModal() {
     const modalOverlay = document.getElementById('speaker-modal-overlay');
     if (modalOverlay) {
         modalOverlay.classList.remove('active');
         document.body.classList.remove('modal-open');
+
+        const previousFocus = modalOverlay.dataset.previousFocus;
+        if (previousFocus) {
+            previousFocus.focus();
+        }
     }
 }
 
-// Optional: Add swipe to close on mobile
+// Mobile swipe to close modal
 let touchStartY = 0;
 let touchEndY = 0;
 
@@ -499,20 +741,19 @@ document.addEventListener('touchend', (e) => {
     const modal = document.querySelector('.speaker-modal');
     if (modal && modal.contains(e.target)) {
         touchEndY = e.changedTouches[0].screenY;
-        handleSwipe();
+        if (touchEndY - touchStartY > 100) {
+            closeSpeakerModal();
+        }
     }
 });
 
-function handleSwipe() {
-    if (touchEndY - touchStartY > 100) {
-        // Swipe down
-        closeSpeakerModal();
-    }
-}
+// ============================================
+// TEAM SECTION
+// ============================================
 
 const populateTeam = (teamMembers) => {
     const teamSection = document.getElementById('our-team');
-    teamSection.innerHTML = ''; // Clear existing content
+    teamSection.innerHTML = '';
 
     const header = document.createElement('div');
     header.classList.add('speakers-header');
@@ -524,6 +765,7 @@ const populateTeam = (teamMembers) => {
     const title = document.createElement('h2');
     title.innerHTML = "Meet the Organizers";
     title.classList.add('section-title', 'gradient-text');
+
     header.appendChild(sectionTag);
     header.appendChild(title);
     teamSection.appendChild(header);
@@ -536,11 +778,10 @@ const populateTeam = (teamMembers) => {
         teamCard.classList.add('speaker-card');
 
         teamCard.innerHTML = `
-            <img src="${member.image}" alt="${member.fullName}" class="speaker-image">
+            <img src="${member.image}" alt="${member.fullName}" class="speaker-image" loading="lazy">
             <div class="speaker-info">
                 <h3 class="speaker-name">${member.fullName}</h3>
                 <p class="speaker-title">${member.company}</p>
-                <p class="speaker-bio">${member.bio}</p>
             </div>
         `;
 
@@ -549,9 +790,59 @@ const populateTeam = (teamMembers) => {
 
     teamSection.appendChild(teamGrid);
 };
+
+// ============================================
+// SPONSORS SECTION
+// ============================================
+
+const populateSponsors = (sponsors) => {
+    const sponsorsSection = document.getElementById('sponsors');
+    if (!sponsorsSection || !sponsors) return;
+    sponsorsSection.innerHTML = '';
+
+    const header = document.createElement('div');
+    header.classList.add('sponsors-header');
+
+    const sectionTag = document.createElement('span');
+    sectionTag.classList.add('section-tag');
+    sectionTag.innerHTML = "Partners & Sponsors";
+
+    const title = document.createElement('h2');
+    title.innerHTML = "Fueling the Future of Java. This year our proud sponsor";
+    title.classList.add('section-title', 'gradient-text');
+
+    header.appendChild(sectionTag);
+    header.appendChild(title);
+    sponsorsSection.appendChild(header);
+
+    const sponsorGrid = document.createElement('div');
+    sponsorGrid.classList.add('sponsors-grid');
+
+    sponsors.forEach(sponsor => {
+        const sponsorCard = document.createElement('a');
+        sponsorCard.classList.add('sponsor-card');
+        sponsorCard.href = sponsor.website;
+        sponsorCard.target = '_blank';
+        sponsorCard.rel = 'noopener noreferrer';
+        sponsorCard.setAttribute('aria-label', `Visit ${sponsor.name}`);
+
+        sponsorCard.innerHTML = `
+            <img src="${sponsor.logo}" alt="${sponsor.name} Logo" class="sponsor-logo" loading="lazy">
+        `;
+
+        sponsorGrid.appendChild(sponsorCard);
+    });
+
+    sponsorsSection.appendChild(sponsorGrid);
+};
+
+// ============================================
+// COUNTDOWN SECTION
+// ============================================
+
 const populateCountdown = (cdC) => {
     const countdown = document.getElementById('countdown');
-    countdown.innerHTML = ''; // Clear existing content
+    countdown.innerHTML = '';
 
     const countdownContent = document.createElement('div');
     countdownContent.classList.add('countdown-content');
@@ -589,6 +880,8 @@ const populateCountdown = (cdC) => {
     const ctaButton = document.createElement('a');
     ctaButton.classList.add('cta-button');
     ctaButton.href = cdC.subsection.link.url;
+    ctaButton.target = '_blank';
+    ctaButton.rel = 'noopener noreferrer';
     ctaButton.innerHTML = cdC.subsection.link.text;
 
     countdownContent.appendChild(title);
@@ -603,6 +896,15 @@ const populateCountdown = (cdC) => {
         const now = new Date().getTime();
         const timeLeft = targetDate - now;
 
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            return;
+        }
+
         const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -612,20 +914,16 @@ const populateCountdown = (cdC) => {
         document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
         document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
         document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-
-        if (timeLeft < 0) {
-            clearInterval(timerInterval);
-            document.getElementById('days').textContent = '00';
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
-        }
     }, 1000);
 };
 
+// ============================================
+// VENUE/LOCATION SECTION
+// ============================================
+
 const populateLocation = (location) => {
     const venue = document.getElementById('venue');
-    venue.innerHTML = ''; // Clear existing content
+    venue.innerHTML = '';
 
     const venueContent = document.createElement('div');
     venueContent.classList.add('venue-content');
@@ -635,17 +933,17 @@ const populateLocation = (location) => {
 
     const sectionTag = document.createElement('span');
     sectionTag.classList.add('section-tag');
-    sectionTag.innerHTML = "Event Venue";
+    sectionTag.textContent = "Event Venue";
     venueInfo.appendChild(sectionTag);
 
     const title = document.createElement('h2');
     title.classList.add('section-title', 'gradient-text');
-    title.innerHTML = location.title;
+    title.textContent = location.title;
     venueInfo.appendChild(title);
 
     const description = document.createElement('p');
     description.classList.add('about-description');
-    description.innerHTML = location.description;
+    description.textContent = location.description;
     venueInfo.appendChild(description);
 
     const addressCard = document.createElement('div');
@@ -653,9 +951,9 @@ const populateLocation = (location) => {
 
     addressCard.innerHTML = `
         <h3>Conference Center</h3>
-        <p>📍 Tech Hub Convention Center</p>
-        <p>🏢 123 Innovation Drive</p>
-        <p>🌆 Dhaka, Bangladesh</p>
+        <p>📍 ${location.address?.name || 'N/A'}</p>
+        <p>🏢 ${location.address?.street || ''}</p>
+        <p>🌆 ${location.address?.city || ''}</p>
         <p>📧 <a href="mailto:${location.email}">${location.email}</a></p>
     `;
     venueInfo.appendChild(addressCard);
@@ -669,9 +967,13 @@ const populateLocation = (location) => {
     venue.appendChild(venueContent);
 };
 
+// ============================================
+// FOOTER SECTION
+// ============================================
+
 const populateFooter = (footerContent) => {
     const footer = document.querySelector('footer');
-    footer.innerHTML = ''; // Clear existing content
+    footer.innerHTML = '';
 
     const footerContentDiv = document.createElement('div');
     footerContentDiv.classList.add('footer-content');
@@ -686,7 +988,6 @@ const populateFooter = (footerContent) => {
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         link.classList.add('social-link');
-
         socialLinks.appendChild(link);
     });
 
@@ -699,79 +1000,388 @@ const populateFooter = (footerContent) => {
     footer.appendChild(footerContentDiv);
 };
 
-// Mobile Menu Toggle
+// ============================================
+// MOBILE MENU FUNCTIONALITY
+// ============================================
+
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-});
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('open');
+        document.body.classList.toggle('menu-open');
+    });
 
-// Hide mobile menu on scroll
-window.addEventListener('scroll', () => {
-    if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-    }
-});
+    navLinks.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        }
+    });
 
-// Parallax Effect on Hero
-window.addEventListener('scroll', () => {
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            navLinks.classList.remove('active');
+            menuToggle.classList.remove('open');
+            document.body.classList.remove('menu-open');
+        }
+    });
+}
+
+// ============================================
+// PARALLAX EFFECT ON HERO (Optimized)
+// ============================================
+
+let ticking = false;
+
+const handleParallax = () => {
     const scrolled = window.pageYOffset;
     const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
+
+    if (heroContent && scrolled < window.innerHeight) {
         heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - scrolled / 1000;
+        heroContent.style.opacity = Math.max(0, 1 - scrolled / 800);
+    }
+
+    ticking = false;
+};
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(handleParallax);
+        ticking = true;
     }
 });
 
-// Dynamic Background Orbs
-document.addEventListener('mousemove', (e) => {
+// ============================================
+// DYNAMIC BACKGROUND ORBS (Optimized)
+// ============================================
+
+let orbTicking = false;
+
+const handleOrbMovement = (e) => {
     const orb1 = document.querySelector('.orb1');
     const orb2 = document.querySelector('.orb2');
+
+    if (!orb1 || !orb2) return;
 
     const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
     const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
 
-    if (orb1) {
-        orb1.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    }
-    if (orb2) {
-        orb2.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+    orb1.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    orb2.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+
+    orbTicking = false;
+};
+
+document.addEventListener('mousemove', (e) => {
+    if (!orbTicking) {
+        window.requestAnimationFrame(() => handleOrbMovement(e));
+        orbTicking = true;
     }
 });
 
-// Add hover effect to CTA buttons
-document.querySelectorAll('.cta-button').forEach(button => {
-    button.addEventListener('mouseenter', function(e) {
-        const ripple = document.createElement('span');
-        ripple.style.position = 'absolute';
-        ripple.style.borderRadius = '50%';
-        ripple.style.background = 'rgba(255,255,255,0.5)';
-        ripple.style.width = ripple.style.height = '0';
-        ripple.style.top = '50%';
-        ripple.style.left = '50%';
-        ripple.style.transform = 'translate(-50%, -50%)';
-        this.appendChild(ripple);
+// ============================================
+// CTA BUTTON RIPPLE EFFECT
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const ctaButtons = document.querySelectorAll('.cta-button');
+
+        ctaButtons.forEach(button => {
+            button.addEventListener('mouseenter', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255,255,255,0.5)';
+                ripple.style.width = ripple.style.height = '0';
+                ripple.style.top = '50%';
+                ripple.style.left = '50%';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.pointerEvents = 'none';
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.style.width = ripple.style.height = '200px';
+                    ripple.style.opacity = '0';
+                    ripple.style.transition = 'all 0.5s ease';
+                }, 10);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 500);
+            });
+        });
+    }, 1000);
+});
+
+// ============================================
+// BACK TO TOP BUTTON
+// ============================================
+
+function initializeBackToTop() {
+    // Create back to top button
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.id = 'backToTop';
+    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.innerHTML = '↑';
+    document.body.appendChild(backToTopBtn);
+
+    // Show/hide button on scroll
+    const handleBackToTopScroll = throttle(() => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }, 100);
+
+    window.addEventListener('scroll', handleBackToTopScroll);
+
+    // Scroll to top on click
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Keyboard accessibility
+    backToTopBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    });
+}
+
+
+// ============================================
+// CARD INTERACTIONS (for Why JDC cards)
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const cards = document.querySelectorAll('.why-card, .speaker-card');
+
+        cards.forEach(card => {
+            // Ripple effect on click
+            card.addEventListener('click', function(e) {
+                // Skip if it's already a speaker card (has its own click handler)
+                if (this.classList.contains('speaker-card')) return;
+
+                const ripple = document.createElement('span');
+                ripple.classList.add('card-ripple');
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.3);
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    transform: scale(0);
+                    animation: ripple-animation 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+                this.appendChild(ripple);
+
+                setTimeout(() => ripple.remove(), 600);
+            });
+
+            // 3D tilt effect on mouse move
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                this.style.transform = `
+                    translateY(-10px) 
+                    perspective(1000px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg)
+                `;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    }, 1000);
+});
+
+// ============================================
+// IMAGE LAZY LOADING FALLBACK (for older browsers)
+// ============================================
+
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }, 1000);
+    });
+}
+
+// ============================================
+// SMOOTH REVEAL ANIMATIONS
+// ============================================
+
+function addRevealAnimations() {
+    const elements = document.querySelectorAll('.speaker-card, .why-card, .timer-block');
+
+    elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
 
         setTimeout(() => {
-            ripple.style.width = ripple.style.height = '200px';
-            ripple.style.opacity = '0';
-            ripple.style.transition = 'all 0.5s ease';
-        }, 10);
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
 
-        setTimeout(() => {
-            ripple.remove();
-        }, 500);
+// ============================================
+// ERROR HANDLING FOR IMAGES
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const images = document.querySelectorAll('img');
+
+        images.forEach(img => {
+            img.addEventListener('error', function() {
+                // Create a placeholder if image fails to load
+                this.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                this.style.display = 'flex';
+                this.style.alignItems = 'center';
+                this.style.justifyContent = 'center';
+                this.alt = 'Image not available';
+            });
+        });
+    }, 1000);
+});
+
+
+
+// ============================================
+// ENHANCED FOCUS INDICATORS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    let isUsingKeyboard = false;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            isUsingKeyboard = true;
+            document.body.classList.add('keyboard-nav');
+        }
+    });
+
+    document.addEventListener('mousedown', () => {
+        isUsingKeyboard = false;
+        document.body.classList.remove('keyboard-nav');
     });
 });
 
-// Loading Animation
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
-});
+
+
+// ============================================
+// REDUCE MOTION FOR ACCESSIBILITY
+// ============================================
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+if (prefersReducedMotion.matches) {
+    // Disable animations
+    document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+
+    // Remove auto-slide from carousel
+    const carouselTrack = document.querySelector('.modern-carousel-track');
+    if (carouselTrack) {
+        carouselTrack.style.animation = 'none';
+    }
+}
+
+// ============================================
+// VIEWPORT HEIGHT FIX FOR MOBILE
+// ============================================
+
+function setVH() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', debounce(setVH, 250));
+setVH();
+
+// ============================================
+// NETWORK STATUS INDICATOR
+// ============================================
+
+function handleNetworkChange() {
+    if (!navigator.onLine) {
+        const offlineNotice = document.createElement('div');
+        offlineNotice.id = 'offline-notice';
+        offlineNotice.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b6b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 10000;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        `;
+        offlineNotice.textContent = 'You are offline. Some features may not work.';
+        document.body.appendChild(offlineNotice);
+    } else {
+        const notice = document.getElementById('offline-notice');
+        if (notice) notice.remove();
+    }
+}
+
+window.addEventListener('online', handleNetworkChange);
+window.addEventListener('offline', handleNetworkChange);
+
+console.log('✅ JDC 2025 Website Initialized Successfully');
