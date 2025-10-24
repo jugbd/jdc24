@@ -811,61 +811,78 @@ const populateSessionPreview = (sessionsData) => {
     const sessionSection = document.getElementById('session');
     if (!sessionSection) return;
 
+    // Hide featured session items and show a Coming Soon card instead
     sessionSection.innerHTML = '';
 
     const header = document.createElement('div');
     header.classList.add('session-preview-header');
     header.innerHTML = `
         <span class="section-tag">Conference Sessions</span>
-        <h2 class="section-title gradient-text">Featured Sessions</h2>
+        <h2 class="section-title gradient-text">Sessions</h2>
         <p class="section-description">
-            Get a glimpse of our exciting lineup of sessions covering the latest in Java development
+            Our team is curating an amazing set of talks. Stay tuned!
         </p>
     `;
     sessionSection.appendChild(header);
 
-    const previewGrid = document.createElement('div');
-    previewGrid.classList.add('session-preview-grid');
-
-    const featuredSessions = sessionsData.slice(0, 3);
-
-    featuredSessions.forEach((session, index) => {
-        const card = document.createElement('div');
-        card.classList.add('session-preview-card');
-        card.style.animationDelay = `${index * 0.1}s`;
-
-        card.innerHTML = `
-            <div class="session-preview-badge">${session.track}</div>
-            <div class="session-preview-time">
-                <span class="preview-time">${session.time}</span>
-                <span class="preview-duration">${session.duration}</span>
-            </div>
-            <h3 class="session-preview-title">${session.title}</h3>
-            <p class="session-preview-excerpt">${session.abstract.substring(0, 150)}...</p>
-            <div class="session-preview-speaker">
-                <img src="${session.speaker.image}" alt="${session.speaker.name}" class="preview-speaker-avatar">
-                <div>
-                    <div class="preview-speaker-name">${session.speaker.name}</div>
-                    <div class="preview-speaker-role">${session.speaker.role}</div>
-                </div>
-            </div>
-        `;
-
-        previewGrid.appendChild(card);
-    });
-
-    sessionSection.appendChild(previewGrid);
-
-    const ctaContainer = document.createElement('div');
-    ctaContainer.classList.add('session-preview-cta');
-    ctaContainer.innerHTML = `
-        <a href="./sessions.html" class="cta-button">
-            View All Sessions
-            <span class="cta-arrow">→</span>
-        </a>
-        <p class="cta-subtitle">Explore ${sessionsData.length}+ sessions from industry experts</p>
+    const comingSoon = document.createElement('div');
+    comingSoon.classList.add('session-preview-grid');
+    comingSoon.innerHTML = `
+        <div class="session-preview-card" style="text-align:center; padding: 2rem; width:100%;">
+            <h3 class="session-preview-title">Sessions are coming soon</h3>
+            <p class="session-preview-excerpt">Check back later to see the featured sessions for JDC 2025.</p>
+        </div>
     `;
-    sessionSection.appendChild(ctaContainer);
+
+    sessionSection.appendChild(comingSoon);
+
+    // Keep original rendering logic commented out for future use
+    // The original homepage session preview rendering is preserved below as comments.
+    // To re-enable featured sessions, remove the comment markers and adjust as needed.
+    //
+    // const previewGrid = document.createElement('div');
+    // previewGrid.classList.add('session-preview-grid');
+    //
+    // const featuredSessions = sessionsData.slice(0, 3);
+    //
+    // featuredSessions.forEach((session, index) => {
+    //     const card = document.createElement('div');
+    //     card.classList.add('session-preview-card');
+    //     card.style.animationDelay = `${index * 0.1}s`;
+    //
+    //     card.innerHTML = `
+    //         <div class="session-preview-badge">${session.track}</div>
+    //         <div class="session-preview-time">
+    //             <span class="preview-time">${session.time}</span>
+    //             <span class="preview-duration">${session.duration}</span>
+    //         </div>
+    //         <h3 class="session-preview-title">${session.title}</h3>
+    //         <p class="session-preview-excerpt">${session.abstract.substring(0, 150)}...</p>
+    //         <div class="session-preview-speaker">
+    //             <img src="${session.speaker.image}" alt="${session.speaker.name}" class="preview-speaker-avatar">
+    //             <div>
+    //                 <div class="preview-speaker-name">${session.speaker.name}</div>
+    //                 <div class="preview-speaker-role">${session.speaker.role}</div>
+    //             </div>
+    //         </div>
+    //     `;
+    //
+    //     previewGrid.appendChild(card);
+    // });
+    //
+    // sessionSection.appendChild(previewGrid);
+
+    // Do not render the CTA for now
+    // const ctaContainer = document.createElement('div');
+    // ctaContainer.classList.add('session-preview-cta');
+    // ctaContainer.innerHTML = `
+    //     <a href="./sessions.html" class="cta-button">
+    //         View All Sessions
+    //         <span class="cta-arrow">→</span>
+    //     </a>
+    //     <p class="cta-subtitle">Explore ${sessionsData.length}+ sessions from industry experts</p>
+    // `;
+    // sessionSection.appendChild(ctaContainer);
 };
 
 // ============================================

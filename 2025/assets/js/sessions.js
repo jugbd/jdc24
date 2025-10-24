@@ -40,45 +40,70 @@ function populateSessions(sessionsData) {
     const grid = document.getElementById('sessionsGrid');
     if (!grid) return;
 
+    // Hide actual session items and show a Coming Soon card instead
     grid.innerHTML = '';
 
-    sessionsData.forEach((session, index) => {
-        const card = document.createElement('div');
-        card.classList.add('session-card');
-        card.dataset.track = session.track;
-        card.style.animationDelay = `${index * 0.1}s`;
-
-        card.innerHTML = `
-            <div class="session-content">
-                <div class="session-time">
-                    <span class="time">${session.time}</span>
-                    <span class="duration">${session.duration}</span>
-                </div>
-                <div class="session-info">
-                    <span class="session-category">${session.track}</span>
-                    <h2 class="session-title">${session.title}</h2>
-                    <p class="session-abstract">${session.abstract}</p>
-                    <span class="read-more">Read more</span>
-                    
-                    <div class="session-speaker">
-                        <img src="${session.speaker.image}" alt="${session.speaker.name}" class="speaker-avatar" loading="lazy">
-                        <div class="speaker-details">
-                            <div class="speaker-name">${session.speaker.name}</div>
-                            <div class="speaker-role">${session.speaker.role}</div>
-                        </div>
-                    </div>
-
-                    <div class="session-tags">
-                        ${session.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
+    const comingSoonCard = document.createElement('div');
+    comingSoonCard.classList.add('session-card', 'coming-soon');
+    comingSoonCard.style.display = 'block';
+    comingSoonCard.innerHTML = `
+        <div class="session-content">
+            <div class="session-info">
+                <span class="session-category">Sessions</span>
+                <h2 class="session-title">Sessions are coming soon</h2>
+                <p class="session-abstract">We're finalizing an exciting lineup. Please check back later!</p>
             </div>
-        `;
+        </div>
+    `;
+    grid.appendChild(comingSoonCard);
 
-        grid.appendChild(card);
-    });
+    // If there's a filter section on the page, hide it since sessions are not available yet
+    const filters = document.querySelector('.session-filters');
+    if (filters) {
+        filters.style.display = 'none';
+    }
 
-    initializeSessionInteractions();
+    // Keep the original logic intact but do not render session items for now
+    // The original rendering code is preserved below as comments. To re-enable, remove the comment markers and
+    // optionally remove the Coming Soon block above.
+    //
+    // sessionsData.forEach((session, index) => {
+    //     const card = document.createElement('div');
+    //     card.classList.add('session-card');
+    //     card.dataset.track = session.track;
+    //     card.style.animationDelay = `${index * 0.1}s`;
+    //
+    //     card.innerHTML = `
+    //         <div class="session-content">
+    //             <div class="session-time">
+    //                 <span class="time">${session.time}</span>
+    //                 <span class="duration">${session.duration}</span>
+    //             </div>
+    //             <div class="session-info">
+    //                 <span class="session-category">${session.track}</span>
+    //                 <h2 class="session-title">${session.title}</h2>
+    //                 <p class="session-abstract">${session.abstract}</p>
+    //                 <span class="read-more">Read more</span>
+    //                 
+    //                 <div class="session-speaker">
+    //                     <img src="${session.speaker.image}" alt="${session.speaker.name}" class="speaker-avatar" loading="lazy">
+    //                     <div class="speaker-details">
+    //                         <div class="speaker-name">${session.speaker.name}</div>
+    //                         <div class="speaker-role">${session.speaker.role}</div>
+    //                     </div>
+    //                 </div>
+    //
+    //                 <div class="session-tags">
+    //                     ${session.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     `;
+    //
+    //     grid.appendChild(card);
+    // });
+    //
+    // initializeSessionInteractions();
 }
 
 // ============================================

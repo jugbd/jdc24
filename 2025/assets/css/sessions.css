@@ -475,3 +475,25 @@
         gap: 0.5rem;
     }
 }
+
+/* ============================================
+   COMING SOON CARD (Sessions page) - alignment fix
+   ============================================ */
+.session-card.coming-soon {
+    cursor: default;
+}
+.session-card.coming-soon .session-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+.session-card.coming-soon .session-info {
+    max-width: 720px;
+}
+.session-card.coming-soon .session-category {
+    margin-left: auto;
+    margin-right: auto;
+}
