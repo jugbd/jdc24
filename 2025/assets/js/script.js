@@ -1094,7 +1094,8 @@ function initializeBackToTop() {
 
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        const cards = document.querySelectorAll('.why-card, .speaker-card');
+        // Limit interactive card effects to .why-card only; remove tilt from .speaker-card (speakers and our-team)
+        const cards = document.querySelectorAll('.why-card');
 
         cards.forEach(card => {
             // Ripple effect on click
