@@ -1,92 +1,3 @@
-// ============================================
-// THEME TOGGLE FUNCTIONALITY
-// ============================================
-
-// Initialize theme before DOM loads to prevent flash
-(function() {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', theme);
-})();
-
-// Theme management after DOM loads
-document.addEventListener('DOMContentLoaded', () => {
-    initializeThemeToggle();
-});
-
-function initializeThemeToggle() {
-    // Create theme toggle button in nav
-    const navLinks = document.querySelector('.nav-links');
-    if (!navLinks) return;
-
-    const themeToggleItem = document.createElement('li');
-    themeToggleItem.innerHTML = `
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-            <div class="theme-toggle-slider">
-                <span id="themeIcon">🌙</span>
-            </div>
-        </button>
-    `;
-    navLinks.appendChild(themeToggleItem);
-
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const html = document.documentElement;
-
-    // Set initial icon
-    const currentTheme = html.getAttribute('data-theme') || 'dark';
-    themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
-
-    // Toggle theme function
-    function toggleTheme() {
-        const currentTheme = html.getAttribute('data-theme') || 'dark';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-
-        // Dispatch custom event
-        window.dispatchEvent(new CustomEvent('themeChange', {
-            detail: { theme: newTheme }
-        }));
-
-        // Analytics tracking (if available)
-        if (typeof trackEvent === 'function') {
-            trackEvent('Theme', 'Toggle', newTheme);
-        }
-    }
-
-    // Event listeners
-    themeToggle.addEventListener('click', toggleTheme);
-
-    // Keyboard support
-    themeToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleTheme();
-        }
-    });
-
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        // Only auto-switch if user hasn't manually set a preference
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
-        }
-    });
-
-    // Sync theme across tabs
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'theme' && e.newValue) {
-            html.setAttribute('data-theme', e.newValue);
-            themeIcon.textContent = e.newValue === 'dark' ? '🌙' : '☀️';
-        }
-    });
-}
 
 
 // ============================================
@@ -216,12 +127,14 @@ const populateHero = (heroContent) => {
     subtitle.classList.add('hero-subtitle');
     subtitle.innerHTML = heroContent.edition;
 
-    const cta = document.createElement("a");
+    // TODO: Enable link to register
+    // const cta = document.createElement("a");
+    const cta = document.createElement("div");
     cta.classList.add('cta-button');
     cta.innerHTML = heroContent.cta.text;
-    cta.setAttribute("href", heroContent.cta.link);
-    cta.setAttribute("target", "_blank");
-    cta.setAttribute("rel", "noopener noreferrer");
+    // cta.setAttribute("href", heroContent.cta.link);
+    // cta.setAttribute("target", "_blank");
+    // cta.setAttribute("rel", "noopener noreferrer");
 
     hero.appendChild(title);
     hero.appendChild(subtitle);

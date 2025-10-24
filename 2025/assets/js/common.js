@@ -231,9 +231,102 @@ function initializeCustomCursor() {
 
 
 // ===========================================
+// THEME TOGGLE FUNCTIONALITY (shared by all pages)
+// ============================================
+
+// Initialize theme ASAP to prevent flash of incorrect theme
+(function() {
+    try {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    } catch (_) {
+        // fail silently
+    }
+})();
+
+function initializeThemeToggle() {
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+
+    // Avoid duplicating the toggle if already added
+    if (document.getElementById('themeToggle')) return;
+
+    const themeToggleItem = document.createElement('li');
+    themeToggleItem.innerHTML = `
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+            <div class="theme-toggle-slider">
+                <span id="themeIcon">🌙</span>
+            </div>
+        </button>
+    `;
+    navLinks.appendChild(themeToggleItem);
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    // Set initial icon
+    const currentTheme = html.getAttribute('data-theme') || 'dark';
+    themeIcon.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+
+    function setTheme(newTheme) {
+        html.setAttribute('data-theme', newTheme);
+        try { localStorage.setItem('theme', newTheme); } catch (_) {}
+        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        window.dispatchEvent(new CustomEvent('themeChange', { detail: { theme: newTheme } }));
+        if (typeof trackEvent === 'function') {
+            try { trackEvent('Theme', 'Toggle', newTheme); } catch (_) {}
+        }
+    }
+
+    function toggleTheme() {
+        const current = html.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+    }
+
+    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+
+    // Listen for system theme changes if user hasn't set preference
+    if (window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        // Newer browsers support addEventListener on MediaQueryList
+        const mqListener = (e) => {
+            try {
+                if (!localStorage.getItem('theme')) {
+                    setTheme(e.matches ? 'dark' : 'light');
+                }
+            } catch (_) {}
+        };
+        if (typeof mq.addEventListener === 'function') {
+            mq.addEventListener('change', mqListener);
+        } else if (typeof mq.addListener === 'function') {
+            mq.addListener(mqListener);
+        }
+    }
+
+    // Sync theme across tabs
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'theme' && e.newValue) {
+            html.setAttribute('data-theme', e.newValue);
+            themeIcon.textContent = e.newValue === 'dark' ? '🌙' : '☀️';
+        }
+    });
+}
+
+// ===========================================
 // INITIALIZE ALL COMMON FUNCTIONS
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    initializeThemeToggle();
     initializeMobileMenu();
     initializeNavbarScroll();
     initializeSmoothScroll();
