@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,15 +10,16 @@
     --primary: #ffffff;
     --accent: #ff0040;
     --accent-glow: #ff0040;
-    --bg-dark: #2d2d30;           /* Much lighter from #0a0a0a */
-    --bg-darker: #252526;         /* Much lighter from #000000 */
-    --glass: rgba(255, 255, 255, 0.15);     /* Much more visible */
+    --bg-dark: #2d2d30; /* Much lighter from #0a0a0a */
+    --bg-darker: #252526; /* Much lighter from #000000 */
+    --glass: rgba(255, 255, 255, 0.15); /* Much more visible */
     --glass-border: rgba(255, 255, 255, 0.25); /* Much more visible */
     --text-dim: rgba(255, 255, 255, 0.85);
     --text-muted: rgba(255, 255, 255, 0.65);
     --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --transition-speed: 0.4s; /* Added for smooth theme transition */
+
 }
 
 /* Light Mode Colors */
@@ -110,6 +113,7 @@ footer,
 [data-theme="light"] .scroll-indicator::before {
     background: transparent;
 }
+
 [data-theme="light"] .scroll-indicator::after {
     border-color: var(--text-dim);
     background: var(--text-dim);
@@ -148,11 +152,11 @@ footer,
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: Ubuntu, sans-serif;
     background: var(--bg-dark);
     color: var(--primary);
     overflow-x: hidden;
-    cursor:default;
+    cursor: default;
 }
 
 a {
@@ -210,9 +214,15 @@ a:focus {
 }
 
 @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(100px, -100px) scale(1.1); }
-    66% { transform: translate(-100px, 100px) scale(0.9); }
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(100px, -100px) scale(1.1);
+    }
+    66% {
+        transform: translate(-100px, 100px) scale(0.9);
+    }
 }
 
 .fade-in-section {
@@ -234,7 +244,7 @@ nav {
     padding: 20px 0px;
     z-index: 1000;
     backdrop-filter: blur(20px);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
     transition: all 0.3s ease;
 }
 
@@ -261,7 +271,8 @@ nav.scrolled {
     letter-spacing: -1px;
     position: relative;
     filter: drop-shadow(5px 5px 10px #ff6b6b);
-    img{
+
+    img {
         width: 80px;
         height: 50px;
         margin: 0;
@@ -269,7 +280,7 @@ nav.scrolled {
     }
 }
 
-.logo::after{
+.logo::after {
     display: none;
 }
 
@@ -390,7 +401,7 @@ nav.scrolled {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.5s ease;
 }
 
@@ -423,8 +434,12 @@ nav.scrolled {
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
 }
 
 .scroll-indicator::before {
@@ -452,8 +467,14 @@ nav.scrolled {
 }
 
 @keyframes scroll-dot {
-    0%, 100% { top: 10px; opacity: 1; }
-    50% { top: 25px; opacity: 0.3; }
+    0%, 100% {
+        top: 10px;
+        opacity: 1;
+    }
+    50% {
+        top: 25px;
+        opacity: 0.3;
+    }
 }
 
 /* About Section */
@@ -536,7 +557,7 @@ nav.scrolled {
     overflow: hidden;
     background: var(--glass);
     border: 1px solid var(--glass-border);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-track-container {
@@ -644,9 +665,17 @@ nav.scrolled {
 }
 
 .speakers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Switched from CSS Grid to Flexbox to center-align the last row */
+    display: flex;
+    flex-wrap: wrap;
     gap: 40px;
+    justify-content: center; /* Ensures the last row is centered */
+}
+
+/* Ensure consistent responsive sizing for speaker/team cards inside flex container */
+.speakers-grid > .speaker-card {
+    flex: 1 1 300px; /* target ~300px width, allow wrapping */
+    max-width: 420px; /* prevent cards from stretching too wide on large screens */
 }
 
 .speaker-card {
@@ -686,7 +715,7 @@ nav.scrolled {
     object-fit: cover;
     /* CHANGE: Removed grayscale filter */
     transition: transform 0.4s ease; /* Changed from filter to transform */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* CHANGE: Added shadow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* CHANGE: Added shadow */
 }
 
 .speaker-card:hover .speaker-image {
@@ -737,8 +766,12 @@ nav.scrolled {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .speaker-modal {
@@ -1141,8 +1174,12 @@ body.modal-open {
 }
 
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .countdown-content {
@@ -1284,18 +1321,25 @@ body.modal-open {
 }
 
 .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* Switched from CSS Grid to Flexbox to center-align the last row */
+    display: flex;
+    flex-wrap: wrap;
     gap: 40px;
-    justify-items: center;
-    align-items: stretch;
+    justify-content: center; /* Ensures the last row is centered */
+    /*align-items: stretch;*/
+}
+
+/* Ensure consistent responsive sizing for team cards inside flex container */
+.team-grid > .team-card {
+    flex: 1 1 220px; /* target ~220px width, allow wrapping */
+    max-width: 360px; /* prevent cards from stretching too wide on large screens */
 }
 
 .team-card {
     background: var(--glass);
     border: 1.5px solid var(--glass-border);
     border-radius: 18px;
-    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
     padding: 36px 18px 28px 18px;
     display: flex;
     flex-direction: column;
@@ -1304,9 +1348,10 @@ body.modal-open {
     position: relative;
     overflow: hidden;
 }
+
 .team-card:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 8px 32px 0 rgba(255,0,64,0.10);
+    box-shadow: 0 8px 32px 0 rgba(255, 0, 64, 0.10);
 }
 
 .team-img {
@@ -1317,7 +1362,7 @@ body.modal-open {
     border: 3px solid var(--accent);
     margin-bottom: 18px;
     background: var(--bg-darker);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
 .team-name {
@@ -1326,23 +1371,27 @@ body.modal-open {
     color: var(--primary);
     margin-bottom: 4px;
 }
+
 .team-role {
     font-size: 1rem;
     color: var(--accent);
     font-weight: 500;
     margin-bottom: 0;
 }
+
 .team-socials {
     margin-top: 14px;
     display: flex;
     gap: 14px;
 }
+
 .team-socials a {
     color: var(--accent);
     font-size: 1.2rem;
     transition: color 0.2s;
     background-image: none;
 }
+
 .team-socials a:hover {
     color: var(--primary);
 }
@@ -1351,9 +1400,11 @@ body.modal-open {
     #our-team {
         padding: 60px 8px 40px 8px;
     }
+
     .team-grid {
         gap: 24px;
     }
+
     .our-team-title {
         font-size: 2rem;
     }
@@ -1594,8 +1645,8 @@ footer::before {
     display: flex;
     flex-direction: column; /* Stacks the items vertically */
     justify-content: center; /* Centers the stack horizontally */
-    align-items: center;     /* Aligns items in the center */
-    gap: 1.5rem;             /* Space between social links and copyright */
+    align-items: center; /* Aligns items in the center */
+    gap: 1.5rem; /* Space between social links and copyright */
 }
 
 .social-links {
@@ -1743,7 +1794,7 @@ footer::before {
         text-align: left;
         width: 100%;
     }
-    
+
     .nav-links a:hover,
     .nav-links a:focus {
         background-color: rgba(255, 255, 255, 0.1);
@@ -1775,20 +1826,25 @@ footer::before {
         width: 95%;
         max-height: 90vh;
     }
+
     .speaker-modal-content {
         padding: 25px;
     }
+
     .speaker-modal-header {
         flex-direction: column;
         text-align: center;
     }
+
     .speaker-modal-image {
         width: 120px;
         height: 120px;
     }
+
     .speaker-modal-name {
         font-size: 1.5rem;
     }
+
     .speaker-modal-details {
         grid-template-columns: 1fr;
     }
@@ -1797,9 +1853,11 @@ footer::before {
     .countdown {
         padding: 80px 20px;
     }
+
     .timer-number {
         font-size: 2.5rem;
     }
+
     .timer-label {
         font-size: 0.8rem;
     }
@@ -1935,6 +1993,7 @@ body.menu-open::before {
     z-index: 998; /* Below nav-links but above content */
     animation: fadeIn 0.3s ease;
 }
+
 [data-theme="light"] #why-jdc .section-title.gradient-text {
     color: #000;
 }
@@ -1951,7 +2010,6 @@ body.menu-open::before {
     margin-bottom: 60px;
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-color);
 }
 
 /* Horizontal flex layout */
@@ -1971,8 +2029,8 @@ body.menu-open::before {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 200px;
-    max-width: 300px;
+    min-width: 400px;
+    max-width: 400px;
 }
 
 .sponsor-card:hover {
@@ -1982,31 +2040,24 @@ body.menu-open::before {
 
 /* Logo styling */
 .sponsor-logo {
-    max-width: 160px; /* larger logo */
-    max-height: 80px;
     object-fit: contain;
-    filter: none; /* always in color */
-}
-
-/* DSI Pop-out Animation */
-@keyframes pop-out {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    }
-    50% {
-        transform: scale(1.1);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-    }
-}
-
-.sponsor-card-dsi {
-    animation: pop-out 3s infinite ease-in-out;
-    background: #1c1c1c;
 }
 
 
-/* Optional: light theme adjustments */
-[data-theme="light"] .sponsor-card {
-    background: #000000;
+/* ============================================
+   Our Team card sizing fixes
+   Prevent last-row stretching by disabling flex-grow for cards
+   This scope only affects the Our Team section populated with
+   .speakers-grid and .speaker-card via JS, leaving Speakers untouched.
+   ============================================ */
+#our-team .speakers-grid > .speaker-card {
+    /* Keep consistent card width across all rows in Our Team */
+    flex: 0 1 300px; /* no grow, allow shrink if needed */
+    max-width: 300px; /* align width across rows */
+}
+
+/* In case .team-grid is used for Our Team in the future, keep sizes consistent */
+#our-team .team-grid > .team-card {
+    flex: 0 1 220px; /* no grow, allow shrink */
+    max-width: 220px;
 }
