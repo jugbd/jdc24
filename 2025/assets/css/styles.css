@@ -1673,30 +1673,27 @@ footer::before {
     overflow: hidden;
 }
 
-/* The expanding circle for the hover effect */
-.social-link::before {
+/* Copied hover sweep from .cta-button to ensure consistency and fix broken effect */
+footer .social-link { z-index: 0; }
+footer .social-link::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: var(--accent);
-    border-radius: 50%;
-    z-index: -1;
-    transform: translate(-50%, -50%);
-    transition: width 0.5s ease, height 0.5s ease;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
 }
-
-.social-link:hover {
+footer .social-link:hover::before {
+    left: 100%;
+}
+footer .social-link:hover {
     color: var(--primary);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     border-color: var(--accent);
-}
-
-.social-link:hover::before {
-    width: 250%;
-    height: 250%;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .copyright {
