@@ -469,7 +469,6 @@ function createSpeakerModal() {
                     <h3>Biography</h3>
                     <p></p>
                 </div>
-                <div class="speaker-modal-details"></div>
             </div>
         </div>
     `;
@@ -509,9 +508,6 @@ function showSpeakerModal(speaker) {
     modal.querySelector('.speaker-modal-title').textContent = speaker.title || speaker.designation || 'Speaker';
     modal.querySelector('.speaker-modal-company').textContent = speaker.company;
     modal.querySelector('.speaker-modal-bio p').innerHTML = speaker.bio || 'Biography coming soon...';
-
-    const detailsContainer = modal.querySelector('.speaker-modal-details');
-    detailsContainer.innerHTML = '';
 
     if (speaker.experience) {
         detailsContainer.innerHTML += `
