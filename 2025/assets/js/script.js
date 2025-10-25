@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         populateTeam(content.ourTeam);
         populateLocation(content.location);
         populateFooter(content.footer);
-
+        handleHashScroll();
     } catch (e) {
         console.error(e.message);
         if (loader && loader.element) {
@@ -82,6 +82,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         initializeBackToTop();
     }
 });
+
+function handleHashScroll() {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
+
 
 // ============================================
 // INTERSECTION OBSERVER FOR ANIMATIONS
