@@ -365,12 +365,6 @@
     }
 }
 
-/* Active nav link */
-.nav-links a.active {
-    color: var(--accent);
-    position: relative;
-}
-
 .nav-links a.active::after {
     content: '';
     position: absolute;

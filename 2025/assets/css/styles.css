@@ -1783,7 +1783,7 @@ footer .social-link:hover {
 
     .nav-links a.active,
     .nav-links a[aria-current="page"] {
-        background: linear-gradient(135deg, var(--accent), #ff6b6b);
+        background: linear-gradient(to right, #6610f2, #fd7e14);
         color: #fff;
     }
 
@@ -1803,7 +1803,6 @@ footer .social-link:hover {
     }
 
     [data-theme="light"] .nav-links a {
-        color: var(--primary);
         background-color: rgba(0, 0, 0, 0.04);
     }
 

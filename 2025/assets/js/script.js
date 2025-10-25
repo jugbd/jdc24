@@ -196,7 +196,7 @@ const populateGallery = (galleryImages) => {
     gallerySection.innerHTML = `
         <div class="gallery-header">
             <span class="section-tag">Memories</span>
-            <h2 class="section-title gradient-text">From Our Last Event</h2>
+            <h2 class="section-title gradient-text">From Our Past Events</h2>
         </div>
         <div class="image-carousel-container" role="region" aria-label="Image Carousel">
             <div class="carousel-track-container">

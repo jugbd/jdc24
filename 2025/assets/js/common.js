@@ -141,9 +141,36 @@ function initializeMobileMenu() {
                 document.body.classList.remove('menu-open');
             }
         });
+
+        // Handle menu item active states
+        const menuItems = navLinks.querySelectorAll('a');
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+
+        menuItems.forEach(item => {
+            // For regular page links
+            if (item.pathname === currentPath && !item.hash) {
+                item.classList.add('active');
+            }
+            // For hash links on the same page
+            else if (currentPath === item.pathname && item.hash === currentHash && currentHash) {
+                item.classList.add('active');
+            }
+
+            item.addEventListener('click', () => {
+                // Only handle activation for hash links on the same page
+                if (item.pathname === window.location.pathname) {
+                    menuItems.forEach(menuItem => {
+                        if (menuItem.pathname === window.location.pathname) {
+                            menuItem.classList.remove('active');
+                        }
+                    });
+                    item.classList.add('active');
+                }
+            });
+        });
     }
 }
-
 // ===========================================
 // NAVBAR SCROLL EFFECT
 // ============================================
