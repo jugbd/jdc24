@@ -1144,10 +1144,12 @@ body.modal-open {
     transition: all 0.3s ease;
     flex-grow: 1;
     flex-basis: 0;
+    min-width: 150px;
+    text-align: center;
 }
 
 .timer-block:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
     background: rgba(255, 0, 64, 0.1);
     border-color: var(--accent);
 }
@@ -2039,14 +2041,25 @@ body.menu-open::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     min-width: 400px;
     max-width: 400px;
+    position: relative;
+    overflow: hidden;
 }
 
 .sponsor-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(255, 0, 100, 0.5),
+    0 0 50px rgba(255, 0, 100, 0.4);
+    transform: translateY(-8px);
+}
+
+[data-theme="dark"] .sponsor-card:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25),
+            0 0 30px rgba(0, 255, 208, 0.5),
+            0 0 50px rgba(58, 250, 170, 0.4);
 }
 
 /* Logo styling */

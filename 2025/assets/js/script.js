@@ -664,11 +664,6 @@ const populateSponsors = (sponsors) => {
         sponsorCard.rel = 'noopener noreferrer';
         sponsorCard.setAttribute('aria-label', `Visit ${sponsor.name}`);
 
-        // Add a special class for the DSI logo to make it pop
-        if (sponsor.id === 'dsi') {
-            sponsorCard.classList.add('sponsor-card-dsi');
-        }
-
         sponsorCard.innerHTML = `
             <img src="${sponsor.logo}" alt="${sponsor.name} Logo" class="sponsor-logo" loading="lazy">
         `;

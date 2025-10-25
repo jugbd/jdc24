@@ -315,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMobileMenu();
     initializeNavbarScroll();
     initializeSmoothScroll();
-    initializeCustomCursor();
 
     // Centralized Service Worker registration for all pages in /2025/
     if ('serviceWorker' in navigator) {
