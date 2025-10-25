@@ -13,7 +13,7 @@
     "image": "assets/images/backgrounds/speaker1.jpg"
   },
   "gallery": [
-    "assets/images/gallery/00-slider.png",
+    "assets/images/gallery/00-slider.jpg",
     "assets/images/gallery/01-slider.jpg",
     "assets/images/gallery/02-slider.jpg",
     "assets/images/gallery/03-slider.jpg",
@@ -24,13 +24,13 @@
     "assets/images/gallery/08-slider.jpg",
     "assets/images/gallery/09-slider.jpg",
     "assets/images/gallery/10-slider.jpg",
-    "assets/images/gallery/11-slider.png"
+    "assets/images/gallery/11-slider.jpg"
   ],
   "speakers": [
     {
       "fullName": "A N M Bazlur Rahman",
       "name": "bazlur_rahman",
-      "bio": "<p><br/><strong>A N M Bazlur Rahman</strong> works at&nbsp; <a href=\"https://www.contrastsecurity.com/\" target=\"_blank\"\n                                                              rel=\"nofollow noopener ugc\">Contrast Security</a> as a Sr.\n    Software Engineer. He has more than ten years of professional experience in the software industry, predominantly in\n    Java and Java-related technologies. Recently, he was honoured by being given the title of  <a href=\"https://twitter.com/Java_Champions/status/1523728715368509440\" target=\"_blank\" rel=\"noopener ugc\">&nbsp;Java\n        Champion</a>.</p>\n<p>Outside of his regular work hours, he loves to mentor, write, speak at conferences, and contribute to open-source\n    projects. He is the founder and current moderator of the  <a href=\"https://jugbd.org/\" target=\"_blank\"\n                                                               rel=\"nofollow noopener ugc\">&nbsp;Java User Group in\n        Bangladesh</a>. He has organized meetups and conferences to share Java-related knowledge with the community\n    since 2013. He was named Most Valuable Blogger (MVP) at&nbsp;  <a href=\"https://dzone.com/users/1298119/bazlur_rahman.html\" target=\"_blank\"\n            rel=\"nofollow noopener ugc\">DZone</a>, one of the most recognized technology publishers in the world.\n    Besides DZone, he is an editor for the Java Queue at&nbsp;  <a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\"\n            rel=\"nofollow noopener ugc\">InfoQ</a>, another leading technology content publisher and conference\n    organizer, and an editor at&nbsp; <a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\"\n                                        rel=\"nofollow noopener ugc\">Foojay.io</a>, a place for friends of OpenJDK. In\n    addition, he has published&nbsp; <a href=\"https://www.rokomari.com/book/129165/java-programming\" target=\"_blank\"\n                                       rel=\"nofollow noopener ugc\">four books</a>&nbsp;about the Java programming\n    language in Bengali; they were bestsellers in Bangladesh.</p>\n<p>He earned his bachelor&rsquo;s degree from the Institute of Information Technology, University of Dhaka, Bangladesh,\n    in Information Technology, majoring in Software Engineering. He currently lives in Toronto, Canada.</p>",
+      "bio": "<p><strong>A N M Bazlur Rahman</strong> is a Java Champion, Senior Staff Software Engineer at <a href=\"https://hammerspace.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Hammerspace</a>, and the founder of the <a href=\"https://jugbd.org/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Bangladesh Java User Group (JUGBD)</a>. He’s an active contributor to the global Java community, a published author of <em>Modern Concurrency in Java</em> with <a href=\"https://www.oreilly.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">O’Reilly Media</a>, and a contributing editor at <a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a> and <a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Foojay.io</a>.</p>\n<p>With over a decade of experience in distributed systems and backend development, Bazlur focuses on modern Java, concurrency, and large-scale system design. He’s a frequent speaker at international conferences, where he helps developers understand how to write efficient, concurrent, and elegant Java code.</p>\n<p>When he’s not coding or writing, Bazlur mentors new developers and contributes to open-source projects that strengthen the Java ecosystem.</p>",
       "talkTitle": "Your Java Code in the Fastlane: Project Loom\n",
       "abstract": "Project Loom introduces virtual threads, lightweight threads that aim to dramatically reduce the effort of writing, maintaining, and monitoring high-throughput concurrent applications with the Java platform.\n\nWe need threads to achieve high throughput. However, threads are not cheap and are limited in number. To get around this problem, various alternatives such as the reactive programming style have emerged. These techniques bypass creating a lot of threads at the expense of more difficult debugging. This makes developers grumpy. However, with virtual threads, we get the best of both worlds, cheap, lightweight threads and easy debugging, which would make developers happy again.\n\nThis talk will explore what virtual threads are, how they are implemented, how they solve our modern problems and what, if any, shortcomings there are.\n\n",
       "twitter": "bazlur_rahman",
@@ -68,34 +68,6 @@
       "company": "@bKash Limited",
       "companyWebsite": "https://www.bkash.com/",
       "image": "assets/images/speakers/moz.jpg"
-    },
-    {
-      "fullName": "Reza Rahman",
-      "name": "reza_rahman",
-      "bio": "<p>Reza Rahman is Principal Program Manager for Java on Azure at Microsoft. He works to make sure Java developers are first class citizens at Microsoft and Microsoft is a first class citizen of the Java ecosystem\n<p> Reza has been an official Java technologist at Oracle. He is the author of the popular book EJB 3 in Action from Manning Publishing. Reza has long been a frequent speaker at Java User Groups and conferences worldwide including JavaOne and Devoxx. He has been the lead for the Java EE track at JavaOne as well as a JavaOne Rock Star Speaker award recipient. He was the program chair for the inaugural JakartaOne conference. Reza is an avid contributor to industry journals like DZone. He has been a member of the Java EE, EJB and JMS expert groups over the years. Reza implemented the EJB container for the Resin open source Java EE application server. He helps lead the Philadelphia Java User Group. Reza is proud to be a founding member of the Jakarta EE Ambassadors.</p>\n<p>Reza has over a decade of experience with technology leadership, enterprise architecture and consulting. He has been working with Java EE technology since its inception, developing on almost every major application platform ranging from Tomcat to JBoss, GlassFish, WebSphere and WebLogic. Reza has developed enterprise systems for well-known companies like eBay, Motorola, Comcast, Nokia, Prudential, Guardian Life, USAA, Independence Blue Cross, Anthem, CapitalOne and AAA using Java EE and Spring. He is particularly interested in distributed systems, messaging, middleware, persistence and machine learning.</p>\n<p>Reza is an inductee to Phi Beta Kappa, the oldest and most respected national honor society for undergraduates in liberal arts and sciences. He earned his bachelors degree from&nbsp;Gettysburg College. He graduated Summa Cum Laude with a double major in Computer Science and Economics as well as a minor in Mathematics.</p>",
-      "talkTitle": "TBD\n",
-      "abstract": "TBD",
-      "twitter": "reza_rahman",
-      "linkedin": "https://www.linkedin.com/in/javareza/",
-      "website": "https://bazlur.ca/",
-      "title": "Principal Program Manager | Author, Speaker, Leader",
-      "company": "@Microsoft",
-      "companyWebsite": "https://news.microsoft.com/",
-      "image": "assets/images/speakers/RezaRahman.png"
-    },
-    {
-      "fullName": "Oronno Abdullah Al Mamun",
-      "name": "oronno_mamun",
-      "bio": "<strong>Abdullah Al Mamun Oronno</strong> is a Java Expert with 10+ years of professional working experience in the Java platform & Distributed System. He has vast experience developing large-scale application in both enterprise and consumer-facing business. When it comes to preferred tech stack, he likes to work with Spring, Spring Boot, JPA/Hibernate, Apache kafka, Redis, Docker & Kubernetes etc. Oronno's passions include clean code, scalable design and open source.\n",
-      "talkTitle": "TBD\n",
-      "abstract": "TBD",
-      "twitter": "oneous",
-      "linkedin": "https://www.linkedin.com/in/oronno/",
-      "website": "https://github.com/oronno",
-      "title": "Senior Software Engineer",
-      "company": "@Index Exchange",
-      "companyWebsite": "https://www.indexexchange.com/li",
-      "image": "assets/images/speakers/oronno.png"
     },
     {
       "fullName": "Mojahedul Hoque Abul Hasanat",
@@ -181,7 +153,7 @@
   "sessions": [
     {
       "time": "9:00 AM",
-      "duration": "60 min",
+      "duration": "50 min",
       "track": "keynote",
       "title": "The Future of Java: Beyond Java 21",
       "abstract": "Explore the exciting roadmap of Java's evolution, including Project Loom's virtual threads, pattern matching enhancements, and the revolutionary changes coming with Project Valhalla. This keynote will provide insights into how these features will transform the way we write Java applications, making them more efficient, maintainable, and expressive. We'll also discuss the impact of these changes on existing codebases and migration strategies.",
@@ -272,7 +244,7 @@
       "linkedin": "https://www.linkedin.com/in/md-nowshad-hasan/",
       "company": "@BizMotion",
       "companyWebsite": "https://www.biz-motion.com/",
-      "image": "assets/images/team/team05.png"
+      "image": "assets/images/team/team05.jpg"
     },
     {
       "fullName": "Abdullah Al Mamun Oronno",
@@ -286,7 +258,7 @@
       "linkedin": "https://www.linkedin.com/in/mh0s41n/",
       "company": "@bkash",
       "companyWebsite": "https://www.bkash.com/",
-      "image": "assets/images/team/team06.png"
+      "image": "assets/images/team/team06.jpg"
     },
     {
       "fullName": "C M Abdullah Khan",
@@ -322,6 +294,13 @@
       "company": "@BRAC IT",
       "companyWebsite": "https://www.bracits.com/",
       "image": "assets/images/team/team11.jpg"
+    },
+    {
+      "fullName": "Md Shahriar Hasan",
+      "linkedin": "https://www.linkedin.com/in/shahriarhasan808/",
+      "company": "@TekSoi Software Ltd",
+      "companyWebsite": "https://www.linkedin.com/company/teksoi/",
+      "image": "assets/images/team/team12.jpeg"
     }
   ],
 
@@ -332,7 +311,7 @@
     "map": "https://maps.app.goo.gl/ksLLdcir4VQWv4jE9",
     "mapEmbed": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.6620325323306!2d90.38290107609288!3d23.759428488428203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a648794c3d%3A0xf21993d3715834cd!2sKrishibid%20Institution%20Bangladesh!5e0!3m2!1sen!2sbd!4v1760735274834!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
     "address": {
-      "name": "Krishibid Institution Bangladesh",
+      "name": "2nd floor, KIB Auditorium",
       "street": "Khamar Bari Road",
       "city": "Dhaka, Bangladesh"
     }
