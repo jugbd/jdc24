@@ -5,6 +5,7 @@
 /* Page Header */
 .page-header {
     min-height: 60vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +60,7 @@
 /* Sessions Page Container */
 .sessions-page {
     max-width: 1400px;
+    min-width: 70%;
     margin: 0 auto;
     padding: 2rem 2rem 4rem;
 }

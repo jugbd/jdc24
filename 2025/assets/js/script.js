@@ -88,22 +88,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ============================================
 
 function initializeIntersectionObserver() {
+    // Fallback: if IntersectionObserver is not supported, reveal all sections immediately
+    if (typeof window.IntersectionObserver !== 'function') {
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('fade-in-section', 'visible');
+        });
+        return;
+    }
+
+    // Be more permissive so elements reveal as user scrolls down
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0, // trigger as soon as any pixel is visible
+        rootMargin: '0px 0px -20% 0px' // allow earlier trigger before fully in view
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                // Unobserve once visible to prevent repeated work
+                obs.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe all sections
+    // Observe all sections (including those without IDs, to avoid missing content)
     document.querySelectorAll('section').forEach(section => {
-        if (!section.id) return; // Skip sections without IDs
         section.classList.add('fade-in-section');
         observer.observe(section);
     });

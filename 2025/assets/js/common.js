@@ -189,48 +189,6 @@ function initializeSmoothScroll() {
 }
 
 // ===========================================
-// CUSTOM CURSOR
-// ============================================
-function initializeCustomCursor() {
-    const cursor = document.querySelector('.cursor');
-    const follower = document.querySelector('.cursor-follower');
-    let posX = 0;
-    let posY = 0;
-    let mouseX = 0;
-    let mouseY = 0;
-
-    if (!cursor || !follower) return;
-
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    requestAnimationFrame(function animate() {
-        posX += (mouseX - posX) / 9;
-        posY += (mouseY - posY) / 9;
-
-        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        follower.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
-
-        requestAnimationFrame(animate);
-    });
-
-
-    document.querySelectorAll('a, button, .filter-btn, .session-card, .menu-toggle').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('active');
-            follower.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('active');
-            follower.classList.remove('active');
-        });
-    });
-}
-
-
-// ===========================================
 // THEME TOGGLE FUNCTIONALITY (shared by all pages)
 // ============================================
 

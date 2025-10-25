@@ -75,7 +75,6 @@ footer,
     display: flex;
     align-items: center;
     padding: 0 4px;
-    margin-left: 20px;
 }
 
 .theme-toggle:hover {
@@ -494,12 +493,16 @@ section {
 
 .hero,
 .about,
-.speakers,
 .sponsors,
 .session-preview,
-#why-jdc,
-#our-team {
+#why-jdc
+{
     max-width: 1200px;
+}
+
+.speakers,
+#our-team {
+    max-width: 1400px;
 }
 
 /* About Section */
@@ -1686,8 +1689,8 @@ footer .social-link:hover {
 
 @media (max-width: 768px) {
     .nav-content {
-        padding: 0 20px;
-        position: relative; /* For positioning the popup menu */
+        padding: 0 16px;
+        position: static; /* Let nav be the positioned container so dropdown can span viewport */
     }
 
     .menu-toggle {
@@ -1697,24 +1700,27 @@ footer .social-link:hover {
 
     .nav-links {
         position: absolute;
-        top: calc(100% + 15px);
-        right: 15px;
-        width: 240px;
-        background: rgba(37, 37, 38, 0.85);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        top: calc(100% + 12px);
+        left: 16px;
+        right: 16px;
+        width: calc(100vw - 32px);
+        background: rgba(37, 37, 38, 0.9);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         flex-direction: column;
         align-items: stretch;
-        gap: 5px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        padding: 10px;
+        gap: 8px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55);
+        padding: 12px;
         opacity: 0;
         visibility: hidden;
-        transform: translateY(10px) scale(0.95);
-        transform-origin: top right;
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+        transform: translateY(10px) scale(0.98) translateZ(0);
+        transform-origin: top center;
+        transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1), transform 260ms cubic-bezier(0.22, 1, 0.36, 1), visibility 260ms;
+        will-change: opacity, transform;
+        backface-visibility: hidden;
         z-index: 1000;
     }
 
@@ -1728,8 +1734,16 @@ footer .social-link:hover {
         background: rgba(37, 37, 38, 0.85);
         border-top: 1px solid rgba(255, 255, 255, 0.2);
         border-left: 1px solid rgba(255, 255, 255, 0.2);
-        transform: rotate(45deg);
+        transform: rotate(45deg) translateY(-2px) scale(0.98);
+        opacity: 0;
+        transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1), transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
         z-index: -1;
+    }
+
+    .nav-links.active::before {
+        opacity: 1;
+        transform: rotate(45deg) translateY(0) scale(1);
     }
 
     .nav-links.active {
@@ -1740,36 +1754,79 @@ footer .social-link:hover {
 
     .nav-links a {
         font-size: 1rem;
-        padding: 12px 15px;
-        border-radius: 8px;
-        transition: background-color 0.2s ease, color 0.2s ease;
+        padding: 12px 16px;
+        border-radius: 10px;
         text-align: left;
         width: 100%;
+        /*min-height: 50px;*/
+        line-height: 30px;
+        display: block;
+        color: var(--text-dim);
+        background-color: rgba(255, 255, 255, 0.06);
+        transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
     }
 
     .nav-links a:hover,
     .nav-links a:focus {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.12);
         color: var(--primary);
+    }
+
+    .nav-links a:active {
+        transform: scale(0.99);
+    }
+
+    .nav-links a.active,
+    .nav-links a[aria-current="page"] {
+        background: linear-gradient(135deg, var(--accent), #ff6b6b);
+        color: #fff;
+    }
+
+    .nav-links a:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--accent);
     }
 
     .nav-links a::after {
         display: none;
     }
 
+    /* Light theme overrides for mobile menu items */
+    [data-theme="light"] .nav-links {
+        background: rgba(255, 255, 255, 0.9);
+        border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .nav-links a {
+        color: var(--primary);
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .nav-links a:hover,
+    [data-theme="light"] .nav-links a:focus {
+        background-color: rgba(0, 0, 0, 0.08);
+        color: var(--primary);
+    }
+
+    [data-theme="light"] .nav-links::before {
+        background: rgba(255, 255, 255, 0.9);
+        border-top-color: rgba(0, 0, 0, 0.08);
+        border-left-color: rgba(0, 0, 0, 0.08);
+    }
+
     body.menu-open {
         overflow: hidden;
     }
 
-    .menu-toggle.open span:nth-child(1) {
+    .menu-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(7px, 7px);
     }
 
-    .menu-toggle.open span:nth-child(2) {
+    .menu-toggle.active span:nth-child(2) {
         opacity: 0;
     }
 
-    .menu-toggle.open span:nth-child(3) {
+    .menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
     }
 
