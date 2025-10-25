@@ -3,7 +3,7 @@ const path = require('path');
 
 const directory = './'; // Root directory to scan
 const manifestFile = 'manifest.json';
-const allowedExtensions = ['.html', '.css', '.js', '.png', '.jpg', '.jpeg', '.svg', '.webp']; // File types to include
+const allowedExtensions = ['.html', '.css', '.js', '.png', '.jpg', '.jpeg', '.svg', '.webp', '.ico']; // File types to include
 
 const scanDirectory = (dir) => {
     let files = [];
