@@ -193,8 +193,8 @@ a:focus {
 
 .glow-orb {
     position: absolute;
-    max-width: 600px;
-    max-height: 600px;
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
     filter: blur(80px);
     opacity: 0.4;
@@ -374,7 +374,7 @@ nav.scrolled {
 .hero-title {
     font-size: clamp(3rem, 8vw, 4.5rem);
     font-weight: 900;
-    line-height: 1;
+    line-height: 1.5;
     margin-bottom: 20px;
     background: linear-gradient(135deg, #fff, var(--text-dim));
     -webkit-background-clip: text;
@@ -1005,12 +1005,16 @@ body.modal-open {
     }
 
     .speakers-grid > .speaker-card {
-        flex: 1 1 200px;
-        max-width: 200px;
+        flex: 1 1 180px;
+        max-width: 180px;
     }
 
     .speaker-image {
-        height: 200px;
+        height: 180px;
+    }
+
+    .speaker-name {
+        font-size: 1rem;
     }
 }
 
@@ -1343,7 +1347,7 @@ body.modal-open {
 
 @media (max-width: 700px) {
     #our-team {
-        padding: 60px 8px 40px 8px;
+        padding: 60px 16px 40px 16px;
     }
 
     .team-grid {
