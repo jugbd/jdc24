@@ -331,4 +331,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeNavbarScroll();
     initializeSmoothScroll();
     initializeCustomCursor();
+
+    // Centralized Service Worker registration for all pages in /2025/
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(registration => {
+                    console.log('ServiceWorker registered with scope:', registration.scope);
+                })
+                .catch(err => {
+                    console.warn('ServiceWorker registration failed:', err);
+                });
+        });
+    }
 });

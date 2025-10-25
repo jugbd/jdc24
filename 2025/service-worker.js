@@ -1,9 +1,9 @@
-const CACHE_NAME = 'site-cache-1761331393'; // Update this when you want to bust the cache
+const CACHE_NAME = 'cache-v1761385858'; // Update this when you want to bust the cache
 
 // Install Event - Cache new assets
 self.addEventListener('install', event => {
     event.waitUntil(
-        fetch('manifest.json')
+        fetch('manifest.json', { cache: 'no-store' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch manifest.json');
@@ -11,12 +11,20 @@ self.addEventListener('install', event => {
                 return response.json();
             })
             .then(data => {
+                // Exclude files that must never be cached to avoid blocking updates
+                const assetsToCache = (data.assets || []).filter(url => {
+                    const u = url.toLowerCase();
+                    return !(
+                        u.endsWith('service-worker.js') ||
+                        u.endsWith('manifest.json')
+                    );
+                });
                 return caches.open(CACHE_NAME).then(cache => {
-                    return cache.addAll(data.assets);
+                    return cache.addAll(assetsToCache);
                 });
             })
             .catch(error => {
-                console.error('Error during install');
+                console.error('Error during install', error);
             })
     );
     // Force the waiting service worker to become active
@@ -45,6 +53,14 @@ self.addEventListener('activate', event => {
 
 // Fetch Event - Serve from cache or fetch and cache
 self.addEventListener('fetch', event => {
+    const reqUrl = new URL(event.request.url);
+
+    // Always bypass cache for the service worker and manifest to ensure updates
+    if (reqUrl.pathname.endsWith('/service-worker.js') || reqUrl.pathname.endsWith('/manifest.json')) {
+        event.respondWith(fetch(event.request, { cache: 'no-store' }));
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
             if (cachedResponse) {
@@ -60,7 +76,7 @@ self.addEventListener('fetch', event => {
                 });
             });
         }).catch(error => {
-            console.error('Fetch failed:');
+            console.error('Fetch failed:', error);
         })
     );
 });
