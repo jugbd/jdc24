@@ -19,7 +19,6 @@
     --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --transition-speed: 0.4s; /* Added for smooth theme transition */
-
 }
 
 /* Light Mode Colors */
@@ -157,6 +156,10 @@ body {
     color: var(--primary);
     overflow-x: hidden;
     cursor: default;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
 }
 
 a {
@@ -191,12 +194,19 @@ a:focus {
 
 .glow-orb {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    max-width: 600px;
+    max-height: 600px;
     border-radius: 50%;
     filter: blur(80px);
     opacity: 0.4;
     animation: float 20s infinite ease-in-out;
+}
+
+@media screen and (max-width: 600px) {
+    .glow-orb {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .orb1 {
@@ -288,6 +298,7 @@ nav.scrolled {
     display: flex;
     gap: 40px;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links a {
@@ -362,7 +373,7 @@ nav.scrolled {
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(3rem, 8vw, 4.5rem);
     font-weight: 900;
     line-height: 1;
     margin-bottom: 20px;
@@ -477,19 +488,32 @@ nav.scrolled {
     }
 }
 
+section {
+    padding: 5rem 1rem;
+}
+
+.hero,
+.about,
+.speakers,
+.sponsors,
+.session-preview,
+#why-jdc,
+#our-team {
+    max-width: 1200px;
+}
+
 /* About Section */
 .about {
-    padding: 120px 50px;
-    max-width: 1400px;
     margin: 0 auto;
-    position: relative;
+    display: flex;
+    width: 100%;
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 80px;
     align-items: center;
+    max-width: 45rem;
 }
 
 .about-text {
@@ -519,6 +543,13 @@ nav.scrolled {
     backdrop-filter: blur(10px);
 }
 
+.section-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2rem 0 1rem;
+    color: var(--accent)
+}
+
 .section-title {
     font-size: 3rem;
     font-weight: 800;
@@ -540,9 +571,15 @@ nav.scrolled {
 
 /* Gallery Section */
 #gallery {
-    padding: 120px 1rem;
     position: relative;
     text-align: center;
+    width: 90rem;
+}
+
+@media screen and (max-width: 90rem) {
+    #gallery {
+        width: 100%;
+    }
 }
 
 .gallery-header {
@@ -654,8 +691,6 @@ nav.scrolled {
 
 /* Speakers Section */
 .speakers {
-    padding: 120px 50px;
-    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -668,14 +703,14 @@ nav.scrolled {
     /* Switched from CSS Grid to Flexbox to center-align the last row */
     display: flex;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 2rem;
     justify-content: center; /* Ensures the last row is centered */
 }
 
 /* Ensure consistent responsive sizing for speaker/team cards inside flex container */
 .speakers-grid > .speaker-card {
     flex: 1 1 300px; /* target ~300px width, allow wrapping */
-    max-width: 420px; /* prevent cards from stretching too wide on large screens */
+    max-width: 300px; /* prevent cards from stretching too wide on large screens */
 }
 
 .speaker-card {
@@ -724,7 +759,7 @@ nav.scrolled {
 }
 
 .speaker-info {
-    padding: 30px;
+    padding: 1rem;
 }
 
 .speaker-name {
@@ -964,118 +999,23 @@ body.modal-open {
     overflow: hidden;
 }
 
+@media screen and (max-width: 650px) {
+    .speakers-grid {
+        gap: 1rem;
+    }
 
-/*
-@keyframes auto-slide {
-    0%, 28% { transform: translateX(0%); }      !* Slide 1 *!
-    33%, 61% { transform: translateX(-100%); }   !* Slide 2 *!
-    66%, 94% { transform: translateX(-200%); }   !* Slide 3 *!
-    100% { transform: translateX(0%); }         !* Return to start *!
-}
-*/
+    .speakers-grid > .speaker-card {
+        flex: 1 1 200px;
+        max-width: 200px;
+    }
 
-/*.modern-carousel-container {
-    position: relative;
-    width: 70%;
-    max-width: 70%;
-    margin: 0 auto;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 25px;
-    background: var(--gradient-2);
-}
-
-.modern-carousel-track {
-    display: flex;
-    animation: auto-slide 15s infinite ease-in-out;
-    width: 300%;
-    will-change: transform;
-}
-
-.modern-carousel-slide {
-    min-width: 70vw;
-    !*
-    height: 800px;
-    *!
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.modern-carousel-image {
-    width: 100vw;
-    height: 700px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.modern-carousel-btn {
-    display: none;
-}
-
-.modern-carousel-indicators {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    padding: 15px 25px;
-    border-radius: 50px;
-    border: 1px solid var(--glass-border);
-}
-
-.modern-carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.modern-carousel-dot:hover {
-    background: rgba(255, 255, 255, 0.7);
-    transform: scale(1.2);
-}
-
-.modern-carousel-dot.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    width: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 20px var(--accent-glow);
-}
-
-@media (max-width: 900px) {
-    .modern-carousel-slide, .modern-carousel-image {
-        height: 50vw;
-        max-height: 60vh;
+    .speaker-image {
+        height: 200px;
     }
 }
-@media (max-width: 600px) {
-    .modern-carousel-slide, .modern-carousel-image {
-        height: 60vw;
-        max-height: 40vh;
-    }
-    .modern-carousel-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 1.5rem;
-    }
-}*/
 
 /* Why JDC Section - Card Layout */
 #why-jdc {
-    padding: 6rem 2rem;
-    max-width: 1200px;
     margin: 0 auto;
     text-align: left;
 }
@@ -1101,33 +1041,23 @@ body.modal-open {
 }
 
 .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
 }
 
 .why-card {
-    background: rgba(42, 47, 76, 0.55);
+    background: rgba(108, 118, 180, 0.55);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 15px;
     padding: 2.5rem 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    position: relative;
-    overflow: hidden;
     z-index: 1;
-}
-
-.why-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 15px;
-    border: 2px solid transparent;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 300px;
+    min-height: 150px;
 }
 
 .why-card:hover {
@@ -1148,18 +1078,18 @@ body.modal-open {
 
 .why-card-body {
     font-size: 1rem;
-    color: #a9b3d2;
+    color: #e7ecff;
     line-height: 1.6;
     margin: 0;
 }
 
 /* Countdown Section */
 .countdown {
-    padding: 120px 50px;
     text-align: center;
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .countdown::before {
@@ -1167,8 +1097,8 @@ body.modal-open {
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 200%;
-    height: 200%;
+    width: 150%;
+    height: 150%;
     background: radial-gradient(circle, rgba(255, 0, 64, 0.1) 0%, transparent 70%);
     animation: rotate 30s linear infinite;
 }
@@ -1194,8 +1124,8 @@ body.modal-open {
 }
 
 .timer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     max-width: 800px;
     margin: 0 auto 60px;
@@ -1208,6 +1138,8 @@ body.modal-open {
     border-radius: 20px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 .timer-block:hover {
@@ -1242,16 +1174,23 @@ body.modal-open {
 
 /* Venue Section */
 .venue {
-    padding: 120px 50px;
-    max-width: 1400px;
     margin: 0 auto;
 }
 
 .venue-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 80px;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90vw;
+}
+
+.venue-info,
+.venue-map {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 40%;
 }
 
 .venue-info {
@@ -1263,7 +1202,7 @@ body.modal-open {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    height: 500px;
+    height: 480px;
     background: var(--glass);
     border: 1px solid var(--glass-border);
 }
@@ -1296,8 +1235,6 @@ body.modal-open {
 
 /* Our Team Section */
 #our-team {
-    padding: 100px 30px 80px 30px;
-    max-width: 1400px;
     margin: 0 auto;
     position: relative;
     text-align: center;
@@ -1415,10 +1352,9 @@ body.modal-open {
    ============================================ */
 
 #session {
-    padding: 120px 50px;
-    max-width: 1400px;
     margin: 0 auto;
     position: relative;
+    width: 100%;
 }
 
 .session-preview-header {
@@ -1434,12 +1370,13 @@ body.modal-open {
     line-height: 1.8;
 }
 
-.session-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
+/* todo: fix when updating sessions */
+/*.session-preview-grid {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));*/
+/*    gap: 2rem;*/
+/*    margin-bottom: 3rem;*/
+/*}*/
 
 .session-preview-card {
     background: var(--glass);
@@ -1674,7 +1611,10 @@ footer::before {
 }
 
 /* Copied hover sweep from .cta-button to ensure consistency and fix broken effect */
-footer .social-link { z-index: 0; }
+footer .social-link {
+    z-index: 0;
+}
+
 footer .social-link::before {
     content: '';
     position: absolute;
@@ -1686,9 +1626,11 @@ footer .social-link::before {
     transition: left 0.5s ease;
     pointer-events: none;
 }
+
 footer .social-link:hover::before {
     left: 100%;
 }
+
 footer .social-link:hover {
     color: var(--primary);
     transform: translateY(-3px);
@@ -1716,7 +1658,7 @@ footer .social-link:hover {
     }
 
     .venue-content {
-        grid-template-columns: 1fr;
+        flex-grow: 1;
     }
 
     .venue-info {
@@ -1726,6 +1668,19 @@ footer .social-link:hover {
     .venue-map {
         order: 2;
         height: 400px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .venue-content {
+        width: 100%;
+    }
+
+    .venue-info,
+    .venue-map {
+        flex-grow: 1;
+        flex-basis: 0;
+        min-width: 100%;
     }
 }
 
@@ -1997,8 +1952,6 @@ body.menu-open::before {
 
 /* Sponsors Section */
 #sponsors {
-    padding: 100px 40px;
-    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
 }
@@ -2038,23 +1991,4 @@ body.menu-open::before {
 /* Logo styling */
 .sponsor-logo {
     object-fit: contain;
-}
-
-
-/* ============================================
-   Our Team card sizing fixes
-   Prevent last-row stretching by disabling flex-grow for cards
-   This scope only affects the Our Team section populated with
-   .speakers-grid and .speaker-card via JS, leaving Speakers untouched.
-   ============================================ */
-#our-team .speakers-grid > .speaker-card {
-    /* Keep consistent card width across all rows in Our Team */
-    flex: 0 1 300px; /* no grow, allow shrink if needed */
-    max-width: 300px; /* align width across rows */
-}
-
-/* In case .team-grid is used for Our Team in the future, keep sizes consistent */
-#our-team .team-grid > .team-card {
-    flex: 0 1 220px; /* no grow, allow shrink */
-    max-width: 220px;
 }

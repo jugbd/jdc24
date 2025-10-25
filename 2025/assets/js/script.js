@@ -635,11 +635,15 @@ const populateSponsors = (sponsors) => {
     sectionTag.classList.add('section-tag');
     sectionTag.innerHTML = "Partners & Sponsors";
 
-    const title = document.createElement('h2');
-    title.innerHTML = "Fueling the Future of Java. This year our proud sponsor";
+    const subtitle = document.createElement('h2');
+    const title = document.createElement('h1');
+    subtitle.innerHTML = "Fueling the Future of Java";
+    title.innerHTML = "This year our proud sponsor";
+    subtitle.classList.add('section-subtitle');
     title.classList.add('section-title', 'gradient-text');
 
     header.appendChild(sectionTag);
+    header.appendChild(subtitle);
     header.appendChild(title);
     sponsorsSection.appendChild(header);
 

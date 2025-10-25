@@ -332,37 +332,38 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSmoothScroll();
     initializeCustomCursor();
 
-    // Centralized Service Worker registration for all pages in /2025/
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('service-worker.js')
-                .then(registration => {
-                    console.log('[SW] Registered with scope:', registration.scope);
-
-                    // Proactively check for updates
-                    try { registration.update(); } catch (_) {}
-
-                    // Check again whenever tab becomes visible
-                    document.addEventListener('visibilitychange', () => {
-                        if (document.visibilityState === 'visible') {
-                            try { registration.update(); } catch (_) {}
-                        }
-                    });
-
-                    // Listen for new worker becoming active → reload page
-                    registration.addEventListener('updatefound', () => {
-                        const newWorker = registration.installing;
-                        if (!newWorker) return;
-
-                        newWorker.addEventListener('statechange', () => {
-                            if (newWorker.state === 'activated') {
-                                console.log('[SW] New version activated → reloading...');
-                                window.location.reload();
-                            }
-                        });
-                    });
-                })
-                .catch(err => console.warn('[SW] Registration failed:', err));
-        });
-    }
+    // TODO: enable service worker
+    // // Centralized Service Worker registration for all pages in /2025/
+    // if ('serviceWorker' in navigator) {
+    //     window.addEventListener('load', () => {
+    //         navigator.serviceWorker.register('service-worker.js')
+    //             .then(registration => {
+    //                 console.log('[SW] Registered with scope:', registration.scope);
+    //
+    //                 // Proactively check for updates
+    //                 try { registration.update(); } catch (_) {}
+    //
+    //                 // Check again whenever tab becomes visible
+    //                 document.addEventListener('visibilitychange', () => {
+    //                     if (document.visibilityState === 'visible') {
+    //                         try { registration.update(); } catch (_) {}
+    //                     }
+    //                 });
+    //
+    //                 // Listen for new worker becoming active → reload page
+    //                 registration.addEventListener('updatefound', () => {
+    //                     const newWorker = registration.installing;
+    //                     if (!newWorker) return;
+    //
+    //                     newWorker.addEventListener('statechange', () => {
+    //                         if (newWorker.state === 'activated') {
+    //                             console.log('[SW] New version activated → reloading...');
+    //                             window.location.reload();
+    //                         }
+    //                     });
+    //                 });
+    //             })
+    //             .catch(err => console.warn('[SW] Registration failed:', err));
+    //     });
+    // }
 });
