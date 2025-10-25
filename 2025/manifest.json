@@ -43,7 +43,6 @@
     "assets/js/sessions.js",
     "generate-manifest.js",
     "index.html",
-    "service-worker.js",
     "sessions.html"
   ]
 }

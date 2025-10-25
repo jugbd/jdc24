@@ -9,6 +9,10 @@ const scanDirectory = (dir) => {
     let files = [];
     fs.readdirSync(dir).forEach(file => {
         const fullPath = path.join(dir, file);
+        if (fullPath.includes('service-worker.js') || fullPath.includes('manifest.json')) {
+            // Don't include service worker in the manifest.json
+            return;
+        }
         if (fs.statSync(fullPath).isDirectory()) {
             files = files.concat(scanDirectory(fullPath)); // Recursive call for subdirectories
         } else if (allowedExtensions.includes(path.extname(fullPath))) {
