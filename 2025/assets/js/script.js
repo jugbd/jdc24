@@ -184,7 +184,7 @@ const populateAbout = (aboutContent) => {
     title.classList.add('section-title', 'gradient-text');
     title.innerHTML = aboutContent.title;
 
-    const description = document.createElement("p");
+    const description = document.createElement("div");
     description.classList.add('about-description');
     description.innerHTML = aboutContent.description;
 
