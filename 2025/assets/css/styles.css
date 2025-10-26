@@ -256,15 +256,20 @@ nav {
     padding: 20px 0px;
     z-index: 1000;
     backdrop-filter: blur(20px);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+    background: linear-gradient(to bottom, rgba(196, 201, 255, 0.7), transparent);
     transition: all 0.3s ease;
 }
 
+[data-theme="dark"] nav {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+}
+
 nav.scrolled {
-    background: rgba(30, 30, 30, 0.3); /* More transparent for glass effect */
+    background: rgba(255, 255, 255, 0.2); /* More transparent for glass effect */
     backdrop-filter: blur(20px);
     padding: 5px 0;
     transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .nav-content {
@@ -846,8 +851,8 @@ section {
     right: 20px;
     width: 40px;
     height: 40px;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
+    background: transparent;
+    border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -869,6 +874,11 @@ section {
     width: 20px;
     height: 2px;
     background: var(--primary);
+}
+
+.speaker-modal-close:hover::before,
+.speaker-modal-close:hover::after {
+    background: #ffffff;
 }
 
 .speaker-modal-close::before {
