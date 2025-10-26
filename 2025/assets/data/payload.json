@@ -31,7 +31,7 @@
       "fullName": "A N M Bazlur Rahman",
       "name": "bazlur_rahman",
       "bio": "<p><strong>A N M Bazlur Rahman</strong> is a Java Champion, Senior Staff Software Engineer at <a href=\"https://hammerspace.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Hammerspace</a>, and the founder of the <a href=\"https://jugbd.org/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Bangladesh Java User Group (JUGBD)</a>. He’s an active contributor to the global Java community, a published author of <em>Modern Concurrency in Java</em> with <a href=\"https://www.oreilly.com/\" target=\"_blank\" rel=\"nofollow noopener ugc\">O’Reilly Media</a>, and a contributing editor at <a href=\"https://www.infoq.com/profile/A-N-M-Bazlur-Rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a> and <a href=\"https://foojay.io/today/author/bazlur-rahman/\" target=\"_blank\" rel=\"nofollow noopener ugc\">Foojay.io</a>.</p>\n<p>With over a decade of experience in distributed systems and backend development, Bazlur focuses on modern Java, concurrency, and large-scale system design. He’s a frequent speaker at international conferences, where he helps developers understand how to write efficient, concurrent, and elegant Java code.</p>\n<p>When he’s not coding or writing, Bazlur mentors new developers and contributes to open-source projects that strengthen the Java ecosystem.</p>",
-      "talkTitle": "Your Java Code in the Fastlane: Project Loom\n",
+      "talkTitle": "Your Java Code in the Fastlane: Project Loom",
       "abstract": "Project Loom introduces virtual threads, lightweight threads that aim to dramatically reduce the effort of writing, maintaining, and monitoring high-throughput concurrent applications with the Java platform.\n\nWe need threads to achieve high throughput. However, threads are not cheap and are limited in number. To get around this problem, various alternatives such as the reactive programming style have emerged. These techniques bypass creating a lot of threads at the expense of more difficult debugging. This makes developers grumpy. However, with virtual threads, we get the best of both worlds, cheap, lightweight threads and easy debugging, which would make developers happy again.\n\nThis talk will explore what virtual threads are, how they are implemented, how they solve our modern problems and what, if any, shortcomings there are.\n\n",
       "twitter": "bazlur_rahman",
       "linkedin": "https://www.linkedin.com/in/bazlur/",
@@ -64,7 +64,7 @@
       "twitter": "mozammel",
       "linkedin": "https://www.linkedin.com/in/mozammel/",
       "website": "https://mozammelhaque.com/",
-      "title": "EVP, Head of Department, Software Research and Engineering, Product & Technology\n",
+      "title": "EVP, Head of Department, Software Research and Engineering, Product & Technology",
       "company": "@bKash Limited",
       "companyWebsite": "https://www.bkash.com/",
       "image": "assets/images/speakers/moz.jpg"

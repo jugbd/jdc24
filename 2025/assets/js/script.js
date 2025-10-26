@@ -434,7 +434,7 @@ const populateSpeakers = (speakers) => {
             <img src="${speaker.image}" alt="${speaker.fullName}" class="speaker-image" loading="lazy">
             <div class="speaker-info">
                 <h3 class="speaker-name">${speaker.fullName}</h3>
-                <p class="speaker-title">${speaker.company}</p>
+                <p class="speaker-company">${speaker.company}</p>
             </div>
         `;
 
@@ -625,7 +625,7 @@ const populateTeam = (teamMembers) => {
             <img src="${member.image}" alt="${member.fullName}" class="speaker-image" loading="lazy">
             <div class="speaker-info">
                 <h3 class="speaker-name">${member.fullName}</h3>
-                <p class="speaker-title">${member.company}</p>
+                <p class="speaker-company">${member.company}</p>
             </div>
         `;
 
