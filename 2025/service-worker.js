@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-v17613878400'; // ⬅️ bump this on each deploy to bust cache
+const CACHE_NAME = 'cache-v17613878404'; // ⬅️ bump this on each deploy to bust cache
 
 // ---- INSTALL ----
 self.addEventListener('install', event => {
@@ -18,7 +18,31 @@ self.addEventListener('install', event => {
                         u.endsWith('manifest.json')
                     );
                 });
-                return caches.open(CACHE_NAME).then(cache => cache.addAll(assetsToCache));
+
+                if (!assetsToCache.length) return; // nothing to cache
+
+                // Cache assets individually so one failure doesn't fail the whole install
+                return caches.open(CACHE_NAME).then(async cache => {
+                    const results = await Promise.all(
+                        assetsToCache.map(async (url) => {
+                            try {
+                                // Using cache.add to respect request defaults and handle relative URLs
+                                await cache.add(url);
+                                return {url, ok: true};
+                            } catch (e) {
+                                console.warn('[SW] Skipping asset (failed to cache):', url, e);
+                                return {url, ok: false, error: e};
+                            }
+                        })
+                    );
+
+                    const failed = results.filter(r => !r.ok);
+                    if (failed.length) {
+                        console.warn(`[SW] Cached ${results.length - failed.length}/${results.length} assets. Some assets failed during install.`);
+                    } else {
+                        console.log(`[SW] Cached ${results.length} assets successfully.`);
+                    }
+                });
             })
             .catch(err => console.error('[SW] Install error:', err))
     );
