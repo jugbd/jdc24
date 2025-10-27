@@ -21,7 +21,6 @@
     --transition-speed: 0.4s; /* Added for smooth theme transition */
 
     --speaker-image-size: 240px;
-    --speaker-image-size-s: 180px;
 }
 
 /* Light Mode Colors */
@@ -1016,11 +1015,11 @@ body.modal-open {
     }
 
     .speakers-grid > .speaker-card {
-        flex: 0 0 var(--speaker-image-size-s);
+        flex: 1 1 150px;
     }
 
     .speaker-card {
-        width: var(--speaker-image-size-s);
+        max-width: 180px;
     }
 
     .speaker-name {
@@ -2056,8 +2055,9 @@ body.menu-open::before {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    min-width: 400px;
+    min-width: 300px;
     max-width: 400px;
+    flex-grow: 1;
     position: relative;
     overflow: hidden;
 }

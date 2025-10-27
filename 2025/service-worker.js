@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-v17613878357'; // ⬅️ bump this on each deploy to bust cache
+const CACHE_NAME = 'cache-v17613878400'; // ⬅️ bump this on each deploy to bust cache
 
 // ---- INSTALL ----
 self.addEventListener('install', event => {
