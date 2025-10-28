@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-v17613878404'; // ⬅️ bump this on each deploy to bust cache
+const CACHE_NAME = 'cache-v17613878500'; // ⬅️ bump this on each deploy to bust cache
 
 // ---- INSTALL ----
 self.addEventListener('install', event => {
@@ -80,6 +80,10 @@ self.addEventListener('fetch', event => {
         return;
     }
 
+    if (!event.request.url.startsWith('http')) {
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request).then(cached => {
             if (cached) return cached;
@@ -88,7 +92,8 @@ self.addEventListener('fetch', event => {
                 if (!response || response.status !== 200 || response.type !== 'basic') return response;
 
                 const cloned = response.clone();
-                caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned));
+                caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned)).catch(() => {
+                });
                 return response;
             });
         }).catch(err => console.error('[SW] Fetch failed:', err))
