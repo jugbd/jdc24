@@ -109,6 +109,55 @@
     padding: 0 2rem;
 }
 
+.sessions-grid h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.sessions-grid-content {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.sessions-grid .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.sessions-grid .section-subtitle {
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: var(--text-dim);
+    line-height: 1.8;
+}
+
+.sessions-grid .btn-primary {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), #ff6b6b);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3);
+    max-width: 250px;
+    text-align: center;
+}
+
+.sessions-grid .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(255, 0, 64, 0.4);
+}
+
+.sessions-grid .section-background {
+    background: rgb(248, 242, 228);
+}
+
 /* Session Card */
 .session-card {
     background: var(--glass);
@@ -116,7 +165,6 @@
     border-radius: 24px;
     overflow: hidden;
     transition: all 0.4s ease;
-    cursor: pointer;
     position: relative;
     animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
@@ -145,11 +193,11 @@
 }
 
 .session-content {
-    padding: 2rem;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 2rem;
     align-items: start;
+    padding: 2rem;
 }
 
 /* Time Badge */
@@ -206,38 +254,69 @@
     line-height: 1.8;
     margin-bottom: 1.5rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* show 5 lines by default */
     overflow: hidden;
-    transition: all 0.3s ease;
+    position: relative; /* allow absolute positioning of the inline control */
+    /* Reserve space on the right for the inline See more to avoid overlap */
+    padding-right: 5.25em;
 }
 
+/* Expanded state shows full abstract */
 .session-card.expanded .session-abstract {
-    -webkit-line-clamp: unset;
+    display: block;
+    -webkit-line-clamp: initial;
+    overflow: visible;
+    /* Keep the same measure as collapsed state to avoid line-length shift */
+}
+
+/* Ensure minimal line gap between paragraphs inside session abstracts */
+.session-abstract p {
+    margin: 0 0 0.4rem; /* minimal bottom gap */
+}
+.session-abstract p:last-child {
+    margin-bottom: 0; /* no extra space after the last paragraph */
 }
 
 .read-more {
+    background: transparent;
+    border: none;
     color: var(--accent);
+    font: inherit;
     font-weight: 600;
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: gap 0.3s ease;
+    display: inline;
+    padding: 0;
     user-select: none;
+    text-decoration: none;
+    white-space: nowrap; /* keep inline text on a single line */
+    line-height: 1.8;
 }
 
-.read-more:hover {
-    gap: 1rem;
+/* Position the control at the end of the clamped text */
+.session-abstract .read-more {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.read-more:hover,
+.read-more:focus {
+    text-decoration: underline;
 }
 
 .read-more::after {
-    content: '→';
-    transition: transform 0.3s ease;
+    content: ' →';
 }
 
 .session-card.expanded .read-more::after {
-    content: '↑';
+    content: ' ↑';
+}
+
+/* In expanded state, place the control after the full text */
+.session-card.expanded .session-abstract .read-more {
+    position: static;
+    margin-top: 0.5rem;
 }
 
 /* Speaker Info */
@@ -248,15 +327,40 @@
     padding-top: 1.5rem;
     border-top: 1px solid var(--glass-border);
     margin-top: 1.5rem;
+    cursor: pointer; /* Make it clear it's clickable */
+    user-select: none;
+    transition: transform 0.2s ease;
 }
 
+/* Larger avatar size for better visibility on Sessions page */
 .speaker-avatar {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--accent);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Explicit large variant if used elsewhere */
+.speaker-avatar-large {
+    width: 88px;
+    height: 88px;
+}
+
+/* Hover and focus effects to encourage clicking for bio */
+.session-speaker:hover .speaker-avatar,
+.session-speaker:focus-visible .speaker-avatar {
+    transform: scale(1.06);
+    box-shadow: 0 10px 24px rgba(102, 126, 234, 0.5);
+    border-color: #8ea2ff;
+}
+
+.session-speaker:focus-visible {
+    outline: 3px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 4px;
+    border-radius: 14px;
 }
 
 .speaker-details {
@@ -492,4 +596,25 @@
 .session-card.coming-soon .session-category {
     margin-left: auto;
     margin-right: auto;
+}
+
+[data-theme="dark"] .sessions-grid .section-background {
+    background: #2c2c2c;
+}
+
+
+/* Background fade removed as requested */
+.session-abstract::after {
+    content: none;
+    display: none;
+}
+
+/* Responsive: slightly reduce reserved space on very small screens */
+@media (max-width: 480px) {
+    .session-abstract {
+        padding-right: 4.25em;
+    }
+    .session-abstract::after {
+        width: 4.25em;
+    }
 }

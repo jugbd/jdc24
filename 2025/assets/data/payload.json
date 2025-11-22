@@ -24,7 +24,10 @@
     "assets/images/gallery/08-slider.jpg",
     "assets/images/gallery/09-slider.jpg",
     "assets/images/gallery/10-slider.jpg",
-    "assets/images/gallery/11-slider.jpg"
+    "assets/images/gallery/11-slider.jpg",
+    "assets/images/gallery/12-slider..jpg",
+    "assets/images/gallery/13-slider..jpg",
+    "assets/images/gallery/14-slider..jpg"
   ],
   "speakers": [
     {
@@ -92,7 +95,7 @@
       "twitter": "",
       "linkedin": "https://www.linkedin.com/in/shaaf",
       "website": "https://shaaf.dev",
-      "title": "Developer Advocate",
+      "title": "Sr. Principal Developer Advocate | Red Hat",
       "company": "@Red Hat",
       "companyWebsite": "https://www.redhat.com",
       "image": "assets/images/speakers/shaaf.jpg"
@@ -150,71 +153,121 @@
       "website": "https://www.dsinnovators.com/"
     }
   ],
+  "sessionPreview": [
+    "From 21 to 25: What Modern Java Looks Like Today",
+    "Building Platforms, Breaking Barriers: My DevOps Journey"
+  ],
   "sessions": [
     {
-      "time": "9:00 AM",
-      "duration": "50 min",
-      "track": "keynote",
-      "title": "The Future of Java: Beyond Java 21",
-      "abstract": "Explore the exciting roadmap of Java's evolution, including Project Loom's virtual threads, pattern matching enhancements, and the revolutionary changes coming with Project Valhalla. This keynote will provide insights into how these features will transform the way we write Java applications, making them more efficient, maintainable, and expressive. We'll also discuss the impact of these changes on existing codebases and migration strategies.",
+      "time": "10:30 AM",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "From 21 to 25: What Modern Java Looks Like Today",
+      "abstract": "<p>Java has changed faster in the last few years than it ever has before. Moving from Java 21 to Java 25 brings meaningful improvements across the language, runtime, and developer experience. This session walks through the changes that matter in real projects. We’ll look at the refinements in pattern matching, records, and unnamed patterns, explore how virtual threads and structured concurrency reshape server-side design, and see the first practical impact of Project Valhalla’s primitive classes. We’ll also cover developer-friendly additions like Compact Source Files and instance main methods, which make Java lighter and easier to use for scripting and quick utilities. Along the way, we’ll highlight updates to the Foreign Function & Memory API and the JVM performance gains that arrive in the latest release. By the end, you’ll have a clear picture of what modern Java looks like today and how to adopt these features confidently.</p>",
       "speaker": {
-        "name": "Dr. Sarah Chen",
-        "role": "Principal Engineer, Oracle",
-        "image": "./assets/images/speakers/speaker1.jpg"
+        "name": "A N M Bazlur Rahman",
+        "role": "Senior Staff Software Engineer | Hammerspace",
+        "image": "./assets/images/speakers/rokon.png",
+        "bio": ""
       },
-      "tags": ["Java 21+", "Project Loom", "Future Trends"]
+      "tags": [
+        "Java 21/25",
+        "Virtual Threads",
+        "Project Valhalla",
+        "Language Updates"
+      ]
     },
     {
-      "time": "10:30 AM",
-      "duration": "45 min",
-      "track": "technical",
-      "title": "Microservices Architecture with Spring Boot 3.2",
-      "abstract": "Deep dive into building scalable microservices using Spring Boot 3.2 and Spring Cloud. Learn about service discovery, load balancing, circuit breakers, and distributed tracing. We'll cover practical patterns for handling inter-service communication, data consistency, and fault tolerance in a microservices ecosystem.",
+      "time": "11:15 AM",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "Context Engineering with Java and DuckDB",
+      "abstract": "<p>Now that LLMs dominate headlines, what is the Java developer’s role? An LLM is an ocean of knowledge with occasional illusions. It does not know your business rules, policies, or transaction semantics. If you want it to help real accountants or domain experts, you must supply your context and the reasoning over that context. That is context engineering.</p><p>Just as an RDBMS holds application metadata, LLM applications need two additional stores. A Graph DB captures relationships and policy scope: parent, sibling, neighbor, depth. A Vector DB holds domain documents and records for semantic retrieval. For any goal, you assemble the right facts and the reasoning path, then feed both to the model.</p><p>In this session we build a thin Context ORM in Java that can parse domain documents, index entities and relationships into a Graph DB, embed documents and records into a Vector DB, and provide a retrieval mechanism that stitches the right context and reasoning into prompts. We use Spring AI, DuckDB with vector search, and a small business domain with dummy data. You will see how to ground answers in your rules, test them, audit them, and make LLM output reliable for real work.</p>",
       "speaker": {
-        "name": "Michael Rodriguez",
-        "role": "Senior Architect, Pivotal",
-        "image": "./assets/images/speakers/speaker2.jpg"
+        "name": "Mahmudur R Manna",
+        "role": "Associate Director | EY",
+        "image": "./assets/images/speakers/manna.jpg",
+        "bio": ""
       },
-      "tags": ["Spring Boot", "Microservices", "Cloud Native"]
+      "tags": [
+        "Spring AI",
+        "DuckDB",
+        "Vector Search",
+        "LLM Engineering"
+      ]
     },
     {
       "time": "2:00 PM",
-      "duration": "120 min",
-      "track": "workshop",
-      "title": "Hands-on: Reactive Programming with Project Reactor",
-      "abstract": "Get hands-on experience with reactive programming using Project Reactor. This workshop covers the fundamentals of reactive streams, backpressure handling, and building non-blocking applications. You'll build a complete reactive REST API and learn how to test reactive code effectively. Bring your laptop with JDK 17+ installed.",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "Beyond the Hype: Real LLM Architecture Patterns for Java Developers",
+      "abstract": "<p>Java architects face a pivotal choice when bringing LLMs into their systems. The architecture you pick, whether it is a RAG chatbot, an agent-driven workflow, or a fine-tuned model, shapes everything from system boundaries and integration effort to cost, performance, and long-term maintainability. This session lays out a practical decision framework that helps you match real Java use cases to the right LLM pattern. You will see the trade-offs, walk through examples from production-ready projects, and understand when to choose retrieval, when to rely on agentic orchestration, and when custom training makes sense. By the end, you will know how to design LLM-enabled Java systems that stay robust, scalable, and cost-effective over time.</p>",
       "speaker": {
-        "name": "Emily Watson",
-        "role": "Tech Lead, Netflix",
-        "image": "./assets/images/speakers/speaker3.jpg"
+        "name": "Shaaf Sayed",
+        "role": "Sr. Principal Developer Advocate | Red Hat",
+        "image": "./assets/images/speakers/shaaf.jpg",
+        "bio": "<p><strong>Shaaf Syed</strong> is a Developer Advocate at <a href=\"https://www.redhat.com\" target=\"_blank\" rel=\"nofollow noopener ugc\">Red Hat</a>, Technical Editor at <a href=\"https://www.infoq.com\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a>, and author at <a href=\"https://shaaf.dev\" target=\"_blank\" rel=\"nofollow noopener ugc\">shaaf.dev</a>. He is passionate about open source and focuses on Cloud, Software Defined Data Center, DevOps and Continuous Delivery.</p><p>He began his career as a Software Engineer specializing in build engineering across Solaris, Linux, and Windows. Later he moved into Continuous Integration for C/Java components, applying that experience across many projects as tools evolved. Over the years he has worked with multiple languages (Java, .NET, etc.) as tools to reach business goals.</p><p>Beyond his work, he actively participates in local meetups and speaks at conferences on Cloud, DevOps and open source technologies.</p><p>Find more about him via <a href=\"https://shaaf.dev\" target=\"_blank\" rel=\"nofollow noopener ugc\">shaaf.dev</a> and his <a href=\"http://www.slideshare.net/sshaaf\" target=\"_blank\" rel=\"nofollow noopener ugc\">SlideShare</a>.</p>"
       },
-      "tags": ["Reactive", "Project Reactor", "Hands-on"]
+      "tags": [
+        "AI Architecture",
+        "RAG vs Agents",
+        "System Design",
+        "Production AI"
+      ]
     },
     {
-      "time": "11:30 AM",
-      "duration": "45 min",
-      "track": "technical",
-      "title": "Performance Optimization: JVM Tuning & GC Strategies",
-      "abstract": "Master the art of JVM performance tuning and garbage collection optimization. Learn how to analyze heap dumps, understand GC logs, and choose the right garbage collector for your application. We'll explore ZGC, Shenandoah, and G1GC with real-world case studies showing dramatic performance improvements.",
+      "time": "2:40 PM",
+      "duration": "40 min",
+      "track": "Academia",
+      "title": "Java in Academia and Research",
+      "abstract": "<p>TBD</p>",
       "speaker": {
-        "name": "David Kumar",
-        "role": "Performance Engineer, Google",
-        "image": "./assets/images/speakers/speaker4.jpg"
+        "name": "Khaled Shah",
+        "role": "Associate Professor | IIT, DU",
+        "image": "./assets/images/speakers/khaled.jpg",
+        "bio": ""
       },
-      "tags": ["JVM", "Performance", "GC Tuning"]
+      "tags": [
+        "Academia",
+        "Research",
+        "CS Education"
+      ]
     },
     {
-      "time": "4:30 PM",
-      "duration": "60 min",
-      "track": "panel",
-      "title": "The State of Java in Enterprise: A Panel Discussion",
-      "abstract": "Join industry leaders for an engaging discussion about Java's current state in enterprise environments. Topics include adoption of modern Java features, migration challenges, the role of Kotlin and other JVM languages, and the future of Java in cloud-native architectures. Q&A session included.",
+      "time": "3:20 PM",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "Building Platforms, Breaking Barriers: My DevOps Journey",
+      "abstract": "<p>In this talk, I share my decade-long journey through the evolving world of DevOps and platform engineering—an experience shaped by curiosity, continuous learning, and a commitment to building systems that scale. Starting as a Linux enthusiast, I gradually transitioned into modern DevOps practices, mastering automation, infrastructure-as-code, and cloud-native architectures. Over the years, I have had the opportunity to design and lead the implementation of enterprise-grade Kubernetes platforms, containerized application ecosystems, and high-availability database clusters that support mission-critical workloads.</p><p>Throughout my career, I have worked closely with cross-functional teams to break operational silos, streamline development pipelines, and introduce DevSecOps principles across organizations. My roles—as a DevOps Engineer, Principal DevOps Architect, and now Head of Platform Architecture and DevOps Engineering—have enabled me to blend strategy with hands-on expertise. This includes enabling CI/CD adoption, leading cost-optimization initiatives, setting up observability stacks, and mentoring engineers to build strong platform mindsets.</p><p>As a Red Hat Certified Architect and Kubernetes specialist, I have focused on simplifying complex infrastructure problems while ensuring security, resilience, and operational excellence. This talk aims to highlight key lessons from building platforms from scratch, overcoming organizational and technical barriers, and navigating the human side of DevOps transformation.</p><p>Attendees will gain insights into practical strategies, leadership experiences, and technical patterns that can help them accelerate their own DevOps journey—whether they are just starting out or scaling their platform engineering capabilities.</p>",
       "speaker": {
-        "name": "Multiple Speakers",
-        "role": "Industry Leaders Panel",
-        "image": "./assets/images/speakers/panel.jpg"
+        "name": "Md. Rakibul Hassan",
+        "role": "Senior General Manager | Robi Axiata PLC",
+        "image": "./assets/images/speakers/rakibul.jpg",
+        "bio": ""
       },
-      "tags": ["Enterprise", "Discussion", "Q&A"]
+      "tags": [
+        "DevOps",
+        "Platform Engineering",
+        "Kubernetes"
+      ]
+    },
+    {
+      "time": "4:20 PM",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "Turning Chaos Into Clarity: Refactoring Legacy Code for Maintainability",
+      "abstract": "<p>Working with legacy code often feels like navigating a minefield—every change carries uncertainty, hidden dependencies, and the fear of breaking something that once worked. It’s slow, frustrating, and sometimes exhausting. Yet refactoring is the only way to restore clarity, bring structure back into the system, and make the codebase future-proof. </p><p>This session will walk you through practical techniques for identifying few code smells, reducing technical debt, and modernizing old structures without breaking what already works. The goal is simple: turn chaos of legacy code into clean, readable, testable and maintainable codebase that supports faster development, fewer bugs, and long-term stability.</p>",
+      "speaker": {
+        "name": "Zohirul Alam Tiemoon",
+        "role": "CEO & Co-founder | Nerd Castle Limited",
+        "image": "./assets/images/speakers/taemoon.jpg"
+      },
+      "tags": [
+        "Refactoring",
+        "Legacy Code",
+        "Technical Debt",
+        "Clean Code"
+      ]
     }
   ],
   "ourTeam": [
@@ -301,9 +354,15 @@
       "company": "@TekSoi Software Ltd",
       "companyWebsite": "https://www.linkedin.com/company/teksoi/",
       "image": "assets/images/team/team12.jpg"
+    },
+    {
+      "fullName": "Ali Hossain",
+      "linkedin": "https://www.linkedin.com/in/mowrajt/",
+      "company": "",
+      "companyWebsite": "",
+      "image": "assets/images/team/team13.jpg"
     }
   ],
-
   "location": {
     "title": "Venue",
     "description": "Krishibid Institution Bangladesh",
