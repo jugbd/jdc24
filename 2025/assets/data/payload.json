@@ -220,10 +220,10 @@
       "duration": "40 min",
       "track": "Academia",
       "title": "Java in Academia and Research",
-      "abstract": "<p>TBD</p>",
+      "abstract": "<p> This lecture explores the significant role of the Java programming language in modern academic research, highlighting its strengths in portability, performance, and ecosystem richness. It discusses how Java supports diverse research domains including optimization, simulation, machine learning, big data analytics, and scientific computing. Key libraries, frameworks, and tools are reviewed to demonstrate how Java enables fast prototyping, reproducible experiments, and scalable computational studies. The talk also emphasizes best practices for writing research-grade Java code, from experiment management to benchmarking and documentation. Overall, the lecture positions Java as a versatile, reliable, and powerful language for conducting rigorous and impactful academic research.</p>",
       "speaker": {
-        "name": "Khaled Shah",
-        "role": "Associate Professor | IIT, DU",
+        "name": "Shah Mostafa Khaled, Ph.D.",
+        "role": "Associate Professor | Institute of Information Technology, University of Dhaka",
         "image": "./assets/images/speakers/khaled.jpg",
         "bio": ""
       },
