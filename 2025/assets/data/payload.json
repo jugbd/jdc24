@@ -200,8 +200,8 @@
       "time": "2:00 PM",
       "duration": "40 min",
       "track": "Technical",
-      "title": "Beyond the Hype: Real LLM Architecture Patterns for Java Developers",
-      "abstract": "<p>Java architects face a pivotal choice when bringing LLMs into their systems. The architecture you pick, whether it is a RAG chatbot, an agent-driven workflow, or a fine-tuned model, shapes everything from system boundaries and integration effort to cost, performance, and long-term maintainability. This session lays out a practical decision framework that helps you match real Java use cases to the right LLM pattern. You will see the trade-offs, walk through examples from production-ready projects, and understand when to choose retrieval, when to rely on agentic orchestration, and when custom training makes sense. By the end, you will know how to design LLM-enabled Java systems that stay robust, scalable, and cost-effective over time.</p>",
+      "title": "The Java Architect’s Guide to LLM Patterns: Trade-offs, Boundaries, and Blueprints",
+      "abstract": "<p>For Java developers, the GenAI landscape is shifting rapidly. One day it's all about RAG, the next it's about Agents. But when you move from prototype to production, which pattern actually holds up? </p> <p>Join this session for a deep dive into the architecture of LLM integration. I will break down the three primary patterns—Retrieval-Augmented Generation (RAG), Agents, and Fine-tuning—and evaluate them strictly through the lens of a Java engineer. I'll cut through the hype to discuss system boundaries, latency issues, and the real cost of operations. Whether you are modernizing a legacy monolith or building cloud-native microservices, this talk will give you the blueprints you need to make the right architectural call.</p>",
       "speaker": {
         "name": "Shaaf Sayed",
         "role": "Sr. Principal Developer Advocate | Red Hat",
@@ -225,7 +225,8 @@
         "name": "Shah Mostafa Khaled, Ph.D.",
         "role": "Associate Professor | Institute of Information Technology, University of Dhaka",
         "image": "./assets/images/speakers/khaled.jpg",
-        "bio": ""
+          "bio": "<p><strong>Dr. Shah Mostafa Khaled</strong> is an Associate Professor at the <a href=\"https://iit.du.ac.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">Institute of Information Technology (IIT), University of Dhaka</a>, Bangladesh. He holds a PhD in Management Science and Engineering from the <a href=\"https://uwaterloo.ca/\" target=\"_blank\" rel=\"noopener noreferrer\">University of Waterloo</a> (2018–2024), where he completed his doctoral thesis titled <em>Shipment Consolidation in Hub Location Modelling</em> under the supervision of Professors James H. Bookbinder and Sibel A. Alumur. He previously earned a Master’s in Computer Science from the <a href=\"https://www.ulethbridge.ca/\" target=\"_blank\" rel=\"noopener noreferrer\">University of Lethbridge</a>, Canada, as well as a BSc and MSc in Computer Science and Engineering from the <a href=\"https://www.du.ac.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">University of Dhaka</a>. His research spans optimization, operations research, machine learning, algorithms and data structures, and combinatorial problem solving, and he leads the Optimization Research Group at IIT DU.</p>"
+
       },
       "tags": [
         "Academia",
