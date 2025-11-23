@@ -150,12 +150,12 @@ const populateHero = (heroContent) => {
 
     // TODO: Enable link to register
     // const cta = document.createElement("a");
-    const cta = document.createElement("div");
+    const cta = document.createElement("a");
     cta.classList.add('cta-button');
     cta.innerHTML = heroContent.cta.text;
-    // cta.setAttribute("href", heroContent.cta.link);
-    // cta.setAttribute("target", "_blank");
-    // cta.setAttribute("rel", "noopener noreferrer");
+    cta.setAttribute("href", heroContent.cta.link);
+    cta.setAttribute("target", "_blank");
+    cta.setAttribute("rel", "noopener noreferrer");
 
     hero.appendChild(title);
     hero.appendChild(subtitle);

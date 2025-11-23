@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Centralized Service Worker registration for all pages in /2025/
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('service-worker.js?v1912396' )
+            navigator.serviceWorker.register('service-worker.js?v19123100' )
                 .then(registration => {
                     console.log('[SW] Registered with scope:', registration.scope);
 
