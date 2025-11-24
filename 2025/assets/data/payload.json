@@ -187,7 +187,8 @@
         "name": "Mahmudur R Manna",
         "role": "Associate Director | EY",
         "image": "./assets/images/speakers/manna.jpg",
-        "bio": ""
+        "bio": "<p>Mahmudur R Manna is a Bangladeshi engineer, author, and entrepreneur with over two decades of global experience in designing and building data platforms, cloud-native and distributed systems, big-data analytics, and SaaS solutions. In recent years, he has focused on creating AI-driven products and enterprise AI systems.</p><p>As the founder of the Decision-Driven Software Engineering (DDSE) Foundation, Manna promotes decision-centric, human-AI collaboration in software delivery. He is the author of <em>Enterprise AI: Strategic Blueprint for Purple People</em> and an active open-source contributor through the DDSE Foundation and other projects on GitHub. His thought leadership extends to Medium, where he publishes articles on AI strategy, engineering methodologies, and organizational design, along with research exploring the future of AI-assisted software development.</p><p>Manna’s work blends deep hands-on engineering expertise with the ability to transform complex technical challenges into scalable, human-aligned solutions.</p>"
+
       },
       "tags": [
         "Spring AI",
@@ -261,13 +262,34 @@
       "speaker": {
         "name": "Zohirul Alam Tiemoon",
         "role": "CEO & Co-founder | Nerd Castle Limited",
-        "image": "./assets/images/speakers/taemoon.jpg"
+        "image": "./assets/images/speakers/taemoon.jpg",
+        "bio": "<p>As a seasoned technology leader with over 24 years of experience in the ICT sector, I have a proven track record in leading technical vision and strategy, and developing enterprise and MVP solutions. My expertise spans system design, software engineering, and creating engaging experiences for users worldwide.</p><p>Previously, I served as the Senior Vice President at Goama, where I spearheaded the development and delivery of scalable gaming solutions as a service, managing a diverse team of software engineers, designers, and testers. Under my leadership, we established a culture of collaboration, creativity, and excellence, significantly enhancing the gaming experience for millions of users.</p><p>I hold a B.Sc. in Computer Science & Engineering from Shahjalal University of Science and Technology. Over the years, I have refined my skills in web applications, software development, object-oriented programming, software design principles and patterns, Android app development, and agile methodologies.</p><p>I have also delivered corporate training for prestigious organizations and projects such as the Bangladesh Association of Software & Information Services (BASIS), Beximco Pharma, the LICT project, and the ICT Ministry of the Bangladesh Government—training over 15,000 software professionals. My designs for enterprise software solutions have successfully added value to various clients’ businesses.</p><p>I am passionate about using my skills to solve complex problems, improve lives, and create a positive impact through technology. My hands-on expertise includes developing .NET applications, designing relational databases, and crafting distributed systems with a strong focus on refactoring and unit testing, guided by principles of test-driven development (TDD).</p><p>I have written a book on Object-Oriented Programming (অবজেক্ট ওরিয়েন্টেড প্রোগ্রামিং) in Bangla: <a href=\"https://rokomari.com/book/212639/object-oriented-programming\" target=\"_blank\">rokomari.com/book/212639/object-oriented-programming</a>.</p>"
+
       },
       "tags": [
         "Refactoring",
         "Legacy Code",
         "Technical Debt",
         "Clean Code"
+      ]
+    },
+    {
+      "time": "5:40 PM",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "Frameworks? Nah. Let’s Just Write Java. Reclaiming simplicity, control, and architectural clarity.",
+      "abstract": "<p>Modern Java development often feels like sticking LEGO blocks together without understanding how they fit. We rely so heavily on frameworks like Spring that we forget the power of the language itself.</p><p>It’s time to discard the crutches. With the JDK more powerful than ever, do we really need all that extra weight? This talk is about building robust, production-ready software using nothing but standard Java. We will trade \"magic\" abstractions for discipline and design patterns. By the end of this session, you’ll see that you don't need a long dependency tree to build good software—you just need to master your language. Let’s get back to basics and see what Java can really do.</p>",
+      "speaker": {
+        "name": "Muhammad Abul Kasim",
+        "role": "Software Architect | Brac IT Limited",
+        "image": "",
+        "bio": "<p>I’m a Software Architect with deep experience in designing and scaling high-performance distributed systems across diverse domains, including business applications and real-time messaging platforms. I thrive on solving complex architectural challenges—whether it’s optimizing ultra-low-latency data pipelines, building efficient event-driven systems, or refactoring legacy codebases into clean, modern, and extensible services.</p><p>My expertise spans runtime and OS internals, message brokers, RDBMS and NoSQL databases, microservices, Domain-Driven Design (DDD), CQRS, SaaS architectures, and high-concurrency systems. I balance pragmatic engineering with a long-term architectural vision, emphasizing clear abstractions, predictable performance, and systems that are easy to reason about and maintain.</p><p>I’m passionate about deep technical topics: memory models, lock-free algorithms, threading, custom serialization, distributed crawling, and even building device drivers for fun. I excel in environments where I can mentor engineering teams, shape technical strategy, and craft software that is both powerful and elegant.</p><p>Open to connecting on distributed systems, performance engineering, large-scale architecture, or the art of building software that lasts.</p>"
+
+      },
+      "tags": [
+        "Core Java",
+        "Software Architecture",
+        "Design Patterns"
       ]
     }
   ],

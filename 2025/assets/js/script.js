@@ -926,7 +926,7 @@ const populateSessionPreview = (sessionsData, previewList = []) => {
             View All Sessions
             <span class="cta-arrow">→</span>
         </a>
-        <p class="cta-subtitle">Explore ${sessionsData.length}+ sessions from industry experts</p>
+        <p class="cta-subtitle">Explore ${sessionsData.length - 2} more sessions from industry experts</p>
     `;
     sessionSection.appendChild(ctaContainer);
 };

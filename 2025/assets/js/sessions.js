@@ -71,9 +71,8 @@ function populateSessions(sessionsData, speakerMap) {
                 <div class="session-info">
                     <span class="session-category">${session.track}</span>
                     <h2 class="session-title">${session.title}</h2>
-                    <div class="session-abstract">${session.abstract}
-                        <button type="button" class="read-more" aria-expanded="false" aria-label="Expand session abstract">See more</button>
-                    </div>
+                    <div class="session-abstract">${session.abstract}</div>
+                    <button type="button" class="read-more" aria-expanded="false" aria-label="Expand session abstract">See more</button>
                     
                     <div class="session-speaker" role="button" tabindex="0" title="Click to view bio" aria-label="View ${speakerName}'s bio" data-speaker-name="${speakerName}" data-speaker-bio="${encodeURIComponent(session.speaker.bio || '')}">
                         <img src="${session.speaker.image}" alt="${speakerName}" class="speaker-avatar speaker-avatar-large" loading="lazy">

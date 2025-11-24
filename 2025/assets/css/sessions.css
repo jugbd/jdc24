@@ -252,14 +252,11 @@
 .session-abstract {
     color: var(--text-dim);
     line-height: 1.8;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5; /* show 5 lines by default */
     overflow: hidden;
-    position: relative; /* allow absolute positioning of the inline control */
-    /* Reserve space on the right for the inline See more to avoid overlap */
-    padding-right: 5.25em;
 }
 
 /* Expanded state shows full abstract */
@@ -285,20 +282,15 @@
     font: inherit;
     font-weight: 600;
     cursor: pointer;
-    display: inline;
+    display: inline-flex;
     padding: 0;
+    margin: 0.25rem 0 1.25rem 0;
     user-select: none;
     text-decoration: none;
     white-space: nowrap; /* keep inline text on a single line */
     line-height: 1.8;
 }
 
-/* Position the control at the end of the clamped text */
-.session-abstract .read-more {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
 
 .read-more:hover,
 .read-more:focus {
@@ -313,11 +305,6 @@
     content: ' ↑';
 }
 
-/* In expanded state, place the control after the full text */
-.session-card.expanded .session-abstract .read-more {
-    position: static;
-    margin-top: 0.5rem;
-}
 
 /* Speaker Info */
 .session-speaker {
@@ -609,12 +596,3 @@
     display: none;
 }
 
-/* Responsive: slightly reduce reserved space on very small screens */
-@media (max-width: 480px) {
-    .session-abstract {
-        padding-right: 4.25em;
-    }
-    .session-abstract::after {
-        width: 4.25em;
-    }
-}
