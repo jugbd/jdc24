@@ -198,6 +198,26 @@
       ]
     },
     {
+      "time": "12:20 AM",
+      "duration": "40 min",
+      "track": "Technical",
+      "title": "Resilience Engineering in Java Systems: Patterns That Keep Your App Alive",
+      "abstract": "<p>Resilience Engineering in Java systems focuses on building applications that continue to function even when parts of the system fail. It emphasizes designing for failure from the start rather than reacting after problems occur. Java developers use key resilience patterns—such as retries, exponential backoff, fallbacks, rate limiting, bulkheads, and circuit breakers—to ensure systems remain stable under stress. Tools like Resilience4j, Spring Cloud, and MicroProfile Fault Tolerance make it easier to apply these patterns in production.</p><p>Modern distributed systems face challenges like network latency, partial outages, and dependency failures, making resilience essential in microservice architectures. Circuit breakers help isolate failing components, preventing cascading failures. Bulkheads create boundaries between services so that one heavy workload doesn’t overload the entire system. Timeouts and rate limiting protect resources from being overwhelmed during traffic spikes or malicious requests.</p><p>Observability—metrics, logs, and distributed tracing—is also a critical part of resilience engineering, enabling teams to detect failures early and respond quickly. Chaos engineering practices validate resilience by intentionally injecting failures to observe system behavior. Overall, resilience engineering ensures Java applications remain reliable, responsive, and fault-tolerant, even in unpredictable real-world conditions.</p>",
+      "speaker": {
+        "name": "TBD",
+        "role": "",
+        "image": "",
+        "bio": ""
+
+      },
+      "tags": [
+        "Spring AI",
+        "DuckDB",
+        "Vector Search",
+        "LLM Engineering"
+      ]
+    },
+    {
       "time": "2:00 PM",
       "duration": "40 min",
       "track": "Technical",
@@ -282,7 +302,7 @@
       "speaker": {
         "name": "Muhammad Abul Kasim",
         "role": "Software Architect | Brac IT Limited",
-        "image": "",
+        "image": "./assets/images/speakers/kasim.jpg",
         "bio": "<p>I’m a Software Architect with deep experience in designing and scaling high-performance distributed systems across diverse domains, including business applications and real-time messaging platforms. I thrive on solving complex architectural challenges—whether it’s optimizing ultra-low-latency data pipelines, building efficient event-driven systems, or refactoring legacy codebases into clean, modern, and extensible services.</p><p>My expertise spans runtime and OS internals, message brokers, RDBMS and NoSQL databases, microservices, Domain-Driven Design (DDD), CQRS, SaaS architectures, and high-concurrency systems. I balance pragmatic engineering with a long-term architectural vision, emphasizing clear abstractions, predictable performance, and systems that are easy to reason about and maintain.</p><p>I’m passionate about deep technical topics: memory models, lock-free algorithms, threading, custom serialization, distributed crawling, and even building device drivers for fun. I excel in environments where I can mentor engineering teams, shape technical strategy, and craft software that is both powerful and elegant.</p><p>Open to connecting on distributed systems, performance engineering, large-scale architecture, or the art of building software that lasts.</p>"
 
       },
