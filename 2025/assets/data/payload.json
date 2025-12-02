@@ -418,6 +418,92 @@
       "city": "Dhaka, Bangladesh"
     }
   },
+  "schedule": [
+    {
+      "time": "10:00 – 10:30",
+      "session": "Opening + Welcome",
+      "speaker": "A N M Bazlur Rahman & DSI",
+      "isBreak": false
+    },
+    {
+      "time": "10:30 – 11:10",
+      "session": "From 21 to 25: What Modern Java Looks Like Today",
+      "speaker": "A N M Bazlur Rahman",
+      "isBreak": false
+    },
+    {
+      "time": "11:15 – 11:55",
+      "session": "Context Engineering with Java and DuckDB",
+      "speaker": "Mahmudur R Manna",
+      "isBreak": false
+    },
+    {
+      "time": "12:00 – 12:20",
+      "session": "Coffee Break + Networking",
+      "speaker": "—",
+      "isBreak": true
+    },
+    {
+      "time": "12:20 – 1:00",
+      "session": "Resilience Engineering in Java Systems: Patterns That Keep Your App Alive",
+      "speaker": "Md. Habibur Rahman",
+      "isBreak": false
+    },
+    {
+      "time": "1:00 – 2:00",
+      "session": "Lunch Break + Johor Break",
+      "speaker": "—",
+      "isBreak": true
+    },
+    {
+      "time": "2:00 – 2:40",
+      "session": "Inside Lucene: Algorithms and Data Structures Behind Modern Enterprise Search",
+      "speaker": "Isfar Sifat",
+      "isBreak": false
+    },
+    {
+      "time": "2:45 – 3:25",
+      "session": "Java in Academia and Research",
+      "speaker": "Shah Mostafa Khaled, Ph.D.",
+      "isBreak": false
+    },
+    {
+      "time": "3:30 – 4:10",
+      "session": "Building Platforms, Breaking Barriers: My DevOps Journey",
+      "speaker": "Md. Rakibul Hassan",
+      "isBreak": false
+    },
+    {
+      "time": "4:10 – 4:30",
+      "session": "Asr Break + Coffee",
+      "speaker": "—",
+      "isBreak": true
+    },
+    {
+      "time": "4:30 – 5:10",
+      "session": "Turning Chaos Into Clarity: Refactoring Legacy Code for Maintainability",
+      "speaker": "Zohirul Alam Tiemoon",
+      "isBreak": false
+    },
+    {
+      "time": "5:10 – 5:40",
+      "session": "Maghrib Break + Snacks",
+      "speaker": "—",
+      "isBreak": true
+    },
+    {
+      "time": "5:40 – 6:20",
+      "session": "Frameworks? Nah. Let's Just Write Java",
+      "speaker": "Muhammad Abul Kasim",
+      "isBreak": false
+    },
+    {
+      "time": "6:40 – 7:40",
+      "session": "Panel Q&A / Discussion",
+      "speaker": "All Speakers",
+      "isBreak": false
+    }
+  ],
   "footer": {
     "social": [
       {

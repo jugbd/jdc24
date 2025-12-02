@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - Java Developers' Conference 2025</title>
+    <link rel="icon" type="image/png" href="../assets/icons/favicon.ico">
+    <link rel="icon" type="image/png" href="../assets/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/schedule.css">
+</head>
+<body>
+<!-- Animated Background -->
+<div class="bg-animation">
+    <div class="glow-orb orb1"></div>
+    <div class="glow-orb orb2"></div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-content">
+        <a href="../index.html" class="logo"><img src="../assets/icons/android-chrome-192x192.png" alt="JDC Logo"></a>
+        <ul class="nav-links">
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#speakers">Speakers</a></li>
+            <li><a href="../sessions.html">Sessions</a></li>
+            <li><a href="./" class="active">Schedule</a></li>
+            <li><a href="../index.html#venue">Venue</a></li>
+            <li><a href="../index.html#our-team">Team</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="page-header-content">
+        <span class="section-tag">December 6, 2025</span>
+        <h1 class="page-title">Event Schedule</h1>
+        <p class="page-subtitle">
+            Plan your day at JDC 2025
+        </p>
+    </div>
+</section>
+
+<!-- Schedule Section -->
+<section class="schedule-page" id="schedulePage">
+    <div class="schedule-container">
+        <table class="schedule-table" id="scheduleTable">
+            <thead>
+                <tr>
+                    <th class="col-time">Time</th>
+                    <th class="col-session">Session</th>
+                    <th class="col-speaker">Speaker</th>
+                </tr>
+            </thead>
+            <tbody id="scheduleBody">
+                <!-- Schedule will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <!-- Content will be populated by JavaScript -->
+</footer>
+
+<!-- Load scripts -->
+<script src="../assets/js/common.js"></script>
+<script>
+    const sessionLinks = {
+        "From 21 to 25: What Modern Java Looks Like Today": "../sessions.html#session-0",
+        "Context Engineering with Java and DuckDB": "../sessions.html#session-1",
+        "Resilience Engineering in Java Systems: Patterns That Keep Your App Alive": "../sessions.html#session-2",
+        "Inside Lucene: Algorithms and Data Structures Behind Modern Enterprise Search": "../sessions.html#session-3",
+        "Java in Academia and Research": "../sessions.html#session-4",
+        "Building Platforms, Breaking Barriers: My DevOps Journey": "../sessions.html#session-5",
+        "Turning Chaos Into Clarity: Refactoring Legacy Code for Maintainability": "../sessions.html#session-6",
+        "Frameworks? Nah. Let's Just Write Java": "../sessions.html#session-7"
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const loader = showLoader('Loading schedule...');
+
+        try {
+            const cacheBuster = '?v=' + Date.now();
+            let data;
+
+            try {
+                const response = await fetch('../assets/data/payload.json' + cacheBuster);
+                data = await response.json();
+            } catch (err) {
+                const response = await fetch('/2025/assets/data/payload.json' + cacheBuster);
+                data = await response.json();
+            }
+
+            if (data.schedule && Array.isArray(data.schedule)) {
+                populateSchedule(data.schedule);
+            }
+
+            if (data.footer) {
+                populateFooter(data.footer);
+            }
+
+        } catch (e) {
+            console.error('Error loading data:', e);
+        } finally {
+            hideLoader(loader);
+        }
+    });
+
+    function populateSchedule(scheduleData) {
+        const tbody = document.getElementById('scheduleBody');
+        if (!tbody) return;
+
+        tbody.innerHTML = '';
+
+        scheduleData.forEach((item) => {
+            const row = document.createElement('tr');
+
+            if (item.isBreak) {
+                row.className = 'break-row';
+            }
+
+            const hasLink = sessionLinks[item.session];
+            const sessionContent = hasLink
+                ? `<a href="${hasLink}">${item.session}</a>`
+                : item.session;
+
+            row.innerHTML = `
+                <td class="col-time">${item.time}</td>
+                <td class="col-session">${sessionContent}</td>
+                <td class="col-speaker">${item.speaker}</td>
+            `;
+
+            tbody.appendChild(row);
+        });
+    }
+</script>
+</body>
+</html>
