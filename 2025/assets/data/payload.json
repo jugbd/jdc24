@@ -204,38 +204,38 @@
       "title": "Resilience Engineering in Java Systems: Patterns That Keep Your App Alive",
       "abstract": "<p>Resilience Engineering in Java systems focuses on building applications that continue to function even when parts of the system fail. It emphasizes designing for failure from the start rather than reacting after problems occur. Java developers use key resilience patterns—such as retries, exponential backoff, fallbacks, rate limiting, bulkheads, and circuit breakers—to ensure systems remain stable under stress. Tools like Resilience4j, Spring Cloud, and MicroProfile Fault Tolerance make it easier to apply these patterns in production.</p><p>Modern distributed systems face challenges like network latency, partial outages, and dependency failures, making resilience essential in microservice architectures. Circuit breakers help isolate failing components, preventing cascading failures. Bulkheads create boundaries between services so that one heavy workload doesn’t overload the entire system. Timeouts and rate limiting protect resources from being overwhelmed during traffic spikes or malicious requests.</p><p>Observability—metrics, logs, and distributed tracing—is also a critical part of resilience engineering, enabling teams to detect failures early and respond quickly. Chaos engineering practices validate resilience by intentionally injecting failures to observe system behavior. Overall, resilience engineering ensures Java applications remain reliable, responsive, and fault-tolerant, even in unpredictable real-world conditions.</p>",
       "speaker": {
-        "name": "TBD",
-        "role": "",
-        "image": "",
+        "name": "Md. Habibur Rahman,",
+        "role": "Engineering Manager | DSi",
+        "image": "./assets/images/speakers/habib.png",
         "bio": ""
-
       },
       "tags": [
-        "Spring AI",
-        "DuckDB",
-        "Vector Search",
-        "LLM Engineering"
+        "Java",
+        "Microservices",
+        "Distributed Systems",
+        "Resilience4j"
       ]
     },
     {
       "time": "2:00 PM",
       "duration": "40 min",
       "track": "Technical",
-      "title": "The Java Architect’s Guide to LLM Patterns: Trade-offs, Boundaries, and Blueprints",
-      "abstract": "<p>For Java developers, the GenAI landscape is shifting rapidly. One day it's all about RAG, the next it's about Agents. But when you move from prototype to production, which pattern actually holds up? </p> <p>Join this session for a deep dive into the architecture of LLM integration. I will break down the three primary patterns—Retrieval-Augmented Generation (RAG), Agents, and Fine-tuning—and evaluate them strictly through the lens of a Java engineer. I'll cut through the hype to discuss system boundaries, latency issues, and the real cost of operations. Whether you are modernizing a legacy monolith or building cloud-native microservices, this talk will give you the blueprints you need to make the right architectural call.</p>",
+      "title": "Inside Lucene: Algorithms and Data Structures Behind Modern Enterprise Search",
+      "abstract": "It’s safe to say that more than half the search on the internet is powered by Lucene — Twitter, LinkedIn, Netflix, Wikipedia, Reddit, Airbnb, Slack… and more. Getting started with Elasticsearch or Solr (both built on Lucene) is easy, but real performance tuning, relevance engineering, and scaling require understanding what’s happening under the hood.\n\nIn this session, we’ll dip into Lucene’s most important algorithms and data structures and see how they impact performance and efficiency. Covering everything in 30 minutes isn’t possible, but we’ll focus on the essentials — and if you’re curious about the rest… well, you’ll just have to catch up with me over a cup of tea, lol. ☕",
       "speaker": {
-        "name": "Shaaf Sayed",
-        "role": "Sr. Principal Developer Advocate | Red Hat",
-        "image": "./assets/images/speakers/shaaf.jpg",
-        "bio": "<p><strong>Shaaf Syed</strong> is a Developer Advocate at <a href=\"https://www.redhat.com\" target=\"_blank\" rel=\"nofollow noopener ugc\">Red Hat</a>, Technical Editor at <a href=\"https://www.infoq.com\" target=\"_blank\" rel=\"nofollow noopener ugc\">InfoQ</a>, and author at <a href=\"https://shaaf.dev\" target=\"_blank\" rel=\"nofollow noopener ugc\">shaaf.dev</a>. He is passionate about open source and focuses on Cloud, Software Defined Data Center, DevOps and Continuous Delivery.</p><p>He began his career as a Software Engineer specializing in build engineering across Solaris, Linux, and Windows. Later he moved into Continuous Integration for C/Java components, applying that experience across many projects as tools evolved. Over the years he has worked with multiple languages (Java, .NET, etc.) as tools to reach business goals.</p><p>Beyond his work, he actively participates in local meetups and speaks at conferences on Cloud, DevOps and open source technologies.</p><p>Find more about him via <a href=\"https://shaaf.dev\" target=\"_blank\" rel=\"nofollow noopener ugc\">shaaf.dev</a> and his <a href=\"http://www.slideshare.net/sshaaf\" target=\"_blank\" rel=\"nofollow noopener ugc\">SlideShare</a>.</p>"
+        "name": "Isfar Sifat",
+        "role": "Senior Software Engineer | Freterium YC 21",
+        "image": "./assets/images/speakers/isfar.jpg",
+        "bio": ""
       },
       "tags": [
-        "AI Architecture",
-        "RAG vs Agents",
-        "System Design",
-        "Production AI"
+        "Search Engineering",
+        "Lucene",
+        "Elasticsearch",
+        "Distributed Systems"
       ]
     },
+
     {
       "time": "2:40 PM",
       "duration": "40 min",
