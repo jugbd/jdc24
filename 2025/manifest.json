@@ -56,8 +56,11 @@
     "assets/js/common.js",
     "assets/js/script.js",
     "assets/js/sessions.js",
+    "assets/css/schedule.css",
+    "assets/data/payload.json",
     "generate-manifest.js",
     "index.html",
-    "sessions.html"
+    "sessions.html",
+    "schedule/index.html"
   ]
 }

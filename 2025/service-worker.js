@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cache-v176138785216'; // ⬅️ bump this on each deploy to bust cache
+const CACHE_NAME = 'cache-v176139785218'; // ⬅️ bump this on each deploy to bust cache
 
 // ---- INSTALL ----
 self.addEventListener('install', event => {
@@ -26,8 +26,11 @@ self.addEventListener('install', event => {
                     const results = await Promise.all(
                         assetsToCache.map(async (url) => {
                             try {
-                                // Using cache.add to respect request defaults and handle relative URLs
-                                await cache.add(url);
+                                // Fetch with cache: 'reload' to bypass browser HTTP cache
+                                const response = await fetch(url, { cache: 'reload' });
+                                if (response.ok) {
+                                    await cache.put(url, response);
+                                }
                                 return {url, ok: true};
                             } catch (e) {
                                 console.warn('[SW] Skipping asset (failed to cache):', url, e);
