@@ -33,6 +33,18 @@ npm run test:browser
 
 The browser suite builds the populated 2025 content into an ignored `.test-archive/` fixture. It checks both editions without changing the active event. Tests cover JavaScript-disabled reading, filters, agendas across pages/reloads, blocked storage, dialog focus and deep links, event timezone behavior, and mobile widths.
 
+## Recovering a failed dev-server startup
+
+If Astro reports `transport was disconnected, cannot call "fetchModule"`, stop the dev process first with **Ctrl+C**, then run:
+
+```sh
+npm run dev:reset
+```
+
+This clears only generated Astro/Vite caches and starts the dev server again. It preserves source files, installed dependencies, and `dist/`. If you started Astro in background mode, stop it first with `npm run dev -- stop`. The reset command refuses to clear caches while a tracked dev process is still running.
+
+`npm run test:dev` verifies a cold development startup, all three routes, and live Markdown content updates in an isolated temporary copy. CI runs this separately from production-build and browser tests.
+
 ## Organization
 
 ```text

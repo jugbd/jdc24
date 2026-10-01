@@ -15,7 +15,9 @@
     "test": "node --test tests/*.test.mjs",
     "test:browser": "node scripts/test-browser.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "dev:reset": "node scripts/reset-dev.mjs && astro dev",
+    "test:dev": "node scripts/test-dev.mjs"
   },
   "dependencies": {
     "astro": "7.3.5",
