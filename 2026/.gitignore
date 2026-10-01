@@ -7,3 +7,7 @@ playwright-report/
 .env
 .env.*
 .test-archive/
+
+# The parent repository ignores lib/ as build output; these are source modules.
+!src/lib/
+!src/lib/**
