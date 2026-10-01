@@ -1,0 +1,67 @@
+---
+import { ui, scheduleCopy, type Conference } from "../../lib/content";
+import { url } from "../../lib/paths";
+import AgendaButton from "../ui/AgendaButton.astro";
+interface Props {
+  model: Conference;
+  withAgenda?: boolean;
+}
+const { model, withAgenda = false } = Astro.props;
+---
+
+<div class="card log" data-schedule>
+  {model.schedule.map((slot) => (
+    <div
+      class:list={["logrow", { brk: slot.kind === "break" }]}
+      data-slot
+      data-session-id={slot.sessionId || ""}
+      data-kind={slot.kind}
+      data-start={slot.start || ""}
+      data-end={slot.end || ""}
+    >
+      <span class="tm">
+        {slot.start ? `${slot.start}–${slot.end}` : ui.timePending}
+      </span>
+      <span
+        class={`lv lvl-${slot.kind === "break" ? "idle" : slot.kind === "plenary" ? "main" : "info"}`}
+      >
+        {ui.scheduleLevels[slot.kind]}
+      </span>
+      <span>
+        <span class={slot.kind === "break" ? "cm" : "ty"}>
+          [{slot.session?.track || ui.scheduleTags[slot.kind]}]
+        </span>{" "}
+        {slot.session ? (
+          <a class="ttl" href={url(`sessions.html#${slot.session.id}`)}>
+            {slot.session.title || ui.titlePending}
+          </a>
+        ) : (
+          <span class="ttl">{slot.title}</span>
+        )}
+        {slot.kind !== "break" && (
+          <span class="who">
+            {slot.session
+              ? slot.session.speakers
+                  .map((speaker) => speaker.name)
+                  .join(", ") || ui.speakerPending
+              : slot.presenter || ui.speakerPending}
+          </span>
+        )}
+        <span class="now-label" hidden>
+          {ui.now}
+        </span>
+      </span>
+      {withAgenda && slot.session ? (
+        <AgendaButton
+          id={slot.session.id}
+          title={slot.session.title || ui.titlePending}
+        />
+      ) : (
+        <span></span>
+      )}
+    </div>
+  ))}
+</div>
+<p class="empty" data-schedule-empty hidden>
+  {scheduleCopy.empty}
+</p>

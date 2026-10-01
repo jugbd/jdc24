@@ -1,0 +1,47 @@
+---
+import { getEntry, render } from "astro:content";
+import { homeCopy as copy, ui } from "../../lib/content";
+import Photo from "../ui/Photo.astro";
+const about = await getEntry("pages", "about");
+if (!about) throw new Error("Missing about page");
+const { Content } = await render(about);
+---
+
+<section id="about" class="about">
+  <div class="copy">
+    <div class="doc">
+      /**
+      <br />
+      &nbsp;* {copy.aboutHeading}
+      <br />
+      &nbsp;* {copy.aboutSince}
+      <br />
+      &nbsp;*/
+    </div>
+    <h2>{about.data.title}</h2>
+    <Content />
+  </div>
+  <div class="photo">
+    <Photo
+      src={copy.gallery[0].src}
+      alt={ui.aboutPhoto}
+      sizes="(max-width: 700px) 100vw, 50vw"
+    />
+  </div>
+</section>
+<section id="why-jdc">
+  <div class="eyebrow">
+    <span class="kw">public interface</span> <span class="ty">WhyJDC</span>{" "}
+    {"{"}
+  </div>
+  <h2>{copy.whyTitle}</h2>
+  <div class="why">
+    {copy.why.map((item) => (
+      <div class="card">
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </div>
+    ))}
+  </div>
+  <div class="eyebrow section-end">{"}"}</div>
+</section>

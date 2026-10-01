@@ -1,0 +1,47 @@
+---
+import { homeCopy as copy, site, type Conference } from "../../lib/content";
+import { interpolate } from "../../lib/paths";
+import Photo from "../ui/Photo.astro";
+interface Props {
+  model: Conference;
+}
+const { model } = Astro.props;
+---
+
+<section id="sponsors">
+  <h2>{copy.sponsorsTitle}</h2>
+  {model.sponsors.length ? (
+    model.sponsors.map((sponsor) => (
+      <a
+        class="card sponsor"
+        href={sponsor.website}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="logo">
+          <Photo src={sponsor.logo} alt={sponsor.name} />
+        </div>
+        <div>
+          <h3>{sponsor.name}</h3>
+          <div class="more">{sponsor.website} ↗</div>
+        </div>
+      </a>
+    ))
+  ) : (
+    <a
+      class="card sponsor"
+      href={`mailto:${site.email}?subject=${encodeURIComponent(interpolate(copy.sponsorshipSubject, { brand: site.brand, year: model.event.year }))}`}
+    >
+      <div>
+        <h3>{copy.sponsorsPending}</h3>
+        <p class="muted">
+          {interpolate(copy.sponsorsInvite, {
+            brand: site.brand,
+            year: model.event.year,
+          })}
+        </p>
+        <span class="more">{site.email} →</span>
+      </div>
+    </a>
+  )}
+</section>

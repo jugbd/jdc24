@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ScheduleRows from "../../components/schedule/ScheduleRows.astro";
+import {
+  getConference,
+  scheduleCopy as copy,
+  site,
+  ui,
+} from "../../lib/content";
+import { interpolate } from "../../lib/paths";
+import { dateLabel } from "../../lib/time.mjs";
+const model = await getConference();
+---
+
+<BaseLayout
+  model={model}
+  title={`${copy.title} · ${site.brand} ${model.event.year}`}
+  description={copy.description}
+  page="schedule"
+  path="schedule/"
+>
+  <header class="pagehead head">
+    <div>
+      <div class="eyebrow">
+        {dateLabel(model.event, ui.datePending)} ·{" "}
+        {model.event.venue.name || ui.venuePending}
+      </div>
+      <h1>{copy.title}</h1>
+    </div>
+    <div class="sched-tools">
+      <span class="livepill" data-live hidden>
+        <i aria-hidden="true"></i>
+        {ui.live} · <span data-live-time></span>
+      </span>
+      {model.sessions.length > 0 && (
+        <button
+          class="chip agenda js-only"
+          type="button"
+          data-only-starred
+          aria-pressed="false"
+        >
+          {ui.agenda}
+        </button>
+      )}
+    </div>
+  </header>
+  <p class="eyebrow schedule-note">
+    {interpolate(copy.timezoneLabel, { timezone: model.event.timezone })}
+  </p>
+  {model.event.programmeStatus === "unannounced" && (
+    <p class="muted">{copy.pending}</p>
+  )}
+  {model.sessions.length > 0 && <p class="eyebrow js-only">{copy.hint}</p>}
+  <ScheduleRows model={model} withAgenda />
+</BaseLayout>
+<script src="../../scripts/schedule.ts"></script>

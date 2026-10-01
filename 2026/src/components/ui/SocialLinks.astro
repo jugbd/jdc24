@@ -1,0 +1,22 @@
+---
+import { ui } from "../../lib/content";
+interface Props {
+  person: {
+    linkedin: string | null;
+    twitter: string | null;
+    website: string | null;
+  };
+}
+const { person } = Astro.props;
+const names = ["linkedin", "twitter", "website"] as const;
+---
+
+<div class="links">
+  {names
+    .filter((name) => person[name])
+    .map((name) => (
+      <a href={person[name]!} target="_blank" rel="noopener noreferrer">
+        {ui.socialLabels[name]} ↗
+      </a>
+    ))}
+</div>

@@ -1,0 +1,108 @@
+---
+import { getEntry } from "astro:content";
+import { homeCopy as copy, site, ui, type Conference } from "../../lib/content";
+import { url } from "../../lib/paths";
+import { eventParts, countdown } from "../../lib/time.mjs";
+interface Props {
+  model: Conference;
+}
+const { model } = Astro.props;
+const event = model.event;
+const about = await getEntry("pages", "about");
+const lead = about?.body?.split(/(?<=\.)\s/)[0];
+const date = event.startsAt
+  ? eventParts(new Date(event.startsAt), event.timezone).date
+  : ui.datePending;
+const values: Record<string, string | number> = {
+  edition: event.edition,
+  talks: model.sessions.length || ui.titlePending,
+  speakers: model.speakers.length || ui.speakerPending,
+  volunteers: model.team.length,
+};
+---
+
+<section class="hero">
+  <div class="meta">
+    <span>
+      package <span class="ink">{copy.terminalPackage}</span>;
+    </span>
+    <span>
+      // {event.editionLabel} · {event.venue.name || ui.venuePending}
+    </span>
+  </div>
+  <div class="card term">
+    <div class="bar">
+      <i aria-hidden="true">
+        <b></b>
+        <b></b>
+        <b></b>
+      </i>
+      <span>{copy.terminalTitle}</span>
+    </div>
+    <div class="body">
+      <div>
+        <span class="cm">jshell&gt;</span> <span class="kw">var</span>{" "}
+        {copy.terminalVariable} = <span class="ty">{copy.terminalFactory}</span>
+        .of(<span class="st">"{site.brand}"</span>,{" "}
+        <span class="nu">{event.year}</span>)
+      </div>
+      <div>
+        <span class="cm">{copy.terminalVariable} ==&gt;</span>{" "}
+        <span class="ty">{copy.terminalFactory}</span>[edition=
+        <span class="nu">{event.edition}</span>, venue=
+        <span class="nu">{event.venue.name || ui.venuePending}</span>, date=
+        <span class="nu">{date}</span>]
+      </div>
+      <div class="gap">
+        <span class="cm">jshell&gt;</span> {copy.terminalCountdown}
+      </div>
+      <div>
+        <span class="cm">$2 ==&gt;</span>{" "}
+        <span class="nu" data-countdown>
+          {countdown(event, ui)}
+        </span>
+      </div>
+      <div class="gap">
+        <span class="cm">jshell&gt;</span> {copy.terminalJoin}
+        <span class="caret" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+  <h1>
+    {event.headline.before}
+    <em>{event.headline.accent}</em>
+    {event.headline.after}
+  </h1>
+  <p class="lead">{lead}</p>
+  <div class="row">
+    <a class="btn primary" href={event.cta.link}>
+      {event.cta.text} →
+    </a>
+    <a class="btn ghost" href={url("schedule/")}>
+      {copy.secondaryCta}
+    </a>
+  </div>
+</section>
+<section class="stats-section">
+  <div class="eyebrow">
+    <span class="cm">jshell&gt;</span>{" "}
+    <span class="ink">{copy.terminalVariable}.stats()</span>
+  </div>
+  <div class="stats">
+    {copy.stats.map((stat) => (
+      <div>
+        <div class="k">
+          {stat.key}
+          <span class="cm">=</span>
+        </div>
+        <div
+          class:list={["v", { pending: typeof values[stat.key] === "string" }]}
+        >
+          {values[stat.key]}
+        </div>
+        <div class="l">{stat.label}</div>
+      </div>
+    ))}
+  </div>
+</section>
+<script src="../../scripts/clock.ts"></script>

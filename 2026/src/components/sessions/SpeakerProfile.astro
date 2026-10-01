@@ -1,0 +1,27 @@
+---
+import { getEntry, render } from "astro:content";
+import type { Conference } from "../../lib/content";
+import Photo from "../ui/Photo.astro";
+import SocialLinks from "../ui/SocialLinks.astro";
+interface Props {
+  speaker: Conference["speakers"][number];
+}
+const { speaker } = Astro.props;
+const entry = await getEntry("speakers", speaker.id);
+if (!entry) throw new Error(`Missing biography: ${speaker.id}`);
+const { Content } = await render(entry);
+---
+
+<div class="person">
+  <Photo src={speaker.image} alt="" sizes="88px" />
+  <div>
+    <h3>{speaker.name}</h3>
+    <p class="muted">
+      {[speaker.role, speaker.company].filter(Boolean).join(" · ")}
+    </p>
+  </div>
+</div>
+<SocialLinks person={speaker} />
+<div class="prose">
+  <Content />
+</div>

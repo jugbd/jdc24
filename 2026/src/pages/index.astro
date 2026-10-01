@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/home/Hero.astro";
+import About from "../components/home/About.astro";
+import Speakers from "../components/home/Speakers.astro";
+import Gallery from "../components/home/Gallery.astro";
+import Sponsors from "../components/home/Sponsors.astro";
+import Venue from "../components/home/Venue.astro";
+import Team from "../components/home/Team.astro";
+import ScheduleRows from "../components/schedule/ScheduleRows.astro";
+import { getConference, homeCopy, ui } from "../lib/content";
+import { url } from "../lib/paths";
+import { dateLabel } from "../lib/time.mjs";
+const model = await getConference();
+---
+
+<BaseLayout model={model} title={model.event.title} page="home" path="">
+  <Hero model={model} />
+  <About />
+  <Speakers model={model} />
+  <section id="session">
+    <div class="head">
+      <div>
+        <div class="eyebrow">
+          {dateLabel(model.event, ui.datePending)} · {model.event.timezone}
+        </div>
+        <h2>{homeCopy.scheduleTitle}</h2>
+      </div>
+      <a class="more" href={url("schedule/")}>
+        {homeCopy.scheduleLink}
+      </a>
+    </div>
+    <ScheduleRows model={model} />
+  </section>
+  <Gallery />
+  <Sponsors model={model} />
+  <Venue model={model} />
+  <Team model={model} />
+</BaseLayout>

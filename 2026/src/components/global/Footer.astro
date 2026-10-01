@@ -1,0 +1,22 @@
+---
+import { site } from "../../lib/content";
+import { interpolate } from "../../lib/paths";
+interface Props {
+  year: number;
+}
+---
+
+<footer>
+  <span>
+    {interpolate(site.copyright, { year: Astro.props.year })}{" "}
+    <span class="cm">· {site.footerCode}</span>
+  </span>
+  <div class="row">
+    {site.social.map((link) => (
+      <a href={link.link} target="_blank" rel="noopener noreferrer">
+        {link.name}
+      </a>
+    ))}
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+  </div>
+</footer>

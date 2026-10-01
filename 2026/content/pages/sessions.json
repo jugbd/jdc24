@@ -1,0 +1,9 @@
+{
+  "title": "Sessions",
+  "description": "Explore the conference sessions and build your own agenda.",
+  "pending": "The programme will be announced soon.",
+  "empty": "Nothing here yet. Star a talk, or clear the filter.",
+  "all": "All",
+  "filterLabel": "Filter sessions",
+  "count": "{visible} of {total} sessions"
+}

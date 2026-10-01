@@ -1,0 +1,91 @@
+---
+import Navigation from "../components/global/Navigation.astro";
+import Footer from "../components/global/Footer.astro";
+import { site, ui, type Conference } from "../lib/content";
+import { url } from "../lib/paths";
+import "../styles/site.css";
+interface Props {
+  model: Conference;
+  title: string;
+  page: string;
+  path: string;
+  description?: string;
+}
+const {
+  model,
+  title,
+  page,
+  path,
+  description = site.description,
+} = Astro.props;
+const canonical = new URL(url(path), Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" data-palette="espresso">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#110C09" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={url("icons/favicon.ico")} />
+    <link
+      rel="apple-touch-icon"
+      href={url("icons/android-chrome-192x192.png")}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      // Shared pre-paint initialization; storage can be disabled by the browser.
+      document.documentElement.classList.add("js");
+      try {
+        const theme = localStorage.getItem("jdc-theme");
+        const palette =
+          new URLSearchParams(location.search).get("palette") ||
+          localStorage.getItem("jdc-palette");
+        if (["light", "dark"].includes(theme))
+          document.documentElement.dataset.theme = theme;
+        if (["espresso", "hotspot", "duke", "coral"].includes(palette))
+          document.documentElement.dataset.palette = palette;
+      } catch {}
+    </script>
+  </head>
+  <body
+    data-page={page}
+    data-event-id={model.event.id}
+    data-session-ids={JSON.stringify(
+      model.sessions.map((session) => session.id),
+    )}
+    data-starts-at={model.event.startsAt || ""}
+    data-ends-at={model.event.endsAt || ""}
+    data-timezone={model.event.timezone}
+    data-countdown-pending={ui.countdownPending}
+    data-countdown-live={ui.countdownLive}
+    data-countdown-done={ui.countdownDone}
+    data-add-agenda={ui.addAgenda}
+    data-remove-agenda={ui.removeAgenda}
+    data-saved={ui.saved}
+    data-removed={ui.removed}
+    data-storage-unavailable={ui.storageUnavailable}
+  >
+    <a class="skip-link" href="#main">
+      {ui.skip}
+    </a>
+    <Navigation page={page} year={model.event.year} />
+    <main id="main" tabindex="-1">
+      <slot />
+      <Footer year={model.event.year} />
+    </main>
+    <p class="sr-only" id="agenda-status" role="status" aria-live="polite"></p>
+  </body>
+</html>

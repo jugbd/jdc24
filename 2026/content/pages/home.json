@@ -1,0 +1,136 @@
+{
+  "aboutHeading": "About JDC.",
+  "aboutSince": "@since 2013, JUGBD",
+  "terminalTitle": "jshell · JDK 25",
+  "terminalPackage": "org.jugbd.jdc",
+  "terminalFactory": "Conference",
+  "terminalVariable": "jdc",
+  "terminalCountdown": "Duration.between(now(), jdc.start())",
+  "terminalJoin": "jdc.join(you)",
+  "secondaryCta": "Read the schedule",
+  "stats": [
+    {
+      "key": "edition",
+      "label": "Conference edition"
+    },
+    {
+      "key": "talks",
+      "label": "sessions plus panel Q&A"
+    },
+    {
+      "key": "speakers",
+      "label": "practitioners & researchers"
+    },
+    {
+      "key": "volunteers",
+      "label": "organizing team"
+    }
+  ],
+  "whyTitle": "Be Part of Bangladesh’s Biggest Java Gathering",
+  "why": [
+    {
+      "title": "Meet Java Enthusiasts",
+      "body": "Connect with passionate developers, architects, and Java lovers over great coffee and good conversations."
+    },
+    {
+      "title": "Engage in Meaningful Conversations",
+      "body": "Exchange ideas, share your experiences, and discuss your favorite Java technologies with people who truly get it."
+    },
+    {
+      "title": "Learn from Experts",
+      "body": "Gain insights from world-class Java professionals and community leaders through inspiring talks and hands-on sessions."
+    },
+    {
+      "title": "Get Inspired to Grow",
+      "body": "Discover new tools, frameworks, and trends shaping the future of Java and take your skills to the next level."
+    },
+    {
+      "title": "Experience the Community Spirit",
+      "body": "Enjoy an event filled with learning, networking, and laughter as the Java community comes together under one roof."
+    },
+    {
+      "title": "Win and Have Fun",
+      "body": "Take part in interactive sessions, challenges, and activities and maybe even walk away with some cool prizes!"
+    }
+  ],
+  "speakersTitle": "Speakers",
+  "speakersLink": "sessions.forEach(read) →",
+  "speakersPending": "The speaker lineup will be announced soon.",
+  "scheduleTitle": "The day, in one log.",
+  "scheduleLink": "tail -f schedule →",
+  "galleryTitle": "From past JDCs",
+  "sponsorsTitle": "Sponsors",
+  "sponsorsPending": "Sponsors to be announced",
+  "sponsorsInvite": "Interested in supporting {brand} {year}? Get in touch.",
+  "teamTitle": "Our team",
+  "teamSubtitle": "@Maintainers // volunteers, all of them",
+  "venueTitle": "Venue",
+  "addressLabel": "address",
+  "mapLabel": "Open in Maps →",
+  "updatesTitle": "Get realtime event updates",
+  "updatesBody": "Follow the JUGBD group on Facebook for announcements.",
+  "updatesLink": "https://www.facebook.com/groups/jugbd",
+  "gallery": [
+    {
+      "src": "images/gallery/00-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 1"
+    },
+    {
+      "src": "images/gallery/01-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 2"
+    },
+    {
+      "src": "images/gallery/02-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 3"
+    },
+    {
+      "src": "images/gallery/03-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 4"
+    },
+    {
+      "src": "images/gallery/04-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 5"
+    },
+    {
+      "src": "images/gallery/05-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 6"
+    },
+    {
+      "src": "images/gallery/06-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 7"
+    },
+    {
+      "src": "images/gallery/07-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 8"
+    },
+    {
+      "src": "images/gallery/08-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 9"
+    },
+    {
+      "src": "images/gallery/09-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 10"
+    },
+    {
+      "src": "images/gallery/10-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 11"
+    },
+    {
+      "src": "images/gallery/11-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 12"
+    },
+    {
+      "src": "images/gallery/12-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 13"
+    },
+    {
+      "src": "images/gallery/13-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 14"
+    },
+    {
+      "src": "images/gallery/14-slider.jpg",
+      "alt": "Attendees at a past Java Developers’ Conference — photo 15"
+    }
+  ],
+  "sponsorshipSubject": "{brand} {year} sponsorship"
+}

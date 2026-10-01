@@ -1,0 +1,42 @@
+name: Verify JDC 2026
+
+on:
+  push:
+    paths:
+      - '2026/**'
+      - '.github/workflows/2026.yml'
+  pull_request:
+    paths:
+      - '2026/**'
+      - '.github/workflows/2026.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: '2026'
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: 2026/package-lock.json
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run check
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jdc-2026-site
+          path: 2026/dist/

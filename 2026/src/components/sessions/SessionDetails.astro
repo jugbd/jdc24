@@ -1,0 +1,33 @@
+---
+import { getEntry, render } from "astro:content";
+import { ui, type Conference } from "../../lib/content";
+import AgendaButton from "../ui/AgendaButton.astro";
+import SpeakerProfile from "./SpeakerProfile.astro";
+interface Props {
+  session: Conference["sessions"][number];
+  model: Conference;
+}
+const { session, model } = Astro.props;
+const entry = await getEntry("sessions", session.id);
+if (!entry) throw new Error(`Missing abstract: ${session.id}`);
+const { Content } = await render(entry);
+const slot = model.schedule.find((slot) => slot.sessionId === session.id);
+---
+
+<p class="eyebrow">
+  {session.track || ui.trackPending} ·{" "}
+  {slot?.start ? `${slot.start}–${slot.end}` : ui.timePending} ·{" "}
+  {model.event.timezone}
+</p>
+<div class="tags">
+  {session.tags.map((tag) => (
+    <span>{tag}</span>
+  ))}
+</div>
+<div class="prose">
+  <Content />
+</div>
+<AgendaButton id={session.id} title={session.title || ui.titlePending} />
+{session.speakers.map((speaker) => (
+  <SpeakerProfile speaker={speaker} />
+))}

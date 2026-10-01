@@ -1,0 +1,28 @@
+{
+  "id": "jdc-2026",
+  "year": 2026,
+  "edition": 12,
+  "editionLabel": "12th Edition",
+  "title": "Java Developers' Conference 2026",
+  "timezone": "Asia/Dhaka",
+  "startsAt": null,
+  "endsAt": null,
+  "programmeStatus": "unannounced",
+  "cta": {
+    "text": "Get notified",
+    "link": "https://www.facebook.com/groups/jugbd"
+  },
+  "venue": {
+    "status": "unannounced",
+    "name": null,
+    "street": null,
+    "city": "Dhaka, Bangladesh",
+    "mapUrl": null,
+    "mapEmbedUrl": null
+  },
+  "headline": {
+    "before": "Java Developers' ",
+    "accent": "Conference",
+    "after": " 2026"
+  }
+}

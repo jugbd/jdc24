@@ -1,0 +1,49 @@
+{
+  "skip": "Skip to content",
+  "navLabel": "Main navigation",
+  "paletteLabel": "Color palette",
+  "themeLabel": "Toggle color mode",
+  "lightTheme": "Use light mode",
+  "darkTheme": "Use dark mode",
+  "datePending": "Date TBD",
+  "timePending": "Time TBD",
+  "venuePending": "Venue TBD",
+  "speakerPending": "Speaker to be announced",
+  "titlePending": "Session to be announced",
+  "trackPending": "Talk",
+  "details": "Read session details",
+  "speakerDetails": "Read speaker profile",
+  "close": "Close dialog",
+  "agenda": "★ My agenda",
+  "addAgenda": "Add {title} to my agenda",
+  "removeAgenda": "Remove {title} from my agenda",
+  "saved": "Added to your agenda.",
+  "removed": "Removed from your agenda.",
+  "storageUnavailable": "Agenda saving is unavailable. Your choices will last for this visit.",
+  "countdownPending": "TBD // date not announced yet",
+  "countdownLive": "LIVE // the conference is underway",
+  "countdownDone": "COMPLETED // thank you, Dhaka",
+  "live": "LIVE",
+  "past": "Past",
+  "now": "Now",
+  "previousPhotos": "Previous photos",
+  "nextPhotos": "Next photos",
+  "aboutPhoto": "Attendees at a past JDC",
+  "talks": "Talks",
+  "bio": "Biography",
+  "socialLabels": {
+    "linkedin": "LinkedIn",
+    "twitter": "X",
+    "website": "Website"
+  },
+  "scheduleTags": {
+    "break": "break",
+    "plenary": "stage",
+    "session": "talk"
+  },
+  "scheduleLevels": {
+    "break": "IDLE",
+    "plenary": "MAIN",
+    "session": "INFO"
+  }
+}

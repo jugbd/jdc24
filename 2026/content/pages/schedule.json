@@ -1,0 +1,8 @@
+{
+  "title": "Schedule",
+  "description": "Plan your conference day.",
+  "pending": "Session details and times will be announced soon.",
+  "hint": "Tap ★ to build your own day. Your choices are saved on this device.",
+  "empty": "No sessions saved yet. Add talks from the sessions page.",
+  "timezoneLabel": "All times: {timezone}"
+}

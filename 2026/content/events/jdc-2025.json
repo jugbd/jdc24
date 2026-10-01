@@ -1,0 +1,28 @@
+{
+  "id": "jdc-2025",
+  "year": 2025,
+  "edition": 11,
+  "editionLabel": "11th Edition",
+  "title": "Java Developers' Conference 2025",
+  "timezone": "Asia/Dhaka",
+  "startsAt": "2025-12-06T10:00:00+06:00",
+  "endsAt": "2025-12-06T19:10:00+06:00",
+  "programmeStatus": "published",
+  "cta": {
+    "text": "See you at JDC!",
+    "link": "https://tickets.jugbd.org"
+  },
+  "venue": {
+    "status": "announced",
+    "name": "1st floor, KIB Auditorium",
+    "street": "KIB Complex, Khamar Bari Rd",
+    "city": "Dhaka, Bangladesh",
+    "mapUrl": "https://maps.app.goo.gl/ksLLdcir4VQWv4jE9",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.6620325323306!2d90.38290107609288!3d23.759428488428203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a648794c3d%3A0xf21993d3715834cd!2sKrishibid%20Institution%20Bangladesh!5e0!3m2!1sen!2sbd!4v1760735274834!5m2!1sen!2sbd"
+  },
+  "headline": {
+    "before": "Java Developers' ",
+    "accent": "Conference",
+    "after": " 2025"
+  }
+}

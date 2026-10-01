@@ -1,0 +1,60 @@
+---
+import { homeCopy as copy, site, ui, type Conference } from "../../lib/content";
+import { dateLabel } from "../../lib/time.mjs";
+interface Props {
+  model: Conference;
+}
+const { model } = Astro.props;
+const venue = model.event.venue;
+---
+
+<section id="venue">
+  <div class="eyebrow">{copy.venueTitle}</div>
+  <h2>{venue.name || ui.venuePending}</h2>
+  <div class="venue">
+    {venue.mapEmbedUrl && <iframe
+      src={venue.mapEmbedUrl}
+      title={`${copy.venueTitle}: ${venue.name}`}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+    ></iframe>}
+    <div class="card addr">
+      <div class="eyebrow">{copy.addressLabel}</div>
+      <div class="big">
+        {venue.name || ui.venuePending}
+        {venue.street && (
+          <>
+            <br />
+            {venue.street}
+          </>
+        )}
+        <br />
+        {venue.city}
+      </div>
+      <div class="row">
+        {venue.mapUrl && (
+          <a
+            class="btn primary"
+            href={venue.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {copy.mapLabel}
+          </a>
+        )}
+        <a class="btn ghost" href={`mailto:${site.email}`}>
+          {site.email}
+        </a>
+      </div>
+      <hr />
+      <div class="eyebrow">
+        {dateLabel(model.event, ui.datePending)} · {model.event.timezone}
+      </div>
+      <h3>{copy.updatesTitle}</h3>
+      <a href={copy.updatesLink} target="_blank" rel="noopener noreferrer">
+        {copy.updatesBody}
+      </a>
+    </div>
+  </div>
+</section>

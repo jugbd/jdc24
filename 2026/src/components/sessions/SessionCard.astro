@@ -1,0 +1,68 @@
+---
+import { getEntry } from "astro:content";
+import { ui, type Conference } from "../../lib/content";
+import Photo from "../ui/Photo.astro";
+import Dialog from "../ui/Dialog.astro";
+import AgendaButton from "../ui/AgendaButton.astro";
+import SessionDetails from "./SessionDetails.astro";
+interface Props {
+  session: Conference["sessions"][number];
+  model: Conference;
+}
+const { session, model } = Astro.props;
+const slot = model.schedule.find((slot) => slot.sessionId === session.id);
+const entry = await getEntry("sessions", session.id);
+const excerpt = (entry?.body || "")
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+  .replace(/[*_`#]/g, "");
+const title = session.title || ui.titlePending;
+---
+
+<article
+  class="card sess"
+  id={session.id}
+  data-session={session.id}
+  data-tags={JSON.stringify([session.track, ...session.tags].filter(Boolean))}
+>
+  <div class="top">
+    <span class="ty">{session.track || ui.trackPending}</span>
+    <span>{slot?.start ? `${slot.start}–${slot.end}` : ui.timePending}</span>
+  </div>
+  <h2>
+    <a
+      href={`#details-${session.id}`}
+      data-open-dialog={`dialog-${session.id}`}
+    >
+      {title}
+    </a>
+  </h2>
+  {excerpt && <p class="ex">{excerpt}</p>}
+  <div class="tags">
+    {session.tags.map((tag) => (
+      <span>{tag}</span>
+    ))}
+  </div>
+  <div class="foot">
+    <div class="who">
+      {session.speakers[0] && (
+        <Photo src={session.speakers[0].image} alt="" sizes="40px" />
+      )}
+      <div>
+        <b>
+          {session.speakers.map((speaker) => speaker.name).join(", ") ||
+            ui.speakerPending}
+        </b>
+      </div>
+    </div>
+    <AgendaButton id={session.id} title={title} />
+  </div>
+  <details id={`details-${session.id}`}>
+    <summary>{ui.details}</summary>
+    <div class="session-details">
+      <SessionDetails session={session} model={model} />
+    </div>
+  </details>
+</article>
+<Dialog id={`dialog-${session.id}`} title={title}>
+  <SessionDetails session={session} model={model} />
+</Dialog>

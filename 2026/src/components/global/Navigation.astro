@@ -1,0 +1,69 @@
+---
+import { site, ui } from "../../lib/content";
+import { url } from "../../lib/paths";
+interface Props {
+  page: string;
+  year: number;
+}
+const { page, year } = Astro.props;
+const icons: Record<string, string> = {
+  home: "M4 11 12 4l8 7v9h-5v-6H9v6H4z",
+  speakers: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-7 8a7 7 0 0 1 14 0z",
+  sessions: "M4 5h16v3H4zm0 5.5h16v3H4zM4 16h16v3H4z",
+  schedule:
+    "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14zm-1 2h2v5l3.5 2-1 1.7L11 13z",
+  venue:
+    "M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7zm0 4.5A2.5 2.5 0 1 0 12 11.5 2.5 2.5 0 0 0 12 6.5z",
+  team: "M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2 19a6 6 0 0 1 12 0zm10 0a6 6 0 0 1 10 0z",
+};
+---
+
+{["rail", "dock"].map((kind) => (
+  <nav class={kind} aria-label={ui.navLabel}>
+    {kind === "rail" && (
+      <a class="brand" href={url()}>
+        <img
+          src={url("icons/android-chrome-192x192.png")}
+          width="40"
+          height="40"
+          alt={site.brand}
+        />
+        <span>{year}</span>
+      </a>
+    )}
+    {site.nav.map((item) => (
+      <a
+        class="navlink"
+        href={url(item.path)}
+        aria-current={item.id === page ? "page" : undefined}
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d={icons[item.id]} />
+        </svg>
+        {item.label}
+      </a>
+    ))}
+    <div class="spacer"></div>
+    <div class="palettes js-only" role="group" aria-label={ui.paletteLabel}>
+      {["espresso", "hotspot", "duke", "coral"].map((palette) => (
+        <button
+          class={`palette-${palette}`}
+          type="button"
+          data-palette={palette}
+          aria-label={palette}
+          aria-pressed={palette === "espresso"}
+        ></button>
+      ))}
+    </div>
+    <button
+      class="themebtn js-only"
+      type="button"
+      aria-label={ui.themeLabel}
+      data-light-label={ui.lightTheme}
+      data-dark-label={ui.darkTheme}
+    >
+      <span aria-hidden="true">◐</span>
+    </button>
+  </nav>
+))}
+<script src="../../scripts/theme.ts"></script>

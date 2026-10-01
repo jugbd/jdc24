@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SessionCard from "../components/sessions/SessionCard.astro";
+import SpeakerProfile from "../components/sessions/SpeakerProfile.astro";
+import {
+  getConference,
+  sessionsCopy as copy,
+  homeCopy,
+  site,
+  ui,
+} from "../lib/content";
+const model = await getConference();
+const tags = [
+  ...new Set(
+    model.sessions
+      .flatMap((session) => [session.track, ...session.tags])
+      .filter(Boolean),
+  ),
+];
+---
+
+<BaseLayout
+  model={model}
+  title={`${copy.title} · ${site.brand} ${model.event.year}`}
+  description={copy.description}
+  page="sessions"
+  path="sessions.html"
+>
+  <header class="pagehead head">
+    <div>
+      <div class="eyebrow">
+        {site.brand} {model.event.year}
+      </div>
+      <h1>{copy.title}</h1>
+    </div>
+    <p
+      class="eyebrow"
+      data-session-count
+      data-template={copy.count}
+      aria-live="polite"
+    ></p>
+  </header>
+  {model.sessions.length ? (
+    <>
+      <div class="filters js-only" role="group" aria-label={copy.filterLabel}>
+        <button type="button" class="chip" data-tag="" aria-pressed="true">
+          {copy.all}
+        </button>
+        {tags.map((tag) => (
+          <button
+            type="button"
+            class="chip"
+            data-tag={tag}
+            aria-pressed="false"
+          >
+            {tag}
+          </button>
+        ))}
+        <button
+          class="chip agenda"
+          type="button"
+          data-only-starred
+          aria-pressed="false"
+        >
+          {ui.agenda}
+        </button>
+      </div>
+      <div class="sgrid">
+        {model.sessions.map((session) => (
+          <SessionCard session={session} model={model} />
+        ))}
+      </div>
+      <p class="empty" data-sessions-empty hidden>
+        {copy.empty}
+      </p>
+    </>
+  ) : (
+    <p class="empty">{copy.pending}</p>
+  )}
+  {model.speakers.length > 0 && (
+    <section>
+      <h2>{homeCopy.speakersTitle}</h2>
+      {model.speakers.map((speaker) => (
+        <article class="speaker-profile" id={`speaker-${speaker.id}`}>
+          <SpeakerProfile speaker={speaker} />
+        </article>
+      ))}
+    </section>
+  )}
+</BaseLayout>
+<script src="../scripts/sessions.ts"></script>

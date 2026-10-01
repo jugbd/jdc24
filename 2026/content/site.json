@@ -1,0 +1,52 @@
+{
+  "eventId": "jdc-2026",
+  "url": "https://jugbd.github.io",
+  "basePath": "/jdc24/2026/",
+  "brand": "JDC",
+  "description": "Bangladesh's community-driven Java conference by the Bangladesh Java User Group (JUGBD).",
+  "email": "info@jugbd.org",
+  "social": [
+    {
+      "name": "Facebook",
+      "link": "https://www.facebook.com/groups/jugbd"
+    },
+    {
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/groups/5072388/"
+    }
+  ],
+  "copyright": "© {year} JugBD.org. All rights reserved.",
+  "footerCode": "System.exit(0);",
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "path": ""
+    },
+    {
+      "id": "speakers",
+      "label": "Speakers",
+      "path": "#speakers"
+    },
+    {
+      "id": "sessions",
+      "label": "Sessions",
+      "path": "sessions.html"
+    },
+    {
+      "id": "schedule",
+      "label": "Schedule",
+      "path": "schedule/"
+    },
+    {
+      "id": "venue",
+      "label": "Venue",
+      "path": "#venue"
+    },
+    {
+      "id": "team",
+      "label": "Team",
+      "path": "#our-team"
+    }
+  ]
+}

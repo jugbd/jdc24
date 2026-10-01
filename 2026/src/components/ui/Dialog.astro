@@ -1,0 +1,25 @@
+---
+import { ui } from "../../lib/content";
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+
+<dialog id={id} aria-labelledby={`${id}-title`}>
+  <div class="dlg">
+    <button
+      type="button"
+      class="x"
+      data-close-dialog
+      aria-label={ui.close}
+      autofocus
+    >
+      ×
+    </button>
+    <h2 id={`${id}-title`}>{title}</h2>
+    <slot />
+  </div>
+</dialog>
+<script src="../../scripts/dialogs.ts"></script>

@@ -1,0 +1,48 @@
+---
+import { homeCopy as copy, ui } from "../../lib/content";
+import Photo from "../ui/Photo.astro";
+---
+
+<section id="gallery">
+  <div class="head">
+    <h2>{copy.galleryTitle}</h2>
+    <div class="gnav js-only">
+      <button
+        type="button"
+        data-gallery-step="-1"
+        aria-label={ui.previousPhotos}
+      >
+        ←
+      </button>
+      <button type="button" data-gallery-step="1" aria-label={ui.nextPhotos}>
+        →
+      </button>
+    </div>
+  </div>
+  <div class="gallery" id="gallery-photos">
+    {copy.gallery.map((photo) => (
+      <Photo
+        src={photo.src}
+        alt={photo.alt}
+        sizes="(max-width: 700px) 80vw, 460px"
+      />
+    ))}
+  </div>
+</section>
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-gallery-step]")
+    .forEach((button) =>
+      button.addEventListener("click", () => {
+        const gallery = document.getElementById("gallery-photos");
+        if (gallery)
+          gallery.scrollBy({
+            left:
+              gallery.clientWidth * 0.8 * Number(button.dataset.galleryStep),
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "instant"
+              : "smooth",
+          });
+      }),
+    );
+</script>

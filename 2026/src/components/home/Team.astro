@@ -1,0 +1,31 @@
+---
+import { homeCopy as copy, type Conference } from "../../lib/content";
+import Photo from "../ui/Photo.astro";
+interface Props {
+  model: Conference;
+}
+const { model } = Astro.props;
+---
+
+<section id="our-team">
+  <div class="eyebrow">{copy.teamSubtitle}</div>
+  <h2>{copy.teamTitle}</h2>
+  <div class="team">
+    {model.team.map((member) => (
+      <a
+        class="card mate"
+        href={member.linkedin || undefined}
+        target={member.linkedin ? "_blank" : undefined}
+        rel="noopener noreferrer"
+      >
+        <div class="ph">
+          <Photo src={member.image} alt="" />
+        </div>
+        <div>
+          <div class="n">{member.name}</div>
+          <div class="c">{member.company}</div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

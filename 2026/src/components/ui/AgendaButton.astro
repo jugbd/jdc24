@@ -1,0 +1,20 @@
+---
+import { ui } from "../../lib/content";
+import { interpolate } from "../../lib/paths";
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+
+<button
+  class="star js-only"
+  type="button"
+  data-star={id}
+  data-title={title}
+  aria-pressed="false"
+  aria-label={interpolate(ui.addAgenda, { title })}
+>
+  ★
+</button>

@@ -1,0 +1,49 @@
+---
+import { homeCopy as copy, type Conference } from "../../lib/content";
+import { url } from "../../lib/paths";
+import Photo from "../ui/Photo.astro";
+import Dialog from "../ui/Dialog.astro";
+import SpeakerProfile from "../sessions/SpeakerProfile.astro";
+interface Props {
+  model: Conference;
+}
+const { model } = Astro.props;
+---
+
+<section id="speakers">
+  <div class="head">
+    <h2>{copy.speakersTitle}</h2>
+    <a class="more" href={url("sessions.html")}>
+      {copy.speakersLink}
+    </a>
+  </div>
+  {model.speakers.length ? (
+    <div class="speakers">
+      {model.speakers.map((speaker, index) => (
+        <>
+          <a
+            class="spk"
+            href={url(`sessions.html#speaker-${speaker.id}`)}
+            data-open-dialog={`speaker-dialog-${speaker.id}`}
+          >
+            <div class="ph">
+              <Photo src={speaker.image} alt="" />
+              <span>[{index}]</span>
+            </div>
+            <div>
+              <div class="n">{speaker.name}</div>
+              <div class="r">
+                {[speaker.role, speaker.company].filter(Boolean).join(" · ")}
+              </div>
+            </div>
+          </a>
+          <Dialog id={`speaker-dialog-${speaker.id}`} title={speaker.name}>
+            <SpeakerProfile speaker={speaker} />
+          </Dialog>
+        </>
+      ))}
+    </div>
+  ) : (
+    <p class="empty card announcement">{copy.speakersPending}</p>
+  )}
+</section>
